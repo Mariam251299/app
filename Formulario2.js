@@ -58,7 +58,7 @@ export default class Formulario2 extends Component {
                   <Icon
                   name='frown'
                   size={24}
-                  color='black'
+                  color='#009392'
                   type='feather'
                   />
               }
@@ -73,7 +73,7 @@ export default class Formulario2 extends Component {
                   <Icon
                   name='user-injured'
                   size={24}
-                  color='black'
+                  color='#009392'
                   type='font-awesome-5'
                   />
               }
@@ -88,7 +88,7 @@ export default class Formulario2 extends Component {
                   <Icon
                   name='hospital-o'
                   size={24}
-                  color='black'
+                  color='#009392'
                   type='font-awesome'
                   />
               }
@@ -103,7 +103,7 @@ export default class Formulario2 extends Component {
                   <Icon
                   name='medkit'
                   size={24}
-                  color='black'
+                  color='#009392'
                   type='font-awesome'
                   />
               }
@@ -128,7 +128,7 @@ export default class Formulario2 extends Component {
           <View style = {styles.inputs}>
             <Text>Apgar</Text>
             <View style={styles.imagen1}>
-              <Image style={styles.imagen} source={require('../app/android/app/src/Imagenes/apgar.jpeg')}/>
+              <Image style={styles.imagen1} source={require('../app/android/app/src/Imagenes/apgar.jpeg')}/>
             </View>
             <View style = {styles.inputs}>
                 <Input
@@ -137,7 +137,7 @@ export default class Formulario2 extends Component {
                     <Icon
                     name='clockcircleo'
                     size={24}
-                    color='black'
+                    color='#009392'
                     type='ant-design'
                     />
                 }
@@ -151,7 +151,7 @@ export default class Formulario2 extends Component {
                     <Icon
                     name='clockcircleo'
                     size={24}
-                    color='black'
+                    color='#009392'
                     type='ant-design'
                     />
                 }
@@ -165,7 +165,7 @@ export default class Formulario2 extends Component {
                     <Icon
                     name='clockcircleo'
                     size={24}
-                    color='black'
+                    color='#009392'
                     type='ant-design'
                     />
                 }
@@ -181,7 +181,7 @@ export default class Formulario2 extends Component {
                 <Icon
                 name='view-list'
                 size={24}
-                color='black'
+                color='#009392'
                 type='materialcommunityicons'
                 />
             }
@@ -196,7 +196,7 @@ export default class Formulario2 extends Component {
                 <Icon
                 name='pregnant-woman'
                 size={24}
-                color='black'
+                color='#009392'
                 type='materialicons'
                 />
             }
@@ -211,7 +211,7 @@ export default class Formulario2 extends Component {
                 <Icon
                 name='pregnant-woman'
                 size={24}
-                color='black'
+                color='#009392'
                 type='materialicons'
                 />
             }
@@ -226,7 +226,7 @@ export default class Formulario2 extends Component {
                 <Icon
                 name='closecircleo'
                 size={24}
-                color='black'
+                color='#009392'
                 type='ant-design'
                 />
             }
@@ -241,7 +241,7 @@ export default class Formulario2 extends Component {
                 <Icon
                 name='calendar'
                 size={24}
-                color='black'
+                color='#009392'
                 type='font-awesome'
                 />
             }
@@ -256,7 +256,7 @@ export default class Formulario2 extends Component {
                 <Icon
                 name='calendar'
                 size={24}
-                color='black'
+                color='#009392'
                 type='font-awesome'
                 />
             }
@@ -282,24 +282,27 @@ const styles = StyleSheet.create({
       marginLeft: 20,
     },
     imagen:{
-    width:100,
-    height:100,
-    justifyContent:'center',
-    alignItems:'center',
-    alignSelf: 'center',
-    marginTop: 20,
+      width:120,
+      height:120,
+      justifyContent:'center',
+      alignItems:'center',
+      alignSelf: 'center',
+      marginTop: 20,
+      marginBottom: 20,
     },
     imagen1:{
-        width:150,
-        height:150,
+        width:300,
+        height:300,
         justifyContent:'center',
         alignItems:'center',
         alignSelf: 'center',
+        flex: 1,
+        resizeMode: 'contain',
     },
     sectionTitle: {
       fontSize: 24,
       fontWeight: '600',
-      color: 'gray',
+      color: '#900C3F',
       textAlign: 'center',
       marginTop: 20,
     },
@@ -317,7 +320,7 @@ const styles = StyleSheet.create({
     },
     scrollView: {
       backgroundColor: 'white',
-      marginHorizontal: 20,
+      marginHorizontal: 5,
     },
     picke: {
       flex: 1,

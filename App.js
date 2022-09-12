@@ -15,7 +15,7 @@ import type {Node} from 'react';
 //import DatePicker from 'react-native-date-picker';
 import { Button } from 'react-native'
 import DatePicker from 'react-native-modern-datepicker';
-
+import SplashScreen from './SplashScreen';
 import {
   SafeAreaView,
   ScrollView,
@@ -33,6 +33,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -71,7 +72,7 @@ const App: () => Node = () => {
   
 
   return (
-
+    
     <MyRoutes />
     /*
     <SafeAreaView style={backgroundStyle}>

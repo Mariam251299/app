@@ -1,5 +1,5 @@
 import React, { Component,useState } from 'react';
-import { View, Text, StyleSheet, ScrollView,TouchableOpacity,Alert, StatusBar, BackHandler, Dimensions, SafeAreaView} from 'react-native';
+import { View, Text, StyleSheet, ScrollView,TouchableOpacity,Alert, StatusBar, BackHandler, Dimensions, SafeAreaView, Platform} from 'react-native';
 //import Icon from 'react-native-vector-icons/FontAwesome';
 //import { library } from '@fortawesome/fontawesome-svg-core'
 //import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -14,6 +14,10 @@ import {Picker} from '@react-native-picker/picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 //import DatePicker from 'react-native-date-picker';
 import DatePicker from 'react-native-modern-datepicker';
+import LinearGradient from 'react-native-linear-gradient';
+//import DateTimePicker from ''
+
+
 /*function HomeScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -60,6 +64,7 @@ export default class Formulario1 extends Component {
       codigo:'',
       open: '',
       fecha1:'',
+
     }
 
     /*updatesexo = (sexo) => {
@@ -110,11 +115,13 @@ export default class Formulario1 extends Component {
           
             <Input
               placeholder={this.state.fecha}
+              placeholderTextColor={'black'}
+              //placeholder={new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + '-' + (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate())}
               leftIcon={
               <Icon
                 name='calendar'
                 size={24}
-                color='black'
+                color='#009392'
               />
               }
               editable={false}
@@ -122,7 +129,27 @@ export default class Formulario1 extends Component {
             />
         </View>
         <View>
-          <DatePicker onDateChange={fecha => this.setState({fecha})} />
+          <DatePicker onDateChange={fecha => this.setState({fecha})} options={{
+            backgroundColor: '#FBFBFB',
+            textHeaderColor: '#009392',
+            textDefaultColor: '#900C3F',
+            selectedTextColor: '#fff',
+            mainColor: '#009392',
+            textSecondaryColor: '#900C3F',
+            //borderColor: 'rgba(122, 146, 165, 0.1)',
+            borderColor: 'rgba(144, 12, 63, 1.0)',
+          }}
+            //current="2022-09-09"
+            current={new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + '-' + (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate())}
+            selected={new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + '-' + (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate())}
+            mode="calendar"
+            minuteInterval={30}
+            style={{ borderRadius: 10 }}/>
+          {/*<Button onPress={()=>{ this._datePicker.setState({modalVisible:true})}}>
+            <Text>
+              showDatePicker
+            </Text>
+            </Button>*/}
         </View>
 
         <View style = {styles.inputs}>
@@ -133,7 +160,7 @@ export default class Formulario1 extends Component {
                 <Icon
                 name='calendar'
                 size={24}
-                color='black'
+                color='#009392'
                 type='font-awesome'
                 />
             }
@@ -149,7 +176,7 @@ export default class Formulario1 extends Component {
                 <Icon
                 name='edit'
                 size={24}
-                color='black'
+                color='#009392'
                 type='font-awesome'
                 />
             }
@@ -164,7 +191,7 @@ export default class Formulario1 extends Component {
                 <Icon
                 name='map-marker'
                 size={24}
-                color='black'
+                color='#009392'
                 type='font-awesome'
                 />
             }
@@ -179,7 +206,7 @@ export default class Formulario1 extends Component {
                 <Icon
                 name='car'
                 size={24}
-                color='black'
+                color='#009392'
                 type='font-awesome'
                 />
             }
@@ -194,7 +221,7 @@ export default class Formulario1 extends Component {
                 <Icon
                 name='keyboard-o'
                 size={24}
-                color='black'
+                color='#009392'
                 type='font-awesome'
                 />
             }
@@ -209,7 +236,7 @@ export default class Formulario1 extends Component {
                 <Icon
                 name='user'
                 size={24}
-                color='black'
+                color='#009392'
                 type='font-awesome'
                 />
             }
@@ -224,7 +251,7 @@ export default class Formulario1 extends Component {
                 <Icon
                 name='users'
                 size={24}
-                color='black'
+                color='#009392'
                 type='font-awesome'
                 />
             }
@@ -240,7 +267,7 @@ export default class Formulario1 extends Component {
                 <Icon
                 name='user'
                 size={24}
-                color='black'
+                color='#009392'
                 type='font-awesome'
                 />
             }
@@ -266,7 +293,7 @@ export default class Formulario1 extends Component {
                 <Icon
                 name='long-arrow-up'
                 size={24}
-                color='black'
+                color='#009392'
                 type='font-awesome'
                 />
             }
@@ -281,7 +308,7 @@ export default class Formulario1 extends Component {
                 <Icon
                 name='home'
                 size={24}
-                color='black'
+                color='#009392'
                 type='font-awesome'
                 />
             }
@@ -296,7 +323,7 @@ export default class Formulario1 extends Component {
                 <Icon
                 name='home'
                 size={24}
-                color='black'
+                color='#009392'
                 type='font-awesome'
                 />
             }
@@ -311,7 +338,7 @@ export default class Formulario1 extends Component {
                 <Icon
                 name='home'
                 size={24}
-                color='black'
+                color='#009392'
                 type='font-awesome'
                 />
             }
@@ -327,7 +354,7 @@ export default class Formulario1 extends Component {
                 <Icon
                 name='phone'
                 size={24}
-                color='black'
+                color='#009392'
                 type='font-awesome'
                 />
             }
@@ -342,7 +369,7 @@ export default class Formulario1 extends Component {
                 <Icon
                 name='smile-o'
                 size={24}
-                color='black'
+                color='#009392'
                 type='font-awesome'
                 />
             }
@@ -351,7 +378,7 @@ export default class Formulario1 extends Component {
         </View>
         <View style = {styles.inputs}>
             <Text>¿Perteneciente a la red universitaria?</Text>
-            <Picker selectedValue = {this.state.universitario} onValueChange = {universitario => this.setState({universitario})}>
+            <Picker selectedValue = {this.state.universitario} onValueChange = {universitario => this.setState({universitario})} styles= {{color: 'black'}}>
                <Picker.Item label = "Si" value = "Si" />
                <Picker.Item label = "No" value = "No" />
             </Picker>
@@ -364,7 +391,7 @@ export default class Formulario1 extends Component {
                 <Icon
                 name='file-text-o'
                 size={24}
-                color='black'
+                color='#009392'
                 type='font-awesome'
                 />
             }
@@ -380,16 +407,16 @@ export default class Formulario1 extends Component {
                 <Icon
                 name='barcode'
                 size={24}
-                color='black'
+                color='#009392'
                 type='font-awesome'
                 />
             }
             onChangeText={codigo => this.setState({codigo})}
             />
         </View>
-
-        <View style={{marginTop:10, width:100, alignSelf:'center', justifyContent:'center',marginBottom:20}}>
-            <Button
+      
+       {/* <View style={{ marginTop:10, width:100, alignSelf:'center', justifyContent:'center',marginBottom:20}}>
+            <Button style={{color:"red"}}
             icon={{
                   type:'font-awesome',
                   name:"check-square",
@@ -397,15 +424,39 @@ export default class Formulario1 extends Component {
                   color:"white",
                 }
               }
+            
             title=" Guardar"
             />
-        </View>
+        </View>*/}
+
+        <LinearGradient style={{ width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'#900C3F',borderRadius:20}} start={{x:0, y:0}} end={{x:1, y:1}} colors={['midnightblue', 'rebeccapurple']}>
+          <View style={{ marginTop:16, width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'transparent',borderRadius:20}}>
+            
+            <TouchableOpacity
+              icon={{
+                type:'font-awesome',
+                name:"check-square",
+                size:15,
+                color:"white",
+              }}
+          
+              title="Guardar"
+            >
+              <Text style={{textAlign:'center',fontSize:17,color:'white', justifyContent:'center',alignSelf:'center',fontWeight:'bold'}}>Guardar</Text> 
+            </TouchableOpacity>
+          </View>
+        </LinearGradient>
       </View>
       </ScrollView>
     </SafeAreaView>
     );
   }
+
+  
 }
+
+
+
 
 const styles = StyleSheet.create({
 
@@ -417,19 +468,21 @@ const styles = StyleSheet.create({
       width: 300,
       marginTop: 15,
       marginLeft: 20,
+      borderColor: 'blue',
     },
     imagen:{
-    width:100,
-    height:100,
-    justifyContent:'center',
-    alignItems:'center',
-    alignSelf: 'center',
-    marginTop: 20,
+      width:120,
+      height:120,
+      justifyContent:'center',
+      alignItems:'center',
+      alignSelf: 'center',
+      marginTop: 20,
+      marginBottom: 20,
     },
     sectionTitle: {
       fontSize: 24,
       fontWeight: '600',
-      color: 'gray',
+      color: '#900C3F',
       textAlign: 'center',
       marginTop: 20,
     },
@@ -447,7 +500,7 @@ const styles = StyleSheet.create({
     },
     scrollView: {
       backgroundColor: 'white',
-      marginHorizontal: 20,
+      marginHorizontal: 5,
     },
     picke: {
       flex: 1,
