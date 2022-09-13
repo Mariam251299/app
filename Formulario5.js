@@ -1,0 +1,433 @@
+import React, { Component,useState, useEffect } from 'react';
+import { View, Text, StyleSheet, ScrollView,TouchableOpacity,Alert, StatusBar, BackHandler, Dimensions, SafeAreaView, FlatList} from 'react-native';
+import { Icon,Input, Image, Button} from 'react-native-elements';
+import { NavigationContainer } from '@react-navigation/native';
+import RNPickerSelect from "react-native-picker-select";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {Picker} from '@react-native-picker/picker';
+import MultiSelect from 'react-native-element-dropdown';
+import Select from "react-select";
+import { Table, Row, Rows } from 'react-native-table-component';
+import { DataTable } from 'react-native-paper';
+
+
+export default class Formulario5 extends Component {
+  state = {
+    selectedOption: null
+  };
+    handleChange = selectedOption => {
+      this.setState({ selectedOption });
+      // Option selected: { value: "rojo", label: "rojo" }
+      console.log(`Option selected:`, selectedOption);
+    };
+
+
+    constructor(props) {
+      super(props);
+      this.state = {
+        critico:'',
+        estable:'',
+        color:'',
+        glasgow:'',
+        via_aerea:'',
+        control_cervical:'',
+        asistencia_ventilatoria:'',
+        descompresion_pleural:'',
+        lado_descompresion_pleural:'',
+        asistencia_ventilatoria:'',
+        frec:'',
+        vol:'',
+        oxigenoterapia:'',
+        ltsxmin_oxigenoterapia:'',
+        control_hemorragias:'',
+        vias_venosas:'',
+        vias_venosas_numero:'',
+        tipo_soluciones:'',
+        cantidad:'',
+        infusiones:'',
+        hora:'',
+        medicamento:'',
+        dosis:'',
+        via_admin:'',
+        terapia_electrica:'',
+        rcp:'',
+        procedimiento:'',
+      }
+      
+    }
+    onSelectedItemsChange = selectOptionEvaluation => {
+      this.setState({ selectOptionEvaluation });
+    };
+    render() {
+      const state = this.state;
+      const { selectOptionEvaluation } = this.state;
+      return (
+      <SafeAreaView style={styles.container}>
+        <ScrollView style={styles.scrollView}>
+          <View>
+              <View>
+                <Text style={styles.sectionTitle}> Expediente Médico </Text>
+              </View>
+              <View style={styles.imagen}>
+                <Image style={styles.imagen} source={require('../app/android/app/src/Imagenes/udg.jpeg')}/>
+              </View>
+              <View>
+                <Text>Condición del paciente</Text>
+                <View style = {styles.inputs}>
+                  <Text>Crítico</Text>
+                    <Picker selectedValue = {this.state.critico} onValueChange = {critico => this.setState({critico})} styles= {{color: 'black'}}>
+                      <Picker.Item label = "No" value = "No" />
+                      <Picker.Item label = "Si" value = "Si" />
+                      
+                    </Picker>
+                </View>
+                <View style = {styles.inputs}>
+                  <Text>Estable</Text>
+                    <Picker selectedValue = {this.state.estable} onValueChange = {estable => this.setState({estable})} styles= {{color: 'black'}}>
+                      <Picker.Item label = "No" value = "No" />
+                      <Picker.Item label = "Si" value = "Si" />
+                    </Picker>
+                </View>
+                <View style = {styles.inputs}>
+                  <Text>Color del paciente</Text>
+                    <Picker selectedValue = {this.state.color} onValueChange = {color => this.setState({color})} styles= {{color: 'black'}}>
+                      <Picker.Item label = "Rojo" value = "Rojo" />
+                      <Picker.Item label = "Amarillo" value = "Amarillo" />
+                      <Picker.Item label = "Verde" value = "Verde" />
+                      <Picker.Item label = "Negra" value = "Negra" />
+                    </Picker>
+                </View>
+                <View style = {styles.inputs}>
+                  <Input
+                  placeholder='Glasgow'
+                  leftIcon={
+                      <Icon
+                      name='body'
+                      size={24}
+                      color='#009392'
+                      type='ionicon'
+                      />
+                  }
+                  onChangeText={glasgow => this.setState({glasgow})}
+                  />
+                </View>
+                <View style = {styles.inputs}>
+                <Text>Vía aérea</Text>
+                  <Picker selectedValue = {this.state.via_aerea} onValueChange = {via_aerea => this.setState({via_aerea})} styles= {{color: 'black'}}>
+                    <Picker.Item label = "Aspiración" value = "Aspiración" />
+                    <Picker.Item label = "Canula orofaríngea" value = "Canula orofaríngea" />
+                    <Picker.Item label = "Canula nasofaríngea" value = "Canula nasofaríngea" />
+                    <Picker.Item label = "Intubación endotraqueal" value = "Intubación endotraqueal" />
+                    <Picker.Item label = "Mascarilla laríngea" value = "Mascarilla laríngea" />
+                    <Picker.Item label = "Combitubo" value = "Combitubo" />
+                    <Picker.Item label = "Cricotiroidotomía por punción" value = "Cricotiroidotomía por punción" />
+                  </Picker>
+                </View>
+                <View style = {styles.inputs}>
+                  <Text>Descompresión pleural</Text>
+                    <Picker selectedValue = {this.state.descompresion_pleural} onValueChange = {descompresion_pleural => this.setState({descompresion_pleural})} styles= {{color: 'black'}}>
+                      <Picker.Item label = "No" value = "No" />
+                      <Picker.Item label = "Si" value = "Si" />
+                    </Picker>
+                </View>
+                <View style = {styles.inputs}>
+                  <Text>Lado</Text>
+                    <Picker selectedValue = {this.state.lado_descompresion_pleural} onValueChange = {lado_descompresion_pleural => this.setState({lado_descompresion_pleural})} styles= {{color: 'black'}}>
+                      <Picker.Item label = "Derecho" value = "Derecho" />
+                      <Picker.Item label = "Izquierdo" value = "Izquierdo" />
+                    </Picker>
+                </View>
+                <View style = {styles.inputs}>
+                  <Text>Control cervical</Text>
+                    <Picker selectedValue = {this.state.control_cervical} onValueChange = {control_cervical => this.setState({control_cervical})} styles= {{color: 'black'}}>
+                      <Picker.Item label = "Manual" value = "Manual" />
+                      <Picker.Item label = "Collarín rígido" value = "Collarín rígido" />
+                      <Picker.Item label = "Collarín blando" value = "Collarín blando" />
+                    </Picker>
+                </View>
+                <View style = {styles.inputs}>
+                  <Text>Asistencia ventilatoria</Text>
+                    <Picker selectedValue = {this.state.asistencia_ventilatoria} onValueChange = {asistencia_ventilatoria => this.setState({asistencia_ventilatoria})} styles= {{color: 'black'}}>
+                      <Picker.Item label = "BVM" value = "BVM" />
+                      <Picker.Item label = "Ventilador automático" value = "Ventilador automático" />
+                    </Picker>
+                </View>
+                <View style = {styles.inputs}>
+                  <Input
+                  placeholder='Fec'
+                  leftIcon={
+                      <Icon
+                      name='stopwatch'
+                      size={24}
+                      color='#009392'
+                      type='ionicon'
+                      />
+                  }
+                  onChangeText={frec => this.setState({frec})}
+                  />
+                </View>
+                <View style = {styles.inputs}>
+                  <Input
+                  placeholder='Vol'
+                  leftIcon={
+                      <Icon
+                      name='pint'
+                      size={24}
+                      color='#009392'
+                      type='ionicon'
+                      />
+                  }
+                  onChangeText={vol => this.setState({vol})}
+                  />
+                </View>
+                <View style = {styles.inputs}>
+                  <Text>Oxigenoterapia</Text>
+                    <Picker selectedValue = {this.state.oxigenoterapia} onValueChange = {oxigenoterapia => this.setState({oxigenoterapia})} styles= {{color: 'black'}}>
+                      <Picker.Item label = "Puntas nasales" value = "Puntas nasales" />
+                      <Picker.Item label = "Mascarilla simple" value = "Mascarilla simple" />
+                      <Picker.Item label = "Mascarilla con reservorio" value = "Mascarilla con reservorio" />
+                      <Picker.Item label = "Mascarilla venturi" value = "Mascarilla venturi" />
+                    </Picker>
+                </View>
+                <View style = {styles.inputs}>
+                  <Input
+                  placeholder='Lts x min'
+                  leftIcon={
+                      <Icon
+                      name='pint'
+                      size={24}
+                      color='#009392'
+                      type='ionicon'
+                      />
+                  }
+                  onChangeText={ltsxmin_oxigenoterapia => this.setState({ltsxmin_oxigenoterapia})}
+                  />
+                </View>
+                <View style = {styles.inputs}>
+                  <Text>Control de hemorragias</Text>
+                    <Picker selectedValue = {this.state.control_hemorragias} onValueChange = {control_hemorragias => this.setState({control_hemorragias})} styles= {{color: 'black'}}>
+                      <Picker.Item label = "Presión directa" value = "Presión directa" />
+                      <Picker.Item label = "Presión indirecta" value = "Presión indirecta" />
+                      <Picker.Item label = "Gravedad" value = "Gravedad" />
+                      <Picker.Item label = "Vendaje compresivo" value = "Vendaje compresivo" />
+                      <Picker.Item label = "Crioterapia" value = "Crioterapia" />
+                      <Picker.Item label = "Hemostático" value = "Hemostático" />
+                    </Picker>
+                </View>
+                <View style = {styles.inputs}>
+                  <Text>Vías venosas</Text>
+                    <Picker selectedValue = {this.state.vias_venosas} onValueChange = {vias_venosas => this.setState({vias_venosas})} styles= {{color: 'black'}}>
+                      <Picker.Item label = "Linea IV" value = "Linea IV" />
+                      <Picker.Item label = "Catéter" value = "Catéter" />
+                    </Picker>
+                </View>
+                <View style = {styles.inputs}>
+                  <Input
+                  placeholder='Número'
+                  leftIcon={
+                    <Icon
+                    name='hashtag'
+                    size={24}
+                    color='#009392'
+                    type='font-awesome'
+                    />
+                  }
+                  onChangeText={vias_venosas_numero => this.setState({vias_venosas_numero})}
+                  />
+                </View>
+                <View style = {styles.inputs}>
+                  <Text>Tipo de soluciones</Text>
+                    <Picker selectedValue = {this.state.tipo_soluciones} onValueChange = {tipo_soluciones => this.setState({tipo_soluciones})} styles= {{color: 'black'}}>
+                      <Picker.Item label = "Hartman" value = "Hartman" />
+                      <Picker.Item label = "NACL 0.9%" value = "NACL 0.9%" />
+                      <Picker.Item label = "Mixta" value = "Mixta" />
+                      <Picker.Item label = "Glucosa 5%" value = "Glucosa 5%" />
+                      <Picker.Item label = "Otra" value = "Otra" />
+                    </Picker>
+                </View>
+                <View style = {styles.inputs}>
+                  <Input
+                  placeholder='Cantidad'
+                  leftIcon={
+                      <Icon
+                      name='copyright'
+                      color='#009392'
+                      type='font-awesome'
+                      />
+                  }
+                  onChangeText={cantidad => this.setState({cantidad})}
+                  />
+                </View>
+                <View style = {styles.inputs}>
+                  <Input
+                  placeholder='Infusiones'
+                  leftIcon={
+                      <Icon
+                      name='eyedropper'
+                      size={24}
+                      color='#009392'
+                      type='font-awesome'
+                      />
+                  }
+                  onChangeText={infusiones => this.setState({infusiones})}
+                  />
+                </View>
+                <View style = {styles.inputs}>
+                  <Text>RCP</Text>
+                    <Picker selectedValue = {this.state.rcp} onValueChange = {rcp => this.setState({rcp})} styles= {{color: 'black'}}>
+                      <Picker.Item label = "RCP básica" value = "RCP básica" />
+                      <Picker.Item label = "RCP avanzada" value = "RCP avanzada" />
+                    </Picker>
+                </View>
+                <View style = {styles.inputs}>
+                  <Text>Procedimiento</Text>
+                    <Picker selectedValue = {this.state.procedimiento} onValueChange = {procedimiento => this.setState({procedimiento})} styles= {{color: 'black'}}>
+                      <Picker.Item label = "Inmovilización de extremidades" value = "Inmovilización de extremidades" />
+                      <Picker.Item label = "Inmovilización en FEL" value = "Inmovilización en FEL" />
+                      <Picker.Item label = "Curación" value = "Curación" />
+                      <Picker.Item label = "Vendaje" value = "Vendaje" />
+                    </Picker>
+                </View>
+              </View>
+              <View>
+                <Text>Manejo farmacológico y terapia eléctrica</Text>
+                <View style = {styles.inputs}>
+                  <Input
+                  placeholder='Hora'
+                  leftIcon={
+                      <Icon
+                      name='clockcircle'
+                      size={24}
+                      color='#009392'
+                      type='ant-design'
+                      />
+                  }
+                  onChangeText={hora => this.setState({hora})}
+                  />
+                </View>
+                <View style = {styles.inputs}>
+                  <Input
+                  placeholder='Medicamento'
+                  leftIcon={
+                      <Icon
+                      name='medkit'
+                      size={24}
+                      color='#009392'
+                      type='font-awesome'
+                      />
+                  }
+                  onChangeText={medicamento => this.setState({medicamento})}
+                  />
+                </View>
+                <View style = {styles.inputs}>
+                  <Input
+                  placeholder='Dosis'
+                  leftIcon={
+                      <Icon
+                      name='thermometer'
+                      size={24}
+                      color='#009392'
+                      type='entypo'
+                      />
+                  }
+                  onChangeText={dosis => this.setState({dosis})}
+                  />
+                </View>
+                <View style = {styles.inputs}>
+                  <Input
+                  placeholder='Via de administración'
+                  leftIcon={
+                      <Icon
+                      name='Safety'
+                      size={24}
+                      color='#009392'
+                      type='ant-design'
+                      />
+                  }
+                  onChangeText={via_admin => this.setState({via_admin})}
+                  />
+                </View>
+                <View style = {styles.inputs}>
+                  <Input
+                  placeholder='Terapia eléctrica'
+                  leftIcon={
+                      <Icon
+                      name='electrical-services'
+                      size={24}
+                      color='#009392'
+                      type='materialicons'
+                      />
+                  }
+                  onChangeText={terapia_electrica => this.setState({terapia_electrica})}
+                  />
+                </View>
+              </View>
+
+
+           
+            </View>
+
+        </ScrollView>
+      </SafeAreaView>
+      
+    );
+    }
+}
+const styles = StyleSheet.create({
+    container1: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
+    head: { height: 40, backgroundColor: '#009392' },
+    text: { margin: 6, color: 'black' },
+    title:{
+        fontSize: 30,
+        textAlign: 'center',
+    },
+    inputs:{
+      width: 300,
+      marginTop: 15,
+      marginLeft: 20,
+    },
+    imagen:{
+    width:120,
+    height:120,
+    justifyContent:'center',
+    alignItems:'center',
+    alignSelf: 'center',
+    marginTop: 20,
+    marginBottom: 20
+    },
+    imagen1:{
+      width:300,
+      height:300,
+      justifyContent:'center',
+      alignItems:'flex-start',
+      alignSelf: 'center',
+    },
+    sectionTitle: {
+      fontSize: 24,
+      fontWeight: '600',
+      color: '#900C3F',
+      textAlign: 'center',
+      marginTop: 20,
+    },
+    sectionDescription: {
+      marginTop: 8,
+      fontSize: 18,
+      fontWeight: '400',
+    },
+    highlight: {
+      fontWeight: '700',
+    },
+    container: {
+      flex: 1,
+      paddingTop: StatusBar.currentHeight,
+    },
+    scrollView: {
+      backgroundColor: 'white',
+      marginHorizontal: 5,
+    },
+    picke: {
+      flex: 1,
+      paddingTop: 40,
+      alignItems: "center"
+    }
+})         

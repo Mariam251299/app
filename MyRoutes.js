@@ -41,6 +41,8 @@ import Formulario1 from "./Formulario1";
 import Formulario2 from "./Formulario2";
 import Formulario3 from "./Formulario3";
 import Formulario4 from "./Formulario4";
+import Formulario5 from "./Formulario5";
+import Formulario6 from "./Formulario6";
 
 
 function GeneralData() {
@@ -65,6 +67,17 @@ function GeneralData() {
       <Formulario4/>
     );
   }
+
+  function PatientCondition() {
+    return (
+      <Formulario5/>
+    );
+  }
+  function PatientMove() {
+    return (
+      <Formulario6/>
+    );
+  }
   const Tab = createBottomTabNavigator();
   
   export default function App() {
@@ -85,6 +98,10 @@ function GeneralData() {
               iconName = focused ? 'ios-newspaper' : 'ios-newspaper-outline';
             } else if ( route.name == 'Exploración física'){
               iconName = focused ? 'body' : 'body-outline';
+            } else if ( route.name == 'Condición del paciente'){
+              iconName = focused ? 'happy' : 'sad';
+            } else if ( route.name == 'Traslado del paciente'){
+              iconName = focused ? 'bus' : 'bus-outline';
             }
             // You can return any component that you like here!
             return <Icon name={iconName} size={size} color={color} type='ionicon'/>;
@@ -97,6 +114,8 @@ function GeneralData() {
           <Tab.Screen name="Evaluación del paciente" component={Evaluation}/>
           <Tab.Screen name="Evaluación Inicial" component={GeneralEvaluation}/>
           <Tab.Screen name="Exploración física" component={PhysicalExploration}/>
+          <Tab.Screen name="Condición del paciente" component={PatientCondition}/>
+          <Tab.Screen name="Traslado del paciente" component={PatientMove}/>
         </Tab.Navigator>
       </NavigationContainer>
     );

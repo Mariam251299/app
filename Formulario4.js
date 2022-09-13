@@ -57,6 +57,8 @@ export default class Formulario4 extends Component {
         medicamentos:'',
         patologias:'',
         eventos_previos_relacionados:'',
+        alregias:'',
+        hora_ultima_ingesta:'',
         tableHead: ['Hora', 'FR', 'FC', 'TAS', 'TAD', 'Sa02', 'Temp', 'Gluc', 'EKG', 'Neurologico'],
         tableData: [
           [(this.state.deformidades), '', '', '', '', '', '', '', '', ''],
@@ -379,7 +381,7 @@ export default class Formulario4 extends Component {
                 placeholder='Signos y síntomas'
                 leftIcon={
                     <Icon
-                    name='calendar'
+                    name='edit'
                     size={24}
                     color='#009392'
                     type='font-awesome'
@@ -394,7 +396,7 @@ export default class Formulario4 extends Component {
                 placeholder='Medicamentos'
                 leftIcon={
                     <Icon
-                    name='calendar'
+                    name='medkit'
                     size={24}
                     color='#009392'
                     type='font-awesome'
@@ -409,7 +411,7 @@ export default class Formulario4 extends Component {
                 placeholder='Patologías'
                 leftIcon={
                     <Icon
-                    name='calendar'
+                    name='edit'
                     size={24}
                     color='#009392'
                     type='font-awesome'
@@ -433,6 +435,36 @@ export default class Formulario4 extends Component {
                 onChangeText={eventos_previos_relacionados => this.setState({eventos_previos_relacionados})}
                 />
               </View>
+              <View style = {styles.inputs}>
+            
+                <Input
+                placeholder='Alergias'
+                leftIcon={
+                    <Icon
+                    name='pencil'
+                    size={24}
+                    color='#009392'
+                    type='font-awesome'
+                    />
+                }
+                onChangeText={alergias => this.setState({alergias})}
+                />
+              </View>
+              <View style = {styles.inputs}>
+            
+                <Input
+                placeholder='Hora de última ingesta'
+                leftIcon={
+                    <Icon
+                    name='clockcircle'
+                    size={24}
+                    color='#009392'
+                    type='ant-design'
+                    />
+                }
+                onChangeText={hora_ultima_ingesta => this.setState({hora_ultima_ingesta})}
+                />
+              </View>              
             </View>
           
           </View>

@@ -127,8 +127,8 @@ export default class Formulario2 extends Component {
           </View>
           <View style = {styles.inputs}>
             <Text>Apgar</Text>
-            <View style={styles.imagen1}>
-              <Image style={styles.imagen1} source={require('../app/android/app/src/Imagenes/apgar.jpeg')}/>
+            <View>
+              <Image style={styles.imagenapgar} source={require('../app/android/app/src/Imagenes/apgar.jpeg')}/>
             </View>
             <View style = {styles.inputs}>
                 <Input
@@ -299,6 +299,15 @@ const styles = StyleSheet.create({
         flex: 1,
         resizeMode: 'contain',
     },
+    imagenapgar:{
+      width:500,
+      height:500,
+      justifyContent:'center',
+      alignItems:'center',
+      alignSelf: 'center',
+      flex: 1,
+      resizeMode: 'contain',
+  },
     sectionTitle: {
       fontSize: 24,
       fontWeight: '600',

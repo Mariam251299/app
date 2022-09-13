@@ -115,7 +115,7 @@ export default class Formulario1 extends Component {
           
             <Input
               placeholder={this.state.fecha}
-              placeholderTextColor={'black'}
+              placeholderTextColor={'#900C3F'}
               //placeholder={new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + '-' + (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate())}
               leftIcon={
               <Icon
@@ -429,7 +429,7 @@ export default class Formulario1 extends Component {
             />
         </View>*/}
 
-        <LinearGradient style={{ width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'#900C3F',borderRadius:20}} start={{x:0, y:0}} end={{x:1, y:1}} colors={['midnightblue', 'rebeccapurple']}>
+        <LinearGradient style={{ width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'#900C3F',borderRadius:20}} start={{x:0, y:0}} end={{x:1, y:1}} colors={['#900C3F', 'darkred']}>
           <View style={{ marginTop:16, width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'transparent',borderRadius:20}}>
             
             <TouchableOpacity
