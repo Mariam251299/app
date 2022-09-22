@@ -192,6 +192,7 @@ export default class Formulario5 extends Component {
                 <View style = {styles.inputs}>
                   <Input
                   placeholder='Lts x min'
+                  keyboardType='number-pad'
                   leftIcon={
                       <Icon
                       name='pint'
@@ -224,6 +225,7 @@ export default class Formulario5 extends Component {
                 <View style = {styles.inputs}>
                   <Input
                   placeholder='Número'
+                  keyboardType='number-pad'
                   leftIcon={
                     <Icon
                     name='hashtag'
@@ -248,6 +250,7 @@ export default class Formulario5 extends Component {
                 <View style = {styles.inputs}>
                   <Input
                   placeholder='Cantidad'
+                  keyboardType='number-pad'
                   leftIcon={
                       <Icon
                       name='copyright'
@@ -382,7 +385,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     inputs:{
-      width: 300,
+      width: 500,
       marginTop: 15,
       marginLeft: 20,
     },

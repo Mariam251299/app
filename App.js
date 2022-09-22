@@ -16,6 +16,8 @@ import type {Node} from 'react';
 import { Button } from 'react-native'
 import DatePicker from 'react-native-modern-datepicker';
 import SplashScreen from './SplashScreen';
+import AppNavigation from './AppNavigation';
+import Signature from './Signature';
 import {
   SafeAreaView,
   ScrollView,
@@ -73,7 +75,7 @@ const App: () => Node = () => {
 
   return (
     
-    <MyRoutes />
+    <AppNavigation/>
     /*
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />

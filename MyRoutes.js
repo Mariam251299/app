@@ -43,6 +43,7 @@ import Formulario3 from "./Formulario3";
 import Formulario4 from "./Formulario4";
 import Formulario5 from "./Formulario5";
 import Formulario6 from "./Formulario6";
+import { ImageBackground } from 'react-native';
 
 
 function GeneralData() {
@@ -78,18 +79,31 @@ function GeneralData() {
       <Formulario6/>
     );
   }
+  const image = { uri: "https://maderame.com/enciclopedia-madera/tejo/" };
   const Tab = createBottomTabNavigator();
   
   export default function App() {
     return (
-      <NavigationContainer>
+      <NavigationContainer independent={true}>
         <Tab.Navigator
         screenOptions={({ route }) => ({
+          tabBarShowLabel: false,
           headerShown:true,
           headerTintColor: '#900C3F',
+          borderRadius: 15,
+          tabBarHideOnKeyboard:true,
+          tabBarStyle: {
+            backgroundColor: '#F7F6F6',
+            borderRadius: 15,
+            position:'relative',
+            bottom:5,
+            left:5,
+            right:5,
+            elevation:0,
+          },
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
-
+            
             if (route.name === 'Datos Generales') {
               iconName = focused ? 'ios-person' : 'ios-person-outline';
             } else if (route.name === 'Evaluación del paciente') {
@@ -108,9 +122,11 @@ function GeneralData() {
           },
           tabBarActiveTintColor: '#900C3F',
           tabBarInactiveTintColor: '#009392',
+          tabBarActiveBackgroundColor: '#009392',
+          tabBarInactiveBackgroundColor: 'transparent',
         })}
         >
-          <Tab.Screen name="Datos Generales" component={GeneralData} />
+          <Tab.Screen name="Datos Generales" component={GeneralData}/>
           <Tab.Screen name="Evaluación del paciente" component={Evaluation}/>
           <Tab.Screen name="Evaluación Inicial" component={GeneralEvaluation}/>
           <Tab.Screen name="Exploración física" component={PhysicalExploration}/>

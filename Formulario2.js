@@ -133,6 +133,7 @@ export default class Formulario2 extends Component {
             <View style = {styles.inputs}>
                 <Input
                 placeholder='1 min'
+                keyboardType='number-pad'
                 leftIcon={
                     <Icon
                     name='clockcircleo'
@@ -147,6 +148,7 @@ export default class Formulario2 extends Component {
             <View style = {styles.inputs}>
                 <Input
                 placeholder='5 min'
+                keyboardType='number-pad'
                 leftIcon={
                     <Icon
                     name='clockcircleo'
@@ -161,6 +163,7 @@ export default class Formulario2 extends Component {
             <View style = {styles.inputs}>
                 <Input
                 placeholder='10 min'
+                keyboardType='number-pad'
                 leftIcon={
                     <Icon
                     name='clockcircleo'
@@ -251,7 +254,7 @@ export default class Formulario2 extends Component {
         <View style = {styles.inputs}>
             
             <Input
-            placeholder='Fecha proable de parto'
+            placeholder='Fecha probable de parto'
             leftIcon={
                 <Icon
                 name='calendar'
@@ -277,7 +280,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     inputs:{
-      width: 300,
+      width: 500,
       marginTop: 15,
       marginLeft: 20,
     },
@@ -305,8 +308,9 @@ const styles = StyleSheet.create({
       justifyContent:'center',
       alignItems:'center',
       alignSelf: 'center',
-      flex: 1,
       resizeMode: 'contain',
+      flex: 1,
+      
   },
     sectionTitle: {
       fontSize: 24,

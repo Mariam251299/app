@@ -38,9 +38,25 @@ const Tab = createBottomTabNavigator();
 */
 
 export default class Formulario1 extends Component {
+  goToScreen(routeName,props){
+    this.props.navigation.navigate(routeName)
+  }
+  showAlert(){
+    Alert.alert(
+     "Guardar",
+     "Guardado con Exito",
+     [
+       {
+         text: "Aceptar",
+         style: 'cancel',
+       }
+     ]
+    ); 
+  }
   constructor(props) {
     super(props);
     this.state = {
+      hora:'',
       fecha:'',
       dia_semana:'',
       motivo_atencion:'',
@@ -76,7 +92,9 @@ export default class Formulario1 extends Component {
   updateuniversitario = (universitario) => {
     this.setState({ universitario: universitario })
   };
-  render() {
+  render(
+    )
+  {
     /*const screenOptions = (route, color) => {
       let iconName
       switch (route.name){
@@ -115,6 +133,7 @@ export default class Formulario1 extends Component {
           
             <Input
               placeholder={this.state.fecha}
+              //placeholder={new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + '-' + (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate())}
               placeholderTextColor={'#900C3F'}
               //placeholder={new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + '-' + (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate())}
               leftIcon={
@@ -125,11 +144,32 @@ export default class Formulario1 extends Component {
               />
               }
               editable={false}
-            //onChangeText={fecha => this.setState({fecha})}
+              //{placeholder => this.setState({fecha})}
+              //onChangeText={fecha => this.setState({fecha})}
             />
         </View>
+        <View style = {styles.inputs}>
+          
+          <Input
+            placeholder={this.state.hora}
+            //placeholder={new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + '-' + (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate())}
+            placeholderTextColor={'#900C3F'}
+            //placeholder={new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + '-' + (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate())}
+            leftIcon={
+            <Icon
+              name='clockcircle'
+              size={24}
+              color='#009392'
+              type='ant-design'
+            />
+            }
+            editable={false}
+            //{placeholder => this.setState({fecha})}
+            //onChangeText={fecha => this.setState({fecha})}
+          />
+      </View>
         <View>
-          <DatePicker onDateChange={fecha => this.setState({fecha})} options={{
+          <DatePicker onDateChange={fecha => this.setState({fecha})} onTimeChange={hora => this.setState({hora})} options={{
             backgroundColor: '#FBFBFB',
             textHeaderColor: '#009392',
             textDefaultColor: '#900C3F',
@@ -140,11 +180,11 @@ export default class Formulario1 extends Component {
             borderColor: 'rgba(144, 12, 63, 1.0)',
           }}
             //current="2022-09-09"
-            current={new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + '-' + (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate())}
-            selected={new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + '-' + (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate())}
-            mode="calendar"
-            minuteInterval={30}
-            style={{ borderRadius: 10 }}/>
+            current={new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + '-' + (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate()) + (new Date().getHours()) + new Date().getMinutes()}
+            selected={new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + '-' + (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate()) + (new Date().getHours())+ new Date().getMinutes()}
+          //  mode="calendar"
+            minuteInterval={1}
+            style={{ borderRadius: 20 }}/>
           {/*<Button onPress={()=>{ this._datePicker.setState({modalVisible:true})}}>
             <Text>
               showDatePicker
@@ -202,6 +242,7 @@ export default class Formulario1 extends Component {
           
             <Input
             placeholder='Vehiculo'
+            
             leftIcon={
                 <Icon
                 name='car'
@@ -217,6 +258,7 @@ export default class Formulario1 extends Component {
           
             <Input
             placeholder='Numero de vehiculo'
+            keyboardType='number-pad'
             leftIcon={
                 <Icon
                 name='keyboard-o'
@@ -289,6 +331,7 @@ export default class Formulario1 extends Component {
           
             <Input
             placeholder='Edad'
+            keyboardType='number-pad'
             leftIcon={
                 <Icon
                 name='long-arrow-up'
@@ -441,6 +484,7 @@ export default class Formulario1 extends Component {
               }}
           
               title="Guardar"
+              onPress={()=> this.showAlert()}
             >
               <Text style={{textAlign:'center',fontSize:17,color:'white', justifyContent:'center',alignSelf:'center',fontWeight:'bold'}}>Guardar</Text> 
             </TouchableOpacity>
@@ -465,7 +509,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     inputs:{
-      width: 300,
+      width: 500,
       marginTop: 15,
       marginLeft: 20,
       borderColor: 'blue',

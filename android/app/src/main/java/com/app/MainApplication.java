@@ -5,6 +5,8 @@ import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.rnfs.RNFSPackage;
+import com.rssignaturecapture.RSSignatureCapturePackage;
+import com.rnfs.RNFSPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import fr.snapp.imagebase64.RNImgToBase64Package;
 import com.imagepicker.ImagePickerPackage;

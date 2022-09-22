@@ -1,4 +1,43 @@
-import { NavigationContainer } from "@react-navigation/native";
+import React from 'react'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { NavigationContainer } from '@react-navigation/native'
+import MyRoutes from './MyRoutes';
+import SplashScreen from "./SplashScreen";
+import Formulario1 from './Formulario1';
+import Signature from './Signature';
+
+const Stack = createNativeStackNavigator()
+
+const AppNavigation = () => {
+  return (
+    <NavigationContainer independent={true}>
+      <Stack.Navigator screenOptions={({ route }) => ({
+          headerShown:false})}>
+        <Stack.Screen
+          name = 'SplashScreen'
+          component = {SplashScreen}
+        />
+        <Stack.Screen
+          name = 'MyRoutes'
+          component = {MyRoutes}
+        />
+        <Stack.Screen
+          name = 'Formulario1'
+          component = {Formulario1}
+        />
+        <Stack.Screen
+          name = 'Signature'
+          component = {Signature}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+}
+
+export default AppNavigation
+
+
+/*import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/stack";
 import MyRoutes from './MyRoutes';
 import SplashScreen from "./SplashScreen";
@@ -19,4 +58,4 @@ const AppNavigation = createNativeStackNavigator({
     },
 })
 
-export default createAppContainer(AppNavigation)
+export default createAppContainer(AppNavigation)*/
