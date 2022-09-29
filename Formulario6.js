@@ -11,6 +11,9 @@ import { Table, Row, Rows } from 'react-native-table-component';
 import { DataTable } from 'react-native-paper';
 import SignatureCapture from 'react-native-signature-capture';
 import LinearGradient from 'react-native-linear-gradient';
+import RNFetchBlob from "react-native-fetch-blob"
+//import Signature from './Signature';
+//const SigantureScreen = ({ navigation }) => (<Signature navigation={navigation}/>)
 
 
 export default class Formulario6 extends Component {
@@ -22,8 +25,6 @@ export default class Formulario6 extends Component {
       // Option selected: { value: "rojo", label: "rojo" }
       console.log(`Option selected:`, selectedOption);
     };
-
-
     constructor(props) {
       super(props);
       this.state = {
@@ -45,6 +46,8 @@ export default class Formulario6 extends Component {
       this.setState({ selectOptionEvaluation });
     };
     render() {
+      
+      console.log(this.props.navigation)
       //const navigation = useNavigation();
       const goScreen = () => {
         let _this = this;
@@ -56,217 +59,325 @@ export default class Formulario6 extends Component {
       <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
           <View>
-                <View>
-                    <Text style={styles.sectionTitle}> Expediente Médico </Text>
-                </View>
-                <View style={styles.imagen}>
-                    <Image style={styles.imagen} source={require('../app/android/app/src/Imagenes/udg.jpeg')}/>
-                </View>
-                <View style = {styles.inputs}>
-                    <Input
-                    placeholder='Institución a la que se traslada el paciente'
-                    leftIcon={
-                        <Icon
-                        name='hospital-o'
-                        size={24}
-                        color='#009392'
-                        type='font-awesome'
-                        />
-                    }
-                    onChangeText={institucion => this.setState({institucion})}
-                    />
-                </View>          
-                <View style = {styles.inputs}>
-                    <Input
-                    placeholder='Nombre/firma del paciente'
-                    leftIcon={
-                        <Icon
-                        name='user'
-                        size={24}
-                        color='#009392'
-                        type='font-awesome'
-                        />
-                    }
-                    onChangeText={nombre_firma_paciente => this.setState({nombre_firma_paciente})}
-                    />
-                </View>
-                <View style={{ flex: 1, flexDirection: "column" }}>
-                    <Text style={{alignItems:"center",justifyContent:"center"}}>Firme aqui </Text>
-                    <SignatureCapture 
-                      style={[{flex:1},styles.signature]}
-                      ref="sign"
-                      onSaveEvent={this._onSaveEvent}
-                      onDragEvent={this._onDragEvent}
-                      saveImageFileInExtStorage={false}
-                      showNativeButtons={false}
-                      showTitleLabel={true}
-                      backgroundColor="white"
-                      strokeColor="black"
-                      minStrokeWidth={4}
-                      maxStrokeWidth={15}
-                      viewMode={"portrait"}///>
-                      />
-                    <View style={{ flex: 1, flexDirection: "row" }}>
-                      <TouchableHighlight style={styles.buttonStyle}
-                          onPress={() => { this.saveSign() } } >
-                          <Text style={{color: 'white'}}>Guardar</Text>
-                      </TouchableHighlight>
-                      <TouchableHighlight style={styles.buttonStyle}
-                          onPress={() => { this.resetSign() } } >
-                          <Text style={{color: 'white'}}>Resetear</Text>
-                      </TouchableHighlight>
-                    </View>
-                </View>     
-                <View style = {styles.inputs}>
-                    <Input
-                    placeholder='Nombre/firma del testigo'
-                    leftIcon={
-                        <Icon
-                        name='user'
-                        size={24}
-                        color='#009392'
-                        type='font-awesome'
-                        />
-                    }
-                    onChangeText={nombre_firma_testigo => this.setState({nombre_firma_testigo})}
-                    />
-                </View>     
-                <View style = {styles.inputs}>
-                    <Input
-                    placeholder='Observaciones'
-                    leftIcon={
-                        <Icon
-                        name='pencil'
-                        size={24}
-                        color='#009392'
-                        type='font-awesome'
-                        />
-                    }
-                    onChangeText={observaciones => this.setState({observaciones})}
-                    />
-                </View>     
-                <View>
-                    <Text>Dependencias que atendieron al paciente</Text>
-                    <View style = {styles.inputs}>
-                        <Input
-                        placeholder='Dependencia'
-                        leftIcon={
-                            <Icon
-                            name='building-o'
-                            size={24}
-                            color='#009392'
-                            type='font-awesome'
-                            />
-                        }
-                        onChangeText={dependencia => this.setState({dependencia})}
-                        />
-                    </View>     
-                    <View style = {styles.inputs}>
-                        <Input
-                        placeholder='Numero de unidades'
-                        keyboardType='number-pad'
-                        leftIcon={
-                            <Icon
-                            name='ambulance'
-                            size={24}
-                            color='#009392'
-                            type='font-awesome'
-                            />
-                        }
-                        onChangeText={num_unidades => this.setState({num_unidades})}
-                        />
-                    </View>      
-                    <View style = {styles.inputs}>
-                        <Input
-                        placeholder='Nombre del encargado y/o oficiales'
-                        leftIcon={
-                            <Icon
-                            name='user'
-                            size={24}
-                            color='#009392'
-                            type='font-awesome'
-                            />
-                        }
-                        onChangeText={encargado_y_oficiales => this.setState({encargado_y_oficiales})}
-                        />
-                    </View>     
-                    <View style = {styles.inputs}>
-                        <Input
-                        placeholder='Pertenencias'
-                        leftIcon={
-                            <Icon
-                            name='shopping-bag'
-                            size={24}
-                            color='#009392'
-                            type='font-awesome'
-                            />
-                        }
-                        onChangeText={pertenencias => this.setState({pertenencias})}
-                        />
-                    </View>     
-                    <View style = {styles.inputs}>
-                        <Input
-                        placeholder='Nombre de quien recibe las pertenencias'
-                        leftIcon={
-                            <Icon
-                            name='pencil'
-                            size={24}
-                            color='#009392'
-                            type='font-awesome'
-                            />
-                        }
-                        onChangeText={receptor_pertenencias => this.setState({receptor_pertenencias})}
-                        />
-                    </View>     
-                    <View style = {styles.inputs}>
-                        <Text>Entrega paciente</Text>
-                        <Input
-                        placeholder='Nombre completo'
-                        leftIcon={
-                            <Icon
-                            name='pencil'
-                            size={24}
-                            color='#009392'
-                            type='font-awesome'
-                            />
-                        }
-                        onChangeText={nombre_completo_paciente => this.setState({nombre_completo_paciente})}
-                        />
-                    </View>     
-                    <View style = {styles.inputs}>
-                        <Text>Médico recibe</Text>
-                        <Input
-                        placeholder='Nombre completo'
-                        leftIcon={
-                            <Icon
-                            name='pencil'
-                            size={24}
-                            color='#009392'
-                            type='font-awesome'
-                            />
-                        }
-                        onChangeText={nombre_completo_medico => this.setState({nombre_completo_medico})}
-                        />
-                    </View>     
-                </View>
-                <LinearGradient style={{ width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'#900C3F',borderRadius:20}} start={{x:0, y:0}} end={{x:1, y:1}} colors={['#900C3F', 'darkred']}>
-                  <View style={{ marginTop:16, width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'transparent',borderRadius:20}}>
-                    
-                    <TouchableOpacity
-                      icon={{
-                        type:'font-awesome',
-                        name:"check-square",
-                        size:15,
-                        color:"white",
-                      }}
-                      onPress={goScreen}
-                    >
-                      <Text style={{textAlign:'center',fontSize:17,color:'white', justifyContent:'center',alignSelf:'center',fontWeight:'bold'}}>Firmar</Text> 
-                    </TouchableOpacity>
-                  </View>
-                </LinearGradient>
+          <View>
+              <Text style={styles.sectionTitle}> Expediente Médico </Text>
+          </View>
+          <View style={styles.imagen}>
+              <Image style={styles.imagen} source={require('../app/android/app/src/Imagenes/udg.jpeg')}/>
+          </View>
+          <View style = {styles.inputs}>
+              <Input
+              placeholder='Institución a la que se traslada el paciente'
+              leftIcon={
+                  <Icon
+                  name='hospital-o'
+                  size={24}
+                  color='#009392'
+                  type='font-awesome'
+                  />
+              }
+              onChangeText={institucion => this.setState({institucion})}
+              />
+          </View>
+          <View style={{ flex: 1, flexDirection: "column", justifyContent:'center'}}>
+            <Text style={{alignItems:"center",justifyContent:"center"}}>Negativa a recibir atención o ser trasladado (deslinde de responsabilidad) </Text>
+            <Text>Mediante la presente declaro que no acepto el tratamiento y/o traslado a un hospital y reconozco que el personal del Centr Universitario de Ciencias Exactas e Ingenierías me recomendó lo anterior, por lo que eximo al personal y a la Universidad de Guadalajara de la responsabilidad que pudiera derivar de haber respetado y cumplido mi decisión.</Text>
+          </View>
+          <View style = {styles.inputs}>
+            <Input
+            placeholder='Nombre/firma del paciente'
+            leftIcon={
+                <Icon
+                name='user'
+                size={24}
+                color='#009392'
+                type='font-awesome'
+                />
+            }
+            onChangeText={nombre_firma_paciente => this.setState({nombre_firma_paciente})}
+            />
+          </View>
+          <View style={{ flex: 1, flexDirection: "column" }}>
+              <Text style={{alignItems:"center",justifyContent:"center"}}>Firme aqui </Text>
+              <SignatureCapture 
+                style={[{flex:1},styles.signature]}
+                ref="sign"
+                onSaveEvent={this._onSaveEvent}
+                onDragEvent={this._onDragEvent}
+                saveImageFileInExtStorage={true}
+                showNativeButtons={false}
+                showTitleLabel={true}
+                backgroundColor="white"
+                strokeColor="black"
+                minStrokeWidth={4}
+                maxStrokeWidth={15}
+                //viewMode={"portrait"}///>
+                />
+              <View style={{ flex: 1, flexDirection: "row" }}>
+                <TouchableHighlight style={styles.buttonStyle}
+                    activeOpacity={0.6}
+                    underlayColor="#DDDDDD"
+                    onPress={() => { this.saveSign() } } >
+                    <Text style={{color: 'black'}}>Guardar</Text>
+                </TouchableHighlight>
+                <TouchableHighlight style={styles.buttonStyle1}
+                    underlayColor="#5F9E97"
+                    onPress={() => { this.resetSign() } } >
+                    <Text style={{color: 'white'}}>Resetear</Text>
+                </TouchableHighlight>
+              </View>
+          </View>     
+          <View style = {styles.inputs}>
+              <Input
+              placeholder='Nombre/firma del testigo'
+              leftIcon={
+                  <Icon
+                  name='user'
+                  size={24}
+                  color='#009392'
+                  type='font-awesome'
+                  />
+              }
+              onChangeText={nombre_firma_testigo => this.setState({nombre_firma_testigo})}
+              />
+          </View> 
+          <View style={{ flex: 1, flexDirection: "column" }}>
+            <Text style={{alignItems:"center",justifyContent:"center"}}>Firme aqui </Text>
+            <SignatureCapture 
+              style={[{flex:1},styles.signature]}
+              ref="sign"
+              onSaveEvent={this._onSaveEvent}
+              onDragEvent={this._onDragEvent}
+              saveImageFileInExtStorage={true}
+              showNativeButtons={false}
+              showTitleLabel={true}
+              backgroundColor="white"
+              strokeColor="black"
+              minStrokeWidth={4}
+              maxStrokeWidth={15}
+              //viewMode={"portrait"}///>
+              />
+            <View style={{ flex: 1, flexDirection: "row" }}>
+              <TouchableHighlight style={styles.buttonStyle}
+                  activeOpacity={0.6}
+                  underlayColor="#DDDDDD"
+                  onPress={() => { this.saveSign() } } >
+                  <Text style={{color: 'black'}}>Guardar</Text>
+              </TouchableHighlight>
+              <TouchableHighlight style={styles.buttonStyle1}
+                  underlayColor="#5F9E97"
+                  onPress={() => { this.resetSign() } } >
+                  <Text style={{color: 'white'}}>Resetear</Text>
+              </TouchableHighlight>
             </View>
-
+          </View>        
+          <View style = {styles.inputs}>
+              <Input
+              placeholder='Observaciones'
+              leftIcon={
+                  <Icon
+                  name='pencil'
+                  size={24}
+                  color='#009392'
+                  type='font-awesome'
+                  />
+              }
+              onChangeText={observaciones => this.setState({observaciones})}
+              />
+          </View>     
+          <Text>Dependencias que atendieron al paciente</Text>
+          <View style = {styles.inputs}>
+              <Input
+              placeholder='Dependencia'
+              leftIcon={
+                  <Icon
+                  name='building-o'
+                  size={24}
+                  color='#009392'
+                  type='font-awesome'
+                  />
+              }
+              onChangeText={dependencia => this.setState({dependencia})}
+              />
+          </View>     
+          <View style = {styles.inputs}>
+              <Input
+              placeholder='Numero de unidades'
+              keyboardType='number-pad'
+              leftIcon={
+                  <Icon
+                  name='ambulance'
+                  size={24}
+                  color='#009392'
+                  type='font-awesome'
+                  />
+              }
+              onChangeText={num_unidades => this.setState({num_unidades})}
+              />
+          </View>      
+          <View style = {styles.inputs}>
+              <Input
+              placeholder='Nombre del encargado y/o oficiales'
+              leftIcon={
+                  <Icon
+                  name='user'
+                  size={24}
+                  color='#009392'
+                  type='font-awesome'
+                  />
+              }
+              onChangeText={encargado_y_oficiales => this.setState({encargado_y_oficiales})}
+              />
+          </View>     
+          <View style = {styles.inputs}>
+              <Input
+              placeholder='Pertenencias'
+              leftIcon={
+                  <Icon
+                  name='shopping-bag'
+                  size={24}
+                  color='#009392'
+                  type='font-awesome'
+                  />
+              }
+              onChangeText={pertenencias => this.setState({pertenencias})}
+              />
+          </View>     
+          <View style = {styles.inputs}>
+              <Input
+              placeholder='Nombre de quien recibe las pertenencias'
+              leftIcon={
+                  <Icon
+                  name='pencil'
+                  size={24}
+                  color='#009392'
+                  type='font-awesome'
+                  />
+              }
+              onChangeText={receptor_pertenencias => this.setState({receptor_pertenencias})}
+              />
+            </View>
+            <View style={{ flex: 1, flexDirection: "column" }}>
+              <Text style={{alignItems:"center",justifyContent:"center"}}>Firme aqui </Text>
+              <SignatureCapture 
+                style={[{flex:1},styles.signature]}
+                ref="sign"
+                onSaveEvent={this._onSaveEvent}
+                onDragEvent={this._onDragEvent}
+                saveImageFileInExtStorage={true}
+                showNativeButtons={false}
+                showTitleLabel={true}
+                backgroundColor="white"
+                strokeColor="black"
+                minStrokeWidth={4}
+                maxStrokeWidth={15}
+                //viewMode={"portrait"}///>
+                />
+              <View style={{ flex: 1, flexDirection: "row" }}>
+                <TouchableHighlight style={styles.buttonStyle}
+                    activeOpacity={0.6}
+                    underlayColor="#DDDDDD"
+                    onPress={() => { this.saveSign() } } >
+                    <Text style={{color: 'black'}}>Guardar</Text>
+                </TouchableHighlight>
+                <TouchableHighlight style={styles.buttonStyle1}
+                    underlayColor="#5F9E97"
+                    onPress={() => { this.resetSign() } } >
+                    <Text style={{color: 'white'}}>Resetear</Text>
+                </TouchableHighlight>
+              </View>
+            </View>                                  
+            <View style = {styles.inputs}>
+                <Text>Entrega paciente</Text>
+                <Input
+                placeholder='Nombre completo'
+                leftIcon={
+                    <Icon
+                    name='pencil'
+                    size={24}
+                    color='#009392'
+                    type='font-awesome'
+                    />
+                }
+                onChangeText={nombre_completo_paciente => this.setState({nombre_completo_paciente})}
+                />
+            </View>
+            <View style={{ flex: 1, flexDirection: "column" }}>
+              <Text style={{alignItems:"center",justifyContent:"center"}}>Firme aqui </Text>
+              <SignatureCapture 
+                style={[{flex:1},styles.signature]}
+                ref="sign"
+                onSaveEvent={this._onSaveEvent}
+                onDragEvent={this._onDragEvent}
+                saveImageFileInExtStorage={true}
+                showNativeButtons={false}
+                showTitleLabel={true}
+                backgroundColor="white"
+                strokeColor="black"
+                minStrokeWidth={4}
+                maxStrokeWidth={15}
+                //viewMode={"portrait"}///>
+                />
+              <View style={{ flex: 1, flexDirection: "row" }}>
+                <TouchableHighlight style={styles.buttonStyle}
+                    activeOpacity={0.6}
+                    underlayColor="#DDDDDD"
+                    onPress={() => { this.saveSign() } } >
+                    <Text style={{color: 'black'}}>Guardar</Text>
+                </TouchableHighlight>
+                <TouchableHighlight style={styles.buttonStyle1}
+                    underlayColor="#5F9E97"
+                    onPress={() => { this.resetSign() } } >
+                    <Text style={{color: 'white'}}>Resetear</Text>
+                </TouchableHighlight>
+              </View>
+            </View>        
+            <View style = {styles.inputs}>
+                <Text>Médico recibe</Text>
+                <Input
+                placeholder='Nombre completo'
+                leftIcon={
+                    <Icon
+                    name='pencil'
+                    size={24}
+                    color='#009392'
+                    type='font-awesome'
+                    />
+                }
+                onChangeText={nombre_completo_medico => this.setState({nombre_completo_medico})}
+                />
+            </View>
+            <View style={{ flex: 1, flexDirection: "column" }}>
+              <Text style={{alignItems:"center",justifyContent:"center"}}>Firme aqui </Text>
+              <SignatureCapture 
+                style={[{flex:1},styles.signature]}
+                ref="sign"
+                onSaveEvent={this._onSaveEvent}
+                onDragEvent={this._onDragEvent}
+                saveImageFileInExtStorage={true}
+                showNativeButtons={false}
+                showTitleLabel={true}
+                backgroundColor="white"
+                strokeColor="black"
+                minStrokeWidth={4}
+                maxStrokeWidth={15}
+                //viewMode={"portrait"}///>
+                />
+              <View style={{ flex: 1, flexDirection: "row", flexWrap:'wrap', alignItems:'flex-start' }}>
+                <TouchableHighlight activeOpacity={0.6}
+                    underlayColor="#DDDDDD" style={styles.buttonStyle}
+                    onPress={() => { this.saveSign() } } >
+                    <Text style={{color: 'black'}}>Guardar</Text>
+                </TouchableHighlight>
+                <TouchableHighlight style={styles.buttonStyle1}
+                    // activeOpacity={0.6}
+                    underlayColor="#5F9E97"
+                    onPress={() => { this.resetSign() } } >
+                    <Text style={{color: 'white'}}>Resetear</Text>
+                </TouchableHighlight>
+              </View>
+            </View>
+          </View>
         </ScrollView>
       </SafeAreaView>
       
@@ -294,10 +405,22 @@ export default class Formulario6 extends Component {
           //result.encoded - for the base64 encoded png
           //result.pathName - for the file path name
           console.log(result);
+      /*    RNFetchBlob.fs
+              .writeFile(result.pathName, result.encoded, "encoding type")
+              .then(success => {
+                Alert.alert(
+                      "info",
+                      `It's been downloaded in ${result.pathName}.`
+                    );   })
+              .catch(err => {
+                console.warn(err)
+              });
+          this.setState({ path: result.pathName });
+          console.log(this.state.path);*/
       }
       _onDragEvent() {
           // This callback will be called when the user enters signature
-          console.log("dragged");
+          console.log("Firmado");
       }
 }
 const styles = StyleSheet.create({
@@ -309,7 +432,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     inputs:{
-      width: 500,
+      width:'100%',
       marginTop: 15,
       marginLeft: 20,
     },
@@ -362,11 +485,22 @@ const styles = StyleSheet.create({
       borderColor: '#000033',
       borderWidth: 100,
     },
+    
     buttonStyle: {
-        flex: 1, justifyContent: "center", alignItems: "center", height: 50,
-        backgroundColor: "#900C3F",
+        flex: 1, justifyContent: "center", alignItems: "center", height: 50, 
+        backgroundColor: "white",
         margin: 10,
-        borderRadius: 15,
-    }
+        borderRadius: 10,
+        borderColor: "#900C3F",
+        borderWidth:4,
+        width:'45%'
+    },
+    buttonStyle1: {
+      flex: 1, justifyContent: "center", alignItems: "center", height: 50, 
+      backgroundColor: "#009392",
+      margin: 10,
+      borderRadius: 10,
+      width:'45%'
+  }
 })    
 AppRegistry.registerComponent('Formulario6', () => Formulario6);

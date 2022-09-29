@@ -18,7 +18,7 @@ export default class SplashScreen extends Component {
         <StatusBar translucent backgroundColor='rgba(0,0,0,0.2)' />
         <Animatable.Image
           animation="pulse"
-          easing="ease-out"
+         // easing="ease-out"
           iterationCount="infinite"
           style={{
             width: 200,
@@ -29,8 +29,8 @@ export default class SplashScreen extends Component {
           source={require('./android/app/src/Imagenes/udg.jpeg')}
         />
         <View>
-          <Text style={{ textAlign: 'center' }}>MedicApp</Text>
-          <Text style={{ textAlign: 'center' }}>From CyM</Text>
+          <Animatable.Text animation="zoomInUp" easing="ease-out" style={{ textAlign: 'center' }}>MedicApp</Animatable.Text>
+          <Animatable.Text animation="zoomInUp" style={{ textAlign: 'center' }}>From C&M</Animatable.Text>
         </View>
       </View>
     ) 

@@ -91,6 +91,7 @@ export default class Formulario5 extends Component {
                 <View style = {styles.inputs}>
                   <Text>Color del paciente</Text>
                     <Picker selectedValue = {this.state.color} onValueChange = {color => this.setState({color})} styles= {{color: 'black'}}>
+                      <Picker.Item label = "No aplica" value = "No aplica" />
                       <Picker.Item label = "Rojo" value = "Rojo" />
                       <Picker.Item label = "Amarillo" value = "Amarillo" />
                       <Picker.Item label = "Verde" value = "Verde" />
@@ -114,6 +115,7 @@ export default class Formulario5 extends Component {
                 <View style = {styles.inputs}>
                 <Text>Vía aérea</Text>
                   <Picker selectedValue = {this.state.via_aerea} onValueChange = {via_aerea => this.setState({via_aerea})} styles= {{color: 'black'}}>
+                    <Picker.Item label = "No aplica" value = "No aplica" />
                     <Picker.Item label = "Aspiración" value = "Aspiración" />
                     <Picker.Item label = "Canula orofaríngea" value = "Canula orofaríngea" />
                     <Picker.Item label = "Canula nasofaríngea" value = "Canula nasofaríngea" />
@@ -133,6 +135,7 @@ export default class Formulario5 extends Component {
                 <View style = {styles.inputs}>
                   <Text>Lado</Text>
                     <Picker selectedValue = {this.state.lado_descompresion_pleural} onValueChange = {lado_descompresion_pleural => this.setState({lado_descompresion_pleural})} styles= {{color: 'black'}}>
+                      <Picker.Item label = "No aplica" value = "No aplica" />
                       <Picker.Item label = "Derecho" value = "Derecho" />
                       <Picker.Item label = "Izquierdo" value = "Izquierdo" />
                     </Picker>
@@ -140,6 +143,7 @@ export default class Formulario5 extends Component {
                 <View style = {styles.inputs}>
                   <Text>Control cervical</Text>
                     <Picker selectedValue = {this.state.control_cervical} onValueChange = {control_cervical => this.setState({control_cervical})} styles= {{color: 'black'}}>
+                      <Picker.Item label = "No aplica" value = "No aplica" />
                       <Picker.Item label = "Manual" value = "Manual" />
                       <Picker.Item label = "Collarín rígido" value = "Collarín rígido" />
                       <Picker.Item label = "Collarín blando" value = "Collarín blando" />
@@ -148,6 +152,7 @@ export default class Formulario5 extends Component {
                 <View style = {styles.inputs}>
                   <Text>Asistencia ventilatoria</Text>
                     <Picker selectedValue = {this.state.asistencia_ventilatoria} onValueChange = {asistencia_ventilatoria => this.setState({asistencia_ventilatoria})} styles= {{color: 'black'}}>
+                      <Picker.Item label = "No aplica" value = "No aplica" />
                       <Picker.Item label = "BVM" value = "BVM" />
                       <Picker.Item label = "Ventilador automático" value = "Ventilador automático" />
                     </Picker>
@@ -183,6 +188,7 @@ export default class Formulario5 extends Component {
                 <View style = {styles.inputs}>
                   <Text>Oxigenoterapia</Text>
                     <Picker selectedValue = {this.state.oxigenoterapia} onValueChange = {oxigenoterapia => this.setState({oxigenoterapia})} styles= {{color: 'black'}}>
+                      <Picker.Item label = "No aplica" value = "No aplica" />
                       <Picker.Item label = "Puntas nasales" value = "Puntas nasales" />
                       <Picker.Item label = "Mascarilla simple" value = "Mascarilla simple" />
                       <Picker.Item label = "Mascarilla con reservorio" value = "Mascarilla con reservorio" />
@@ -207,6 +213,7 @@ export default class Formulario5 extends Component {
                 <View style = {styles.inputs}>
                   <Text>Control de hemorragias</Text>
                     <Picker selectedValue = {this.state.control_hemorragias} onValueChange = {control_hemorragias => this.setState({control_hemorragias})} styles= {{color: 'black'}}>
+                      <Picker.Item label = "No aplica" value = "No aplica" />
                       <Picker.Item label = "Presión directa" value = "Presión directa" />
                       <Picker.Item label = "Presión indirecta" value = "Presión indirecta" />
                       <Picker.Item label = "Gravedad" value = "Gravedad" />
@@ -218,6 +225,7 @@ export default class Formulario5 extends Component {
                 <View style = {styles.inputs}>
                   <Text>Vías venosas</Text>
                     <Picker selectedValue = {this.state.vias_venosas} onValueChange = {vias_venosas => this.setState({vias_venosas})} styles= {{color: 'black'}}>
+                      <Picker.Item label = "No aplica" value = "No aplica" />
                       <Picker.Item label = "Linea IV" value = "Linea IV" />
                       <Picker.Item label = "Catéter" value = "Catéter" />
                     </Picker>
@@ -240,6 +248,7 @@ export default class Formulario5 extends Component {
                 <View style = {styles.inputs}>
                   <Text>Tipo de soluciones</Text>
                     <Picker selectedValue = {this.state.tipo_soluciones} onValueChange = {tipo_soluciones => this.setState({tipo_soluciones})} styles= {{color: 'black'}}>
+                      <Picker.Item label = "No aplica" value = "No aplica" />
                       <Picker.Item label = "Hartman" value = "Hartman" />
                       <Picker.Item label = "NACL 0.9%" value = "NACL 0.9%" />
                       <Picker.Item label = "Mixta" value = "Mixta" />
@@ -278,6 +287,7 @@ export default class Formulario5 extends Component {
                 <View style = {styles.inputs}>
                   <Text>RCP</Text>
                     <Picker selectedValue = {this.state.rcp} onValueChange = {rcp => this.setState({rcp})} styles= {{color: 'black'}}>
+                      <Picker.Item label = "No aplica" value = "No aplica" />
                       <Picker.Item label = "RCP básica" value = "RCP básica" />
                       <Picker.Item label = "RCP avanzada" value = "RCP avanzada" />
                     </Picker>
@@ -285,6 +295,7 @@ export default class Formulario5 extends Component {
                 <View style = {styles.inputs}>
                   <Text>Procedimiento</Text>
                     <Picker selectedValue = {this.state.procedimiento} onValueChange = {procedimiento => this.setState({procedimiento})} styles= {{color: 'black'}}>
+                      <Picker.Item label = "No aplica" value = "No aplica" />
                       <Picker.Item label = "Inmovilización de extremidades" value = "Inmovilización de extremidades" />
                       <Picker.Item label = "Inmovilización en FEL" value = "Inmovilización en FEL" />
                       <Picker.Item label = "Curación" value = "Curación" />

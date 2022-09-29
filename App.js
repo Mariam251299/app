@@ -74,7 +74,7 @@ const App: () => Node = () => {
   
 
   return (
-    
+    //<Prueba/>
     <AppNavigation/>
     /*
     <SafeAreaView style={backgroundStyle}>

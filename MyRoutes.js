@@ -43,6 +43,7 @@ import Formulario3 from "./Formulario3";
 import Formulario4 from "./Formulario4";
 import Formulario5 from "./Formulario5";
 import Formulario6 from "./Formulario6";
+import Formulario7 from "./Formulario7";
 import { ImageBackground } from 'react-native';
 
 
@@ -79,6 +80,11 @@ function GeneralData() {
       <Formulario6/>
     );
   }
+  function UsedResources() {
+    return (
+      <Formulario7/>
+    );
+  }
   const image = { uri: "https://maderame.com/enciclopedia-madera/tejo/" };
   const Tab = createBottomTabNavigator();
   
@@ -86,6 +92,7 @@ function GeneralData() {
     return (
       <NavigationContainer independent={true}>
         <Tab.Navigator
+        
         screenOptions={({ route }) => ({
           tabBarShowLabel: false,
           headerShown:true,
@@ -116,6 +123,8 @@ function GeneralData() {
               iconName = focused ? 'happy' : 'sad';
             } else if ( route.name == 'Traslado del paciente'){
               iconName = focused ? 'bus' : 'bus-outline';
+            } else if ( route.name == 'Recursos utilizados'){
+              iconName = focused ? 'clipboard' : 'clipboard-outline';
             }
             // You can return any component that you like here!
             return <Icon name={iconName} size={size} color={color} type='ionicon'/>;
@@ -124,6 +133,7 @@ function GeneralData() {
           tabBarInactiveTintColor: '#009392',
           tabBarActiveBackgroundColor: '#009392',
           tabBarInactiveBackgroundColor: 'transparent',
+          
         })}
         >
           <Tab.Screen name="Datos Generales" component={GeneralData}/>
@@ -132,6 +142,7 @@ function GeneralData() {
           <Tab.Screen name="Exploración física" component={PhysicalExploration}/>
           <Tab.Screen name="Condición del paciente" component={PatientCondition}/>
           <Tab.Screen name="Traslado del paciente" component={PatientMove}/>
+          <Tab.Screen name="Recursos utilizados" component={UsedResources}/>
         </Tab.Navigator>
       </NavigationContainer>
     );

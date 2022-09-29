@@ -6,12 +6,12 @@ import { View, Text, StyleSheet, ScrollView,TouchableOpacity,Alert, StatusBar, B
 //library.add(fab)
 //import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 //import { faMugSaucer } from '@fortawesome/free-solid-svg-icons/faMugSaucer'
-import {Input, Image, Button} from 'react-native-elements';
+import {Input, Image, Button, Icon} from 'react-native-elements';
 import { NavigationContainer } from '@react-navigation/native';
 import RNPickerSelect from "react-native-picker-select";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {Picker} from '@react-native-picker/picker';
-import Icon from 'react-native-vector-icons/FontAwesome';
+//import Icon from 'react-native-vector-icons/FontAwesome';
 //import DatePicker from 'react-native-date-picker';
 import DatePicker from 'react-native-modern-datepicker';
 import LinearGradient from 'react-native-linear-gradient';
@@ -41,18 +41,7 @@ export default class Formulario1 extends Component {
   goToScreen(routeName,props){
     this.props.navigation.navigate(routeName)
   }
-  showAlert(){
-    Alert.alert(
-     "Guardar",
-     "Guardado con Exito",
-     [
-       {
-         text: "Aceptar",
-         style: 'cancel',
-       }
-     ]
-    ); 
-  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -129,7 +118,7 @@ export default class Formulario1 extends Component {
           <Image style={styles.imagen} source={require('../app/android/app/src/Imagenes/udg.jpeg')}/>
         </View>
 
-        <View style = {styles.inputs}>
+        {/*<View style = {styles.inputs}>
           
             <Input
               placeholder={this.state.fecha}
@@ -141,18 +130,22 @@ export default class Formulario1 extends Component {
                 name='calendar'
                 size={24}
                 color='#009392'
+                type='font-awesome'
               />
               }
               editable={false}
               //{placeholder => this.setState({fecha})}
               //onChangeText={fecha => this.setState({fecha})}
             />
-        </View>
+        </View>*/}
         <View style = {styles.inputs}>
+          <Text style = {{fontSize:17,color:'#900C3F'}}> {this.state.fecha ? this.state.fecha : null}  {this.state.hora ? this.state.hora : null}</Text>
+        </View>
+        {/*<View style = {styles.inputs}>
           
           <Input
             placeholder={this.state.hora}
-            //placeholder={new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + '-' + (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate())}
+            //placeholder={new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + '-' + (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate()) + ' ' + (new Date().getHours()) + ':' + new Date().getMinutes()}
             placeholderTextColor={'#900C3F'}
             //placeholder={new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + '-' + (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate())}
             leftIcon={
@@ -167,7 +160,10 @@ export default class Formulario1 extends Component {
             //{placeholder => this.setState({fecha})}
             //onChangeText={fecha => this.setState({fecha})}
           />
-      </View>
+      </View>*/}
+        <View style = {styles.inputs}>
+          <Text style = {{fontSize:17,color:'#900C3F'}}> {this.state.hora ? this.state.hora : null} </Text>
+        </View>
         <View>
           <DatePicker onDateChange={fecha => this.setState({fecha})} onTimeChange={hora => this.setState({hora})} options={{
             backgroundColor: '#FBFBFB',
@@ -178,71 +174,59 @@ export default class Formulario1 extends Component {
             textSecondaryColor: '#900C3F',
             //borderColor: 'rgba(122, 146, 165, 0.1)',
             borderColor: 'rgba(144, 12, 63, 1.0)',
+          // borderColor:'#009392'
           }}
             //current="2022-09-09"
-            current={new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + '-' + (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate()) + (new Date().getHours()) + new Date().getMinutes()}
-            selected={new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + '-' + (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate()) + (new Date().getHours())+ new Date().getMinutes()}
+            current={new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + '-' + (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate()) + ' ' + (new Date().getHours()) + ':' + new Date().getMinutes()}// + (new Date().getHours()) + new Date().getMinutes()}
+            selected={new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + '-' + (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate()) + ' ' + (new Date().getHours()) + ':' + new Date().getMinutes()}// + (new Date().getHours())+ new Date().getMinutes()}
           //  mode="calendar"
             minuteInterval={1}
-            style={{ borderRadius: 20 }}/>
-          {/*<Button onPress={()=>{ this._datePicker.setState({modalVisible:true})}}>
-            <Text>
-              showDatePicker
-            </Text>
-            </Button>*/}
+            style={{ borderRadius: 20, borderWidth:2, borderColor:'#009392' }}/>
         </View>
 
         <View style = {styles.inputs}>
-          
-            <Input
-            placeholder='Dia de la semana'
-            leftIcon={
-                <Icon
-                name='calendar'
-                size={24}
-                color='#009392'
-                type='font-awesome'
-                />
-            }
-            onChangeText={dia_semana => this.setState({dia_semana})}
-            />
-        </View>
-
+            <Text>Día de la semana</Text>
+            <Picker selectedValue = {this.state.dia_semana} onValueChange = {dia_semana => this.setState({dia_semana})}>
+              <Picker.Item label = "Lunes" value = "Lunes" />
+              <Picker.Item label = "Martes" value = "Martes" />
+              <Picker.Item label = "Miercoles" value = "Miercoles" />
+              <Picker.Item label = "Jueves" value = "Jueves" />
+              <Picker.Item label = "Viernes" value = "Viernes" />
+              <Picker.Item label = "Sabado" value = "Sabado" />
+              <Picker.Item label = "Domingo" value = "Domingo" />
+            </Picker>
+          </View>
         <View style = {styles.inputs}>
-          
-            <Input
-            placeholder='Motivo de la atencion'
-            leftIcon={
-                <Icon
-                name='edit'
-                size={24}
-                color='#009392'
-                type='font-awesome'
-                />
-            }
-            onChangeText={motivo_atencion => this.setState({motivo_atencion})}
-            />
+          <Text>Motivo de la atención</Text>
+            <Picker selectedValue = {this.state.motivo_atencion} onValueChange = {motivo_atencion => this.setState({motivo_atencion})} styles= {{color: 'black'}}>
+              <Picker.Item label = "Enfermedad" value = "Enfermedad" />
+              <Picker.Item label = "Traumatismo" value = "Traumatismo" />
+              <Picker.Item label = "Gineco obstétrico" value = "Gineco obstétrico" />
+            </Picker>
         </View>
         <View style = {styles.inputs}>
-          
-            <Input
-            placeholder='Ubicacion del servicio'
-            leftIcon={
-                <Icon
-                name='map-marker'
-                size={24}
-                color='#009392'
-                type='font-awesome'
-                />
-            }
-            onChangeText={ubicacion_servicio => this.setState({ubicacion_servicio})}
-            />
+          <Text>Ubicación del servicio</Text>
+            <Picker selectedValue = {this.state.ubicacion_servicio} onValueChange = {ubicacion_servicio => this.setState({ubicacion_servicio})} styles= {{color: 'black'}}>
+              <Picker.Item label = "CUCEI" value = "CUCEI" />
+              <Picker.Item label = "Inst. Dep." value = "Inst. Dep." />
+              <Picker.Item label = "Politécnico" value = "Politécnico" />
+              <Picker.Item label = "Vocacional" value = "Vocacional" />
+              <Picker.Item label = "Prepa 12" value = "Prepa 12"/>
+              <Picker.Item label = "Vía pública" value = "Vía pública"/>
+            </Picker>
         </View>
         <View style = {styles.inputs}>
-          
-            <Input
-            placeholder='Vehiculo'
-            
+          <Text>Vehículo</Text>
+            <Picker selectedValue = {this.state.vehiculo} onValueChange = {vehiculo => this.setState({vehiculo})} styles= {{color: 'black'}}>
+              <Picker.Item label = "Vehículo oficial" value = "Vehículo oficial" />
+              <Picker.Item label = "Cuatrimoto" value = "Cuatrimoto" />
+              <Picker.Item label = "Ambulancia" value = "Ambulancia" />
+              <Picker.Item label = "Ambulancia eléctrica" value = "Ambulancia eléctrica" />
+              <Picker.Item label = "Otro" value = "Otro"/>
+            </Picker>
+          <Text>En caso de otro vehículo, indicar cual:</Text>
+          <Input
+            placeholder='Otro'
             leftIcon={
                 <Icon
                 name='car'
@@ -254,6 +238,7 @@ export default class Formulario1 extends Component {
             onChangeText={vehiculo => this.setState({vehiculo})}
             />
         </View>
+        
         <View style = {styles.inputs}>
           
             <Input
@@ -261,7 +246,7 @@ export default class Formulario1 extends Component {
             keyboardType='number-pad'
             leftIcon={
                 <Icon
-                name='keyboard-o'
+                name='car'
                 size={24}
                 color='#009392'
                 type='font-awesome'
@@ -304,7 +289,7 @@ export default class Formulario1 extends Component {
         <View style = {styles.inputs}>
             
             <Input
-            placeholder='Nombre o media filiacion'
+            placeholder='Nombre o media filiación'
             leftIcon={
                 <Icon
                 name='user'
@@ -472,24 +457,6 @@ export default class Formulario1 extends Component {
             />
         </View>*/}
 
-        <LinearGradient style={{ width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'#900C3F',borderRadius:20}} start={{x:0, y:0}} end={{x:1, y:1}} colors={['#900C3F', 'darkred']}>
-          <View style={{ marginTop:16, width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'transparent',borderRadius:20}}>
-            
-            <TouchableOpacity
-              icon={{
-                type:'font-awesome',
-                name:"check-square",
-                size:15,
-                color:"white",
-              }}
-          
-              title="Guardar"
-              onPress={()=> this.showAlert()}
-            >
-              <Text style={{textAlign:'center',fontSize:17,color:'white', justifyContent:'center',alignSelf:'center',fontWeight:'bold'}}>Guardar</Text> 
-            </TouchableOpacity>
-          </View>
-        </LinearGradient>
       </View>
       </ScrollView>
     </SafeAreaView>

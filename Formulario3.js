@@ -90,6 +90,7 @@ export default class Formulario3 extends Component {
               <View style = {styles.inputs}>
                 <Text>Evaluación inicial</Text>
                   <Picker selectedValue = {this.state.evaluacion_inicial} onValueChange = {evaluacion_inicial => this.setState({evaluacion_inicial})} styles= {{color: 'black'}}>
+                    <Picker.Item label = "No aplica" value = "No aplica" />
                     <Picker.Item label = "Consciente" value = "Consciente" />
                     <Picker.Item label = "Respuesta a estímulo verbal" value = "Respuesta a estímulo verbal" />
                     <Picker.Item label = "Respuesta a estímulo doloroso" value = "Respuesta a estímulo doloroso" />
@@ -99,6 +100,7 @@ export default class Formulario3 extends Component {
               <View style = {styles.inputs}>
                 <Text>Ventilación</Text>
                   <Picker selectedValue = {this.state.ventilacion} onValueChange = {ventilacion => this.setState({ventilacion})} styles= {{color: 'black'}}>
+                    <Picker.Item label = "No aplica" value = "No aplica" />
                     <Picker.Item label = "Automatismo regular" value = "Automatismo regular" />
                     <Picker.Item label = "Automatismo irregular" value = "Automatismo irregular" />
                     <Picker.Item label = "Ventilación rápida" value = "Ventilación rápida" />
@@ -109,6 +111,7 @@ export default class Formulario3 extends Component {
               <View style = {styles.inputs}>
                 <Text>Circulación</Text>
                   <Picker selectedValue = {this.state.circulacion} onValueChange = {circulacion => this.setState({circulacion})} styles= {{color: 'black'}}>
+                    <Picker.Item label = "No aplica" value = "No aplica" />
                     <Picker.Item label = "Carotideo" value = "Carotideo" />
                     <Picker.Item label = "Radial" value = "Radial" />
                     <Picker.Item label = "Paro cardiorespiratorio" value = "Paro cardiorespiratorio" />
@@ -117,6 +120,7 @@ export default class Formulario3 extends Component {
               <View style = {styles.inputs}>
                 <Text>Vía aérea</Text>
                   <Picker selectedValue = {this.state.via_aerea} onValueChange = {via_aerea => this.setState({via_aerea})} styles= {{color: 'black'}}>
+                    <Picker.Item label = "No aplica" value = "No aplica" />
                     <Picker.Item label = "Permeable" value = "Permeable" />
                     <Picker.Item label = "Comprometida" value = "Comprometida" />
                   </Picker>
@@ -124,6 +128,7 @@ export default class Formulario3 extends Component {
               <View style = {styles.inputs}>
                 <Text>Ruidos respiratorios</Text>
                   <Picker selectedValue = {this.state.ruidos} onValueChange = {ruidos => this.setState({ruidos})} styles= {{color: 'black'}}>
+                    <Picker.Item label = "No aplica" value = "No aplica" />
                     <Picker.Item label = "Ruidos respiratorios normales" value = "Ruidos respiratorios normales" />
                     <Picker.Item label = "Ruidos respiratorios disminuidos" value = "Ruidos respiratorios disminuidos" />
                     <Picker.Item label = "Ruidos respiratorios ausentes" value = "Ruidos respiratorios ausentes" />
@@ -132,6 +137,7 @@ export default class Formulario3 extends Component {
               <View style = {styles.inputs}>
                 <Text>Lado del pulmón</Text>
                   <Picker selectedValue = {this.state.lado} onValueChange = {lado => this.setState({lado})} styles= {{color: 'black'}}>
+                    <Picker.Item label = "No aplica" value = "No aplica" />
                     <Picker.Item label = "Derecho" value = "Derecho" />
                     <Picker.Item label = "Izquierdo" value = "Izquierdo" />
                   </Picker>
@@ -139,6 +145,7 @@ export default class Formulario3 extends Component {
               <View style = {styles.inputs}>
                 <Text>Parte del pulmón</Text>
                   <Picker selectedValue = {this.state.parte} onValueChange = {parte => this.setState({parte})} styles= {{color: 'black'}}>
+                    <Picker.Item label = "No aplica" value = "No aplica" />
                     <Picker.Item label = "Apical" value = "Apical" />
                     <Picker.Item label = "Base" value = "Base" />
                   </Picker>
@@ -146,6 +153,7 @@ export default class Formulario3 extends Component {
               <View style = {styles.inputs}>
                 <Text>Parte del pulmón</Text>
                   <Picker selectedValue = {this.state.parte} onValueChange = {parte => this.setState({parte})} styles= {{color: 'black'}}>
+                    <Picker.Item label = "No aplica" value = "No aplica" />
                     <Picker.Item label = "Apical" value = "Apical" />
                     <Picker.Item label = "Base" value = "Base" />
                   </Picker>
@@ -153,6 +161,7 @@ export default class Formulario3 extends Component {
               <View style = {styles.inputs}>
                 <Text>Calidad</Text>
                   <Picker selectedValue = {this.state.calidad} onValueChange = {calidad => this.setState({calidad})} styles= {{color: 'black'}}>
+                    <Picker.Item label = "No aplica" value = "No aplica" />
                     <Picker.Item label = "Rápido" value = "Rápido" />
                     <Picker.Item label = "Lento" value = "Lento" />
                     <Picker.Item label = "Rítmico" value = "Rítmico" />
@@ -162,6 +171,7 @@ export default class Formulario3 extends Component {
               <View style = {styles.inputs}>
                 <Text>Reflejo deglución</Text>
                   <Picker selectedValue = {this.state.reflejo_deglucion} onValueChange = {reflejo_deglucion => this.setState({reflejo_deglucion})} styles= {{color: 'black'}}>
+                    <Picker.Item label = "No aplica" value = "No aplica" />
                     <Picker.Item label = "Ausente" value = "Ausente" />
                     <Picker.Item label = "Presente" value = "Presente" />
                   </Picker>
@@ -177,6 +187,7 @@ export default class Formulario3 extends Component {
               <View style = {styles.inputs}>
                 <Text>Características</Text>
                   <Picker selectedValue = {this.state.caracteristicas} onValueChange = {caracteristicas => this.setState({caracteristicas})} styles= {{color: 'black'}}>
+                    <Picker.Item label = "No aplica" value = "No aplica" />
                     <Picker.Item label = "Eutérmica" value = "Eutérmica" />
                     <Picker.Item label = "Caliente" value = "Caliente" />
                     <Picker.Item label = "Fría" value = "Fría" />

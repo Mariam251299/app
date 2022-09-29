@@ -264,6 +264,7 @@ export default class Formulario4 extends Component {
                 </View>
                 
                 <Picker selectedValue = {this.state.pupilas} onValueChange = {pupilas => this.setState({pupilas})} styles= {{color: 'black'}}>
+                  <Picker.Item label = "No aplica" value = "No aplica" />
                   <Picker.Item label = "Isocoria" value = "Isocoria" />
                   <Picker.Item label = "Miosis" value = "Miosis" />
                   <Picker.Item label = "Midriasis" value = "Midriasis" />
@@ -291,6 +292,7 @@ export default class Formulario4 extends Component {
               <View style = {styles.inputs}>
               <Input
               placeholder='FR'
+              keyboardType='number-pad'
               leftIcon={
                   <Icon
                   name='edit'
@@ -305,6 +307,7 @@ export default class Formulario4 extends Component {
               <View style = {styles.inputs}>
               <Input
               placeholder='FC'
+              keyboardType='number-pad'
               leftIcon={
                   <Icon
                   name='edit'
@@ -319,6 +322,7 @@ export default class Formulario4 extends Component {
               <View style = {styles.inputs}>
               <Input
               placeholder='TAS'
+              keyboardType='number-pad'
               leftIcon={
                   <Icon
                   name='edit'
@@ -333,6 +337,7 @@ export default class Formulario4 extends Component {
               <View style = {styles.inputs}>
               <Input
               placeholder='TAD'
+              keyboardType='number-pad'
               leftIcon={
                   <Icon
                   name='edit'
@@ -347,6 +352,7 @@ export default class Formulario4 extends Component {
               <View style = {styles.inputs}>
               <Input
               placeholder='Sa02'
+              keyboardType='number-pad'
               leftIcon={
                   <Icon
                   name='edit'
@@ -361,6 +367,7 @@ export default class Formulario4 extends Component {
               <View style = {styles.inputs}>
               <Input
               placeholder='Temp'
+              keyboardType='number-pad'
               leftIcon={
                   <Icon
                   name='edit'
@@ -375,6 +382,7 @@ export default class Formulario4 extends Component {
               <View style = {styles.inputs}>
               <Input
               placeholder='Gluc'
+              keyboardType='number-pad'
               leftIcon={
                   <Icon
                   name='edit'
@@ -403,6 +411,7 @@ export default class Formulario4 extends Component {
               <View style = {styles.inputs}>
                 <Text style={{fontSize:17}}>Neurológico</Text>
                 <Picker selectedValue = {this.state.neurologico} onValueChange = {neurologico => this.setState({neurologico})}>
+                  <Picker.Item label = "No aplica" value = "No aplica" />
                   <Picker.Item label = "A" value = "A" />
                   <Picker.Item label = "V" value = "V" />
                   <Picker.Item label = "D" value = "D" />

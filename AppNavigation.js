@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import MyRoutes from './MyRoutes';
 import SplashScreen from "./SplashScreen";
 import Formulario1 from './Formulario1';
-import Signature from './Signature';
+import Signature from './Signature.js';
 
 const Stack = createNativeStackNavigator()
 
@@ -18,16 +18,16 @@ const AppNavigation = () => {
           component = {SplashScreen}
         />
         <Stack.Screen
+          name = 'Signature'
+          component = {Signature}
+        />
+        <Stack.Screen
           name = 'MyRoutes'
           component = {MyRoutes}
         />
         <Stack.Screen
           name = 'Formulario1'
           component = {Formulario1}
-        />
-        <Stack.Screen
-          name = 'Signature'
-          component = {Signature}
         />
       </Stack.Navigator>
     </NavigationContainer>
