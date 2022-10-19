@@ -18,6 +18,9 @@ import LinearGradient from 'react-native-linear-gradient';
 //import DateTimePicker from ''
 
 
+
+
+
 /*function HomeScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -34,18 +37,19 @@ function SettingsScreen() {
   );
 }
 
+
+
 const Tab = createBottomTabNavigator();
 */
-
+//global.time = {{new Date().getHours() + ':' + new Date().getMinutes()}}
 export default class Formulario1 extends Component {
   goToScreen(routeName,props){
     this.props.navigation.navigate(routeName)
   }
-
   constructor(props) {
     super(props);
     this.state = {
-      hora:'',
+      hora:new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds(),
       fecha:'',
       dia_semana:'',
       motivo_atencion:'',
@@ -69,7 +73,7 @@ export default class Formulario1 extends Component {
       codigo:'',
       open: '',
       fecha1:'',
-
+      folio:1,
     }
 
     /*updatesexo = (sexo) => {
@@ -81,8 +85,17 @@ export default class Formulario1 extends Component {
   updateuniversitario = (universitario) => {
     this.setState({ universitario: universitario })
   };
-  render(
-    )
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({
+       // hora : new Date().toLocaleString()
+       
+       fecha : new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + '-' + (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate()),
+       hora : this.state.hora,
+      })
+    }, 1000)
+  }
+  render()
   {
     /*const screenOptions = (route, color) => {
       let iconName
@@ -138,8 +151,11 @@ export default class Formulario1 extends Component {
               //onChangeText={fecha => this.setState({fecha})}
             />
         </View>*/}
-        <View style = {styles.inputs}>
-          <Text style = {{fontSize:17,color:'#900C3F'}}> {this.state.fecha ? this.state.fecha : null}  {this.state.hora ? this.state.hora : null}</Text>
+        <View style = {{alignItems:'flex-end', marginRight:'5%'}}>
+          <Text style = {{fontSize:17, color:'#900C3F'}}>Folio: {this.state.folio}</Text>
+        </View>
+        <View style = {styles.inputstext}>
+          <Text style = {{fontSize:17,color:'#900C3F'}}>Fecha: {this.state.fecha ? this.state.fecha : null}</Text>
         </View>
         {/*<View style = {styles.inputs}>
           
@@ -161,10 +177,11 @@ export default class Formulario1 extends Component {
             //onChangeText={fecha => this.setState({fecha})}
           />
       </View>*/}
-        <View style = {styles.inputs}>
-          <Text style = {{fontSize:17,color:'#900C3F'}}> {this.state.hora ? this.state.hora : null} </Text>
+
+        <View style = {styles.inputstext}>
+          <Text style = {{fontSize:17,color:'#900C3F'}}>Hora: {this.state.hora ? this.state.hora : null} </Text>
         </View>
-        <View>
+        <View style = {{marginTop: '3%'}}>
           <DatePicker onDateChange={fecha => this.setState({fecha})} onTimeChange={hora => this.setState({hora})} options={{
             backgroundColor: '#FBFBFB',
             textHeaderColor: '#009392',
@@ -176,10 +193,11 @@ export default class Formulario1 extends Component {
             borderColor: 'rgba(144, 12, 63, 1.0)',
           // borderColor:'#009392'
           }}
-            //current="2022-09-09"
+            //current={this.state.fecha}
             current={new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + '-' + (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate()) + ' ' + (new Date().getHours()) + ':' + new Date().getMinutes()}// + (new Date().getHours()) + new Date().getMinutes()}
             selected={new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + '-' + (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate()) + ' ' + (new Date().getHours()) + ':' + new Date().getMinutes()}// + (new Date().getHours())+ new Date().getMinutes()}
-          //  mode="calendar"
+            //selected={this.state.fecha}
+            mode="calendar"
             minuteInterval={1}
             style={{ borderRadius: 20, borderWidth:2, borderColor:'#009392' }}/>
         </View>
@@ -480,6 +498,15 @@ const styles = StyleSheet.create({
       marginTop: 15,
       marginLeft: 20,
       borderColor: 'blue',
+    },
+    inputstext:{
+      width: 200,
+      marginTop: 15,
+      marginLeft: 20,
+      borderColor: '#009392',
+      borderWidth: 2,
+      borderRadius: 10,
+      backgroundColor: '#00EBD1'
     },
     imagen:{
       width:120,

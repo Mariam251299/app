@@ -307,7 +307,7 @@ export default class Formulario5 extends Component {
                 <Text>Manejo farmacológico y terapia eléctrica</Text>
                 <View style = {styles.inputs}>
                   <Input
-                  placeholder='Hora'
+                  placeholder={new Date().getHours() + ':' + new Date().getMinutes()}
                   leftIcon={
                       <Icon
                       name='clockcircle'

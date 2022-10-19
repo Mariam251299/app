@@ -12,6 +12,7 @@ import { DataTable } from 'react-native-paper';
 import SignatureCapture from 'react-native-signature-capture';
 import LinearGradient from 'react-native-linear-gradient';
 import RNFetchBlob from "react-native-fetch-blob"
+//import firebase from 'react-native-firebase';
 //import Signature from './Signature';
 //const SigantureScreen = ({ navigation }) => (<Signature navigation={navigation}/>)
 
@@ -166,7 +167,7 @@ export default class Formulario6 extends Component {
               </TouchableHighlight>
               <TouchableHighlight style={styles.buttonStyle1}
                   underlayColor="#5F9E97"
-                  onPress={() => { this.resetSign() } } >
+                  onPress={() => { this.resetSign1() } } >
                   <Text style={{color: 'white'}}>Resetear</Text>
               </TouchableHighlight>
             </View>
@@ -282,7 +283,7 @@ export default class Formulario6 extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight style={styles.buttonStyle1}
                     underlayColor="#5F9E97"
-                    onPress={() => { this.resetSign() } } >
+                    onPress={() => { this.resetSign2() } } >
                     <Text style={{color: 'white'}}>Resetear</Text>
                 </TouchableHighlight>
               </View>
@@ -327,7 +328,7 @@ export default class Formulario6 extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight style={styles.buttonStyle1}
                     underlayColor="#5F9E97"
-                    onPress={() => { this.resetSign() } } >
+                    onPress={() => { this.resetSign3() } } >
                     <Text style={{color: 'white'}}>Resetear</Text>
                 </TouchableHighlight>
               </View>
@@ -361,6 +362,9 @@ export default class Formulario6 extends Component {
                 strokeColor="black"
                 minStrokeWidth={4}
                 maxStrokeWidth={15}
+                saveImageFileInExtStorage={true}
+                pathName="Documents"
+                
                 //viewMode={"portrait"}///>
                 />
               <View style={{ flex: 1, flexDirection: "row", flexWrap:'wrap', alignItems:'flex-start' }}>
@@ -372,7 +376,7 @@ export default class Formulario6 extends Component {
                 <TouchableHighlight style={styles.buttonStyle1}
                     // activeOpacity={0.6}
                     underlayColor="#5F9E97"
-                    onPress={() => { this.resetSign() } } >
+                    onPress={() => { this.resetSign4() } } >
                     <Text style={{color: 'white'}}>Resetear</Text>
                 </TouchableHighlight>
               </View>
@@ -384,6 +388,7 @@ export default class Formulario6 extends Component {
     );
     }
     saveSign() {
+      this.saveImageFileInExtStorage=true;
       this.refs["sign"].saveImage();
       Alert.alert(
         "Guardar",
@@ -397,15 +402,48 @@ export default class Formulario6 extends Component {
        ); 
       }
 
+      
+    /*saveSign() {
+     // this.sign.saveImage();
+     this.refs["sign"].saveImage();
+      const imageRef = firebase
+      .storage()
+      .ref()
+      .child('P-APMTERM-LEHAV-FRAN-3/'+ new Date().toLocaleString+".png");
+      imageRef.putFile(this.state.path, { contentType: "image/png" }).on(
+      "state_changed",
+      snapshot => {
+      console.log(snapshot);
+      },
+      err => {
+      console.error(err);
+      },
+      uploadedFile => {
+      console.log(uploadedFile);
+      }
+      );
+      }*/
       resetSign() {
           this.refs["sign"].resetImage();
+      }
+      resetSign4() {
+        this.refs["sign"].resetImage();
+      }
+      resetSign3() {
+        this.refs["sign"].resetImage();
+      }
+      resetSign2() {
+        this.refs["sign"].resetImage();
+      }
+      resetSign1() {
+        this.refs["sign"].resetImage();
       }
 
       _onSaveEvent(result) {
           //result.encoded - for the base64 encoded png
           //result.pathName - for the file path name
           console.log(result);
-      /*    RNFetchBlob.fs
+          RNFetchBlob.fs
               .writeFile(result.pathName, result.encoded, "encoding type")
               .then(success => {
                 Alert.alert(
@@ -415,8 +453,9 @@ export default class Formulario6 extends Component {
               .catch(err => {
                 console.warn(err)
               });
-          this.setState({ path: result.pathName });
-          console.log(this.state.path);*/
+         // this.setState({ path: result.pathName });
+          //console.log(this.state.path);
+          console.log(result.pathName);
       }
       _onDragEvent() {
           // This callback will be called when the user enters signature

@@ -100,13 +100,16 @@ function GeneralData() {
           borderRadius: 15,
           tabBarHideOnKeyboard:true,
           tabBarStyle: {
-            backgroundColor: '#F7F6F6',
+            //backgroundColor: '#F7F6F6',
+            backgroundColor: '#00EBD1',
             borderRadius: 15,
             position:'relative',
+            //position:'absolute',
             bottom:5,
             left:5,
-            right:5,
+            right:0,
             elevation:0,
+            
           },
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;

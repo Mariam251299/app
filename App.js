@@ -17,7 +17,11 @@ import { Button } from 'react-native'
 import DatePicker from 'react-native-modern-datepicker';
 import SplashScreen from './SplashScreen';
 import AppNavigation from './AppNavigation';
+import MyRoutes from "./MyRoutes";
 import Signature from './Signature';
+import Ejemplo from "./Ejemplo";
+
+global.time;
 import {
   SafeAreaView,
   ScrollView,
@@ -35,6 +39,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import Pdf from './Pdf';
 
 
 const Section = ({children, title}): Node => {
@@ -63,7 +68,7 @@ const Section = ({children, title}): Node => {
   );
 };
 
-import MyRoutes from "./MyRoutes";
+
 
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -74,7 +79,7 @@ const App: () => Node = () => {
   
 
   return (
-    //<Prueba/>
+    //<Pdf/>
     <AppNavigation/>
     /*
     <SafeAreaView style={backgroundStyle}>

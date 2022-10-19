@@ -43,6 +43,8 @@ export default class Formulario4 extends Component {
         abdomen_exploracion:'',
         torax_exploracion:'',
         cabeza_exploracion:'',
+        espalda_exploracion:'',
+        cabeza_detras_exploracion:'',
         zona_lesion:'',
         pupilas:'',
         hora:'',
@@ -96,74 +98,32 @@ export default class Formulario4 extends Component {
 
               <View >
                 <Text style={{fontSize:17}}>Lesion del cuerpo</Text>
-                <View style={styles.imagen1}>
-                  {/*<TouchableOpacity onPress={()=> this.showAlert()}>
-                  </TouchableOpacity>*/}
-                  <Image style={styles.imagen1} source={require('../app/android/app/src/Imagenes/cuerpohumano1.jpeg')}/>
+                <View style={styles.inputsimage}>
+                <Image style={styles.imagen2} source={require('../app/android/app/src/Imagenes/cuerpohumano.jpeg')}/>
                 </View>
                   
-                  <View style={{width:'50%',marginTop: '8%', marginLeft: 135,zIndex:2,position:'absolute', elevation: (Platform.OS === 'android') ? 80 : 0}}>
+                  <View style={{width:'15%',marginTop: '28%', marginLeft: '10%',zIndex:2,position:'absolute', elevation: (Platform.OS === 'android') ? 80 : 0}}>
                     <Picker selectedValue = {this.state.cabeza_exploracion} onValueChange = {cabeza_exploracion => this.setState({cabeza_exploracion})} style= {{color: 'black'}}>
-                      <Picker.Item label = "Deformidades (D)" value = "Deformidades (D)" />
-                      <Picker.Item label = "Contusiones (CD)" value = "Contusiones (CD)" />
-                      <Picker.Item label = "Abrasiones (A)" value = "Abrasiones (A)" />
-                      <Picker.Item label = "Penetraciones (P)" value = "Penetraciones (P)" />
-                      <Picker.Item label = "Movimiento Paradouico (MP)" value = "Movimiento Paradouico (MP)" />
-                      <Picker.Item label = "Crepitación (C)" value = "Crepitación (C)" />
-                      <Picker.Item label = "Heridas (H)" value = "Heridas (H)" />
-                      <Picker.Item label = "Fracturas (F)" value = "Fracturas (F)" />
-                      <Picker.Item label = "Efisema suticutáneo (ES)" value = "Efisema suticutáneo (ES)" />
-                      <Picker.Item label = "Quemaduras (Q)" value = "Quemaduras (Q)" />
-                      <Picker.Item label = "Laceraciones (L)" value = "Laceraciones (L)" />
-                      <Picker.Item label = "Edema (E)" value = "Edema (E)" />
-                      <Picker.Item label = "Alteración de sesibilidad (AS)" value = "Alteración de sesibilidad (AS)" />
-                      <Picker.Item label = "Alteración de movilidad (AM)" value = "Alteración de movilidad (AM)" />
-                      <Picker.Item label = "Dolor (DO)" value = "Dolor (DO)" />
+                      <Picker.Item label = "D" value = "Deformidades (D)" />
+                      <Picker.Item label = "CD" value = "Contusiones (CD)" />
+                      <Picker.Item label = "A" value = "Abrasiones (A)" />
+                      <Picker.Item label = "P" value = "Penetraciones (P)" />
+                      <Picker.Item label = "MP" value = "Movimiento Paradouico (MP)" />
+                      <Picker.Item label = "C" value = "Crepitación (C)" />
+                      <Picker.Item label = "H" value = "Heridas (H)" />
+                      <Picker.Item label = "F" value = "Fracturas (F)" />
+                      <Picker.Item label = "ES" value = "Efisema suticutáneo (ES)" />
+                      <Picker.Item label = "Q" value = "Quemaduras (Q)" />
+                      <Picker.Item label = "L" value = "Laceraciones (L)" />
+                      <Picker.Item label = "E" value = "Edema (E)" />
+                      <Picker.Item label = "AS" value = "Alteración de sesibilidad (AS)" />
+                      <Picker.Item label = "AM" value = "Alteración de movilidad (AM)" />
+                      <Picker.Item label = "DO" value = "Dolor (DO)" />
                     </Picker>
-                    
                   </View>
-                  <View style={{width:'50%',marginTop: '20%', marginLeft: 135,zIndex:2,position:'absolute', elevation: (Platform.OS === 'android') ? 80 : 0}}>
+                  
+                  <View style={{width:'15%',marginTop: '39%', marginLeft: '10%',zIndex:2,position:'absolute', elevation: (Platform.OS === 'android') ? 80 : 0}}>
                     <Picker selectedValue = {this.state.torax_exploracion} onValueChange = {torax_exploracion => this.setState({torax_exploracion})} style= {{color: 'black'}}>
-                      <Picker.Item label = "Deformidades (D)" value = "Deformidades (D)" />
-                      <Picker.Item label = "Contusiones (CD)" value = "Contusiones (CD)" />
-                      <Picker.Item label = "Abrasiones (A)" value = "Abrasiones (A)" />
-                      <Picker.Item label = "Penetraciones (P)" value = "Penetraciones (P)" />
-                      <Picker.Item label = "Movimiento Paradouico (MP)" value = "Movimiento Paradouico (MP)" />
-                      <Picker.Item label = "Crepitación (C)" value = "Crepitación (C)" />
-                      <Picker.Item label = "Heridas (H)" value = "Heridas (H)" />
-                      <Picker.Item label = "Fracturas (F)" value = "Fracturas (F)" />
-                      <Picker.Item label = "Efisema suticutáneo (ES)" value = "Efisema suticutáneo (ES)" />
-                      <Picker.Item label = "Quemaduras (Q)" value = "Quemaduras (Q)" />
-                      <Picker.Item label = "Laceraciones (L)" value = "Laceraciones (L)" />
-                      <Picker.Item label = "Edema (E)" value = "Edema (E)" />
-                      <Picker.Item label = "Alteración de sesibilidad (AS)" value = "Alteración de sesibilidad (AS)" />
-                      <Picker.Item label = "Alteración de movilidad (AM)" value = "Alteración de movilidad (AM)" />
-                      <Picker.Item label = "Dolor (DO)" value = "Dolor (DO)" />
-                    </Picker>
-                    
-                  </View>
-                  <View style={{width:'50%',marginTop: '30%', marginLeft: 135,zIndex:2,position:'absolute', elevation: (Platform.OS === 'android') ? 80 : 0}}>
-                    <Picker selectedValue = {this.state.abdomen_exploracion} onValueChange = {abdomen_exploracion => this.setState({abdomen_exploracion})} style= {{color: 'black'}}>
-                      <Picker.Item label = "Deformidades (D)" value = "Deformidades (D)" />
-                      <Picker.Item label = "Contusiones (CD)" value = "Contusiones (CD)" />
-                      <Picker.Item label = "Abrasiones (A)" value = "Abrasiones (A)" />
-                      <Picker.Item label = "Penetraciones (P)" value = "Penetraciones (P)" />
-                      <Picker.Item label = "Movimiento Paradouico (MP)" value = "Movimiento Paradouico (MP)" />
-                      <Picker.Item label = "Crepitación (C)" value = "Crepitación (C)" />
-                      <Picker.Item label = "Heridas (H)" value = "Heridas (H)" />
-                      <Picker.Item label = "Fracturas (F)" value = "Fracturas (F)" />
-                      <Picker.Item label = "Efisema suticutáneo (ES)" value = "Efisema suticutáneo (ES)" />
-                      <Picker.Item label = "Quemaduras (Q)" value = "Quemaduras (Q)" />
-                      <Picker.Item label = "Laceraciones (L)" value = "Laceraciones (L)" />
-                      <Picker.Item label = "Edema (E)" value = "Edema (E)" />
-                      <Picker.Item label = "Alteración de sesibilidad (AS)" value = "Alteración de sesibilidad (AS)" />
-                      <Picker.Item label = "Alteración de movilidad (AM)" value = "Alteración de movilidad (AM)" />
-                      <Picker.Item label = "Dolor (DO)" value = "Dolor (DO)" />
-                    </Picker>
-                    
-                  </View>
-                  <View style={{width:'5%',marginTop: '39%', marginLeft: '60%',zIndex:2,position:'absolute', elevation: (Platform.OS === 'android') ? 80 : 0}}>
-                    <Picker selectedValue = {this.state.brazo_derecho_exploracion} onValueChange = {brazo_derecho_exploracion => this.setState({brazo_derecho_exploracion})} style= {{color: 'black'}}>
                       <Picker.Item label = "D" value = "Deformidades (D)" />
                       <Picker.Item label = "CD" value = "Contusiones (CD)" />
                       <Picker.Item label = "A" value = "Abrasiones (A)" />
@@ -182,66 +142,140 @@ export default class Formulario4 extends Component {
                     </Picker>
                     
                   </View>
-                  <View style={{width:'14%',marginTop: '39%', marginLeft: 135,zIndex:2,position:'absolute', elevation: (Platform.OS === 'android') ? 80 : 0}}>
+                  <View style={{width:'15%',marginTop: '47%', marginLeft: '10%',zIndex:2,position:'absolute', elevation: (Platform.OS === 'android') ? 80 : 0}}>
+                    <Picker selectedValue = {this.state.abdomen_exploracion} onValueChange = {abdomen_exploracion => this.setState({abdomen_exploracion})} style= {{color: 'black'}}>
+                      <Picker.Item label = "D" value = "Deformidades (D)" />
+                      <Picker.Item label = "CD" value = "Contusiones (CD)" />
+                      <Picker.Item label = "A" value = "Abrasiones (A)" />
+                      <Picker.Item label = "P" value = "Penetraciones (P)" />
+                      <Picker.Item label = "MP" value = "Movimiento Paradouico (MP)" />
+                      <Picker.Item label = "C" value = "Crepitación (C)" />
+                      <Picker.Item label = "H" value = "Heridas (H)" />
+                      <Picker.Item label = "F" value = "Fracturas (F)" />
+                      <Picker.Item label = "ES" value = "Efisema suticutáneo (ES)" />
+                      <Picker.Item label = "Q" value = "Quemaduras (Q)" />
+                      <Picker.Item label = "L" value = "Laceraciones (L)" />
+                      <Picker.Item label = "E" value = "Edema (E)" />
+                      <Picker.Item label = "AS" value = "Alteración de sesibilidad (AS)" />
+                      <Picker.Item label = "AM" value = "Alteración de movilidad (AM)" />
+                      <Picker.Item label = "DO" value = "Dolor (DO)" />
+                    </Picker>
+                  </View>
+                  <View style={{width:'2%',marginTop: '65%', marginLeft: '27%',zIndex:2,position:'absolute', elevation: (Platform.OS === 'android') ? 80 : 0}}>
                     <Picker selectedValue = {this.state.brazo_izquierdo_exploracion} onValueChange = {brazo_izquierdo_exploracion => this.setState({brazo_izquierdo_exploracion})} style= {{color: 'black'}}>
-                      <Picker.Item label = "Deformidades (D)" value = "Deformidades (D)" />
-                      <Picker.Item label = "Contusiones (CD)" value = "Contusiones (CD)" />
-                      <Picker.Item label = "Abrasiones (A)" value = "Abrasiones (A)" />
-                      <Picker.Item label = "Penetraciones (P)" value = "Penetraciones (P)" />
-                      <Picker.Item label = "Movimiento Paradouico (MP)" value = "Movimiento Paradouico (MP)" />
-                      <Picker.Item label = "Crepitación (C)" value = "Crepitación (C)" />
-                      <Picker.Item label = "Heridas (H)" value = "Heridas (H)" />
-                      <Picker.Item label = "Fracturas (F)" value = "Fracturas (F)" />
-                      <Picker.Item label = "Efisema suticutáneo (ES)" value = "Efisema suticutáneo (ES)" />
-                      <Picker.Item label = "Quemaduras (Q)" value = "Quemaduras (Q)" />
-                      <Picker.Item label = "Laceraciones (L)" value = "Laceraciones (L)" />
-                      <Picker.Item label = "Edema (E)" value = "Edema (E)" />
-                      <Picker.Item label = "Alteración de sesibilidad (AS)" value = "Alteración de sesibilidad (AS)" />
-                      <Picker.Item label = "Alteración de movilidad (AM)" value = "Alteración de movilidad (AM)" />
-                      <Picker.Item label = "Dolor (DO)" value = "Dolor (DO)" />
+                      <Picker.Item label = "D" value = "Deformidades (D)" />
+                      <Picker.Item label = "CD" value = "Contusiones (CD)" />
+                      <Picker.Item label = "A" value = "Abrasiones (A)" />
+                      <Picker.Item label = "P" value = "Penetraciones (P)" />
+                      <Picker.Item label = "MP" value = "Movimiento Paradouico (MP)" />
+                      <Picker.Item label = "C" value = "Crepitación (C)" />
+                      <Picker.Item label = "H" value = "Heridas (H)" />
+                      <Picker.Item label = "F" value = "Fracturas (F)" />
+                      <Picker.Item label = "ES" value = "Efisema suticutáneo (ES)" />
+                      <Picker.Item label = "Q" value = "Quemaduras (Q)" />
+                      <Picker.Item label = "L" value = "Laceraciones (L)" />
+                      <Picker.Item label = "E" value = "Edema (E)" />
+                      <Picker.Item label = "AS" value = "Alteración de sesibilidad (AS)" />
+                      <Picker.Item label = "AM" value = "Alteración de movilidad (AM)" />
+                      <Picker.Item label = "DO" value = "Dolor (DO)" />
                     </Picker>
-                    
                   </View>
-                  <View style={{width:'14%',marginTop: '39%', marginLeft: 135,zIndex:2,position:'absolute', elevation: (Platform.OS === 'android') ? 80 : 0}}>
-                    <Picker selectedValue = {this.state.pierna_derecha_exploracion} onValueChange = {pierna_derecha_exploracion => this.setState({pierna_derecha_exploracion})} style= {{color: 'black'}}>
-                      <Picker.Item label = "Deformidades (D)" value = "Deformidades (D)" />
-                      <Picker.Item label = "Contusiones (CD)" value = "Contusiones (CD)" />
-                      <Picker.Item label = "Abrasiones (A)" value = "Abrasiones (A)" />
-                      <Picker.Item label = "Penetraciones (P)" value = "Penetraciones (P)" />
-                      <Picker.Item label = "Movimiento Paradouico (MP)" value = "Movimiento Paradouico (MP)" />
-                      <Picker.Item label = "Crepitación (C)" value = "Crepitación (C)" />
-                      <Picker.Item label = "Heridas (H)" value = "Heridas (H)" />
-                      <Picker.Item label = "Fracturas (F)" value = "Fracturas (F)" />
-                      <Picker.Item label = "Efisema suticutáneo (ES)" value = "Efisema suticutáneo (ES)" />
-                      <Picker.Item label = "Quemaduras (Q)" value = "Quemaduras (Q)" />
-                      <Picker.Item label = "Laceraciones (L)" value = "Laceraciones (L)" />
-                      <Picker.Item label = "Edema (E)" value = "Edema (E)" />
-                      <Picker.Item label = "Alteración de sesibilidad (AS)" value = "Alteración de sesibilidad (AS)" />
-                      <Picker.Item label = "Alteración de movilidad (AM)" value = "Alteración de movilidad (AM)" />
-                      <Picker.Item label = "Dolor (DO)" value = "Dolor (DO)" />
+                  <View style={{width:'15%',marginTop: '65%', marginLeft: '0%',zIndex:2,position:'absolute', elevation: (Platform.OS === 'android') ? 80 : 0}}>
+                    <Picker selectedValue = {this.state.brazo_derecho_exploracion} onValueChange = {brazo_derecho_exploracion => this.setState({brazo_derecho_exploracion})} style= {{color: 'black'}}>
+                      <Picker.Item label = "D" value = "Deformidades (D)" />
+                      <Picker.Item label = "CD" value = "Contusiones (CD)" />
+                      <Picker.Item label = "A" value = "Abrasiones (A)" />
+                      <Picker.Item label = "P" value = "Penetraciones (P)" />
+                      <Picker.Item label = "MP" value = "Movimiento Paradouico (MP)" />
+                      <Picker.Item label = "C" value = "Crepitación (C)" />
+                      <Picker.Item label = "H" value = "Heridas (H)" />
+                      <Picker.Item label = "F" value = "Fracturas (F)" />
+                      <Picker.Item label = "ES" value = "Efisema suticutáneo (ES)" />
+                      <Picker.Item label = "Q" value = "Quemaduras (Q)" />
+                      <Picker.Item label = "L" value = "Laceraciones (L)" />
+                      <Picker.Item label = "E" value = "Edema (E)" />
+                      <Picker.Item label = "AS" value = "Alteración de sesibilidad (AS)" />
+                      <Picker.Item label = "AM" value = "Alteración de movilidad (AM)" />
+                      <Picker.Item label = "DO" value = "Dolor (DO)" />
                     </Picker>
-                    
                   </View>
-                  <View style={{width:'14%',marginTop: '39%', marginLeft: 135,zIndex:2,position:'absolute', elevation: (Platform.OS === 'android') ? 80 : 0}}>
+                  <View style={{width:'2%',marginTop: '69%', marginLeft: '18%',zIndex:2,position:'absolute', elevation: (Platform.OS === 'android') ? 80 : 0}}>
                     <Picker selectedValue = {this.state.pierna_izquierda_exploracion} onValueChange = {pierna_izquierda_exploracion => this.setState({pierna_izquierda_exploracion})} style= {{color: 'black'}}>
-                      <Picker.Item label = "Deformidades (D)" value = "Deformidades (D)" />
-                      <Picker.Item label = "Contusiones (CD)" value = "Contusiones (CD)" />
-                      <Picker.Item label = "Abrasiones (A)" value = "Abrasiones (A)" />
-                      <Picker.Item label = "Penetraciones (P)" value = "Penetraciones (P)" />
-                      <Picker.Item label = "Movimiento Paradouico (MP)" value = "Movimiento Paradouico (MP)" />
-                      <Picker.Item label = "Crepitación (C)" value = "Crepitación (C)" />
-                      <Picker.Item label = "Heridas (H)" value = "Heridas (H)" />
-                      <Picker.Item label = "Fracturas (F)" value = "Fracturas (F)" />
-                      <Picker.Item label = "Efisema suticutáneo (ES)" value = "Efisema suticutáneo (ES)" />
-                      <Picker.Item label = "Quemaduras (Q)" value = "Quemaduras (Q)" />
-                      <Picker.Item label = "Laceraciones (L)" value = "Laceraciones (L)" />
-                      <Picker.Item label = "Edema (E)" value = "Edema (E)" />
-                      <Picker.Item label = "Alteración de sesibilidad (AS)" value = "Alteración de sesibilidad (AS)" />
-                      <Picker.Item label = "Alteración de movilidad (AM)" value = "Alteración de movilidad (AM)" />
-                      <Picker.Item label = "Dolor (DO)" value = "Dolor (DO)" />
+                      <Picker.Item label = "D" value = "Deformidades (D)" />
+                      <Picker.Item label = "CD" value = "Contusiones (CD)" />
+                      <Picker.Item label = "A" value = "Abrasiones (A)" />
+                      <Picker.Item label = "P" value = "Penetraciones (P)" />
+                      <Picker.Item label = "MP" value = "Movimiento Paradouico (MP)" />
+                      <Picker.Item label = "C" value = "Crepitación (C)" />
+                      <Picker.Item label = "H" value = "Heridas (H)" />
+                      <Picker.Item label = "F" value = "Fracturas (F)" />
+                      <Picker.Item label = "ES" value = "Efisema suticutáneo (ES)" />
+                      <Picker.Item label = "Q" value = "Quemaduras (Q)" />
+                      <Picker.Item label = "L" value = "Laceraciones (L)" />
+                      <Picker.Item label = "E" value = "Edema (E)" />
+                      <Picker.Item label = "AS" value = "Alteración de sesibilidad (AS)" />
+                      <Picker.Item label = "AM" value = "Alteración de movilidad (AM)" />
+                      <Picker.Item label = "DO" value = "Dolor (DO)" />
                     </Picker>
-                    
                   </View>
+                  <View style={{width:'2%',marginTop: '69%', marginLeft: '7%',zIndex:2,position:'absolute', elevation: (Platform.OS === 'android') ? 80 : 0}}>
+                    <Picker selectedValue = {this.state.pierna_derecha_exploracion} onValueChange = {pierna_derecha_exploracion => this.setState({pierna_derecha_exploracion})} style= {{color: 'black'}}>
+                      <Picker.Item label = "D" value = "Deformidades (D)" />
+                      <Picker.Item label = "CD" value = "Contusiones (CD)" />
+                      <Picker.Item label = "A" value = "Abrasiones (A)" />
+                      <Picker.Item label = "P" value = "Penetraciones (P)" />
+                      <Picker.Item label = "MP" value = "Movimiento Paradouico (MP)" />
+                      <Picker.Item label = "C" value = "Crepitación (C)" />
+                      <Picker.Item label = "H" value = "Heridas (H)" />
+                      <Picker.Item label = "F" value = "Fracturas (F)" />
+                      <Picker.Item label = "ES" value = "Efisema suticutáneo (ES)" />
+                      <Picker.Item label = "Q" value = "Quemaduras (Q)" />
+                      <Picker.Item label = "L" value = "Laceraciones (L)" />
+                      <Picker.Item label = "E" value = "Edema (E)" />
+                      <Picker.Item label = "AS" value = "Alteración de sesibilidad (AS)" />
+                      <Picker.Item label = "AM" value = "Alteración de movilidad (AM)" />
+                      <Picker.Item label = "DO" value = "Dolor (DO)" />
+                    </Picker>
+                  </View>
+                  <View style={{width:'15%',marginTop: '27%', marginLeft: '55%',zIndex:2,position:'absolute', elevation: (Platform.OS === 'android') ? 80 : 0}}>
+                    <Picker selectedValue = {this.state.cabeza_detras_exploracion} onValueChange = {cabeza_detras_exploracion => this.setState({cabeza_detras_exploracion})} style= {{color: 'black'}}>
+                      <Picker.Item label = "D" value = "Deformidades (D)" />
+                      <Picker.Item label = "CD" value = "Contusiones (CD)" />
+                      <Picker.Item label = "A" value = "Abrasiones (A)" />
+                      <Picker.Item label = "P" value = "Penetraciones (P)" />
+                      <Picker.Item label = "MP" value = "Movimiento Paradouico (MP)" />
+                      <Picker.Item label = "C" value = "Crepitación (C)" />
+                      <Picker.Item label = "H" value = "Heridas (H)" />
+                      <Picker.Item label = "F" value = "Fracturas (F)" />
+                      <Picker.Item label = "ES" value = "Efisema suticutáneo (ES)" />
+                      <Picker.Item label = "Q" value = "Quemaduras (Q)" />
+                      <Picker.Item label = "L" value = "Laceraciones (L)" />
+                      <Picker.Item label = "E" value = "Edema (E)" />
+                      <Picker.Item label = "AS" value = "Alteración de sesibilidad (AS)" />
+                      <Picker.Item label = "AM" value = "Alteración de movilidad (AM)" />
+                      <Picker.Item label = "DO" value = "Dolor (DO)" />
+                    </Picker>
+                  </View>
+                  <View style={{width:'15%',marginTop: '39%', marginLeft:'54%',zIndex:2,position:'absolute', elevation: (Platform.OS === 'android') ? 80 : 0}}>
+                    <Picker selectedValue = {this.state.espalda_exploracion} onValueChange = {espalda_exploracion => this.setState({espalda_exploracion})} style= {{color: 'black'}}>
+                      <Picker.Item label = "D" value = "Deformidades (D)" />
+                      <Picker.Item label = "CD" value = "Contusiones (CD)" />
+                      <Picker.Item label = "A" value = "Abrasiones (A)" />
+                      <Picker.Item label = "P" value = "Penetraciones (P)" />
+                      <Picker.Item label = "MP" value = "Movimiento Paradouico (MP)" />
+                      <Picker.Item label = "C" value = "Crepitación (C)" />
+                      <Picker.Item label = "H" value = "Heridas (H)" />
+                      <Picker.Item label = "F" value = "Fracturas (F)" />
+                      <Picker.Item label = "ES" value = "Efisema suticutáneo (ES)" />
+                      <Picker.Item label = "Q" value = "Quemaduras (Q)" />
+                      <Picker.Item label = "L" value = "Laceraciones (L)" />
+                      <Picker.Item label = "E" value = "Edema (E)" />
+                      <Picker.Item label = "AS" value = "Alteración de sesibilidad (AS)" />
+                      <Picker.Item label = "AM" value = "Alteración de movilidad (AM)" />
+                      <Picker.Item label = "DO" value = "Dolor (DO)" />
+                    </Picker>
+                  </View>
+
                 <Input
                 placeholder='Zona de lesión'
                 leftIcon={
@@ -259,7 +293,7 @@ export default class Formulario4 extends Component {
 
             <View style = {styles.inputs}>
               <Text style={{fontSize:17}}>Pupilas</Text>
-                <View style={styles.imagen1}>
+                <View style={styles.inputsimage}>
                   <Image style={styles.imagen1} source={require('../app/android/app/src/Imagenes/Pupilas1.png')}/>
                 </View>
                 
@@ -534,9 +568,14 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     inputs:{
-      width: 500,
+      width: 600,
       marginTop: 15,
       marginLeft: 20,
+    },
+    inputsimage:{
+      width: '100%',
+      marginTop: 15,
+     // marginLeft: 20,
     },
     imagen:{
     width:120,
@@ -553,7 +592,16 @@ const styles = StyleSheet.create({
       justifyContent:'center',
       alignItems:'flex-start',
       alignSelf: 'center',
-      zIndex:0
+    },
+    imagen2:{
+      width:'100%',
+      height:600,
+      justifyContent:'center',
+      alignItems:'flex-start',
+      alignSelf: 'center',
+      zIndex:0,
+      marginTop: 40,
+      marginBottom: 40,
     },
     sectionTitle: {
       fontSize: 24,

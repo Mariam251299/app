@@ -17,9 +17,10 @@ export default class SplashScreen extends Component {
       <View style={{flex: 1,flexDirection: 'column',justifyContent:'center',alignItems:'center',backgroundColor:'white'}}>
         <StatusBar translucent backgroundColor='rgba(0,0,0,0.2)' />
         <Animatable.Image
-          animation="pulse"
+          animation="zoomInUp"
+          //animation="pulse"
          // easing="ease-out"
-          iterationCount="infinite"
+          //iterationCount="infinite"
           style={{
             width: 200,
             height: 200,
@@ -28,6 +29,19 @@ export default class SplashScreen extends Component {
           }}
           source={require('./android/app/src/Imagenes/udg.jpeg')}
         />
+       { /*<Animatable.Image
+          //animation="zoomInUp"
+          animation="pulse"
+         // easing="ease-out"
+          iterationCount="infinite"
+          style={{
+            width: 200,
+            height: 200,
+            margin: 100,
+            marginTop: -100,
+          }}
+          source={require('./android/app/src/Imagenes/udg.jpeg')}
+        />*/}
         <View>
           <Animatable.Text animation="zoomInUp" easing="ease-out" style={{ textAlign: 'center' }}>MedicApp</Animatable.Text>
           <Animatable.Text animation="zoomInUp" style={{ textAlign: 'center' }}>From C&M</Animatable.Text>

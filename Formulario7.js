@@ -1,5 +1,5 @@
 import React, { Component,useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView,TouchableOpacity,Alert, StatusBar, BackHandler, Dimensions, SafeAreaView, FlatList, TouchableHighlight,AppRegistry} from 'react-native';
+import { View, Text, StyleSheet, ScrollView,TouchableOpacity,Alert, StatusBar, BackHandler, Dimensions, SafeAreaView, FlatList, TouchableHighlight,AppRegistry, TextInput} from 'react-native';
 import { Icon,Input, Image, Button} from 'react-native-elements';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import RNPickerSelect from "react-native-picker-select";
@@ -13,17 +13,79 @@ import SignatureCapture from 'react-native-signature-capture';
 import LinearGradient from 'react-native-linear-gradient';
 import NumericInput from 'react-native-numeric-input';
 import { Provider ,Appbar,Card,Searchbar} from 'react-native-paper';
-//https://www.youtube.com/watch?v=PkQxS-MLyQY
+import AwesomeAlert from 'react-native-awesome-alerts';
+import RNHTMLtoPDF from 'react-native-html-to-pdf';
+//import * as Print from "expo-print";
+//import * as MediaLibrary from "expo-media-library";
+//import * as Sharing from "expo-sharing";
 
 function updateSearch(value) {
   //do your search logic or anything
   console.log(value)
 }
 
+/*const htmlContent = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pdf Content</title>
+    <style>
+        body {
+            font-size: 16px;
+            color: rgb(255, 196, 0);
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello, UppLabs!</h1>
+</body>
+</html>
+`;
 
+const createAndSavePDF = async (html) => {
+  try {
+    const { uri } = await Print.printToFileAsync({ html });
+    if (Platform.OS === "ios") {
+      await Sharing.shareAsync(uri);
+    } else {
+      const permission = await MediaLibrary.requestPermissionsAsync();
+      if (permission.granted) {
+        await MediaLibrary.createAssetAsync(uri);
+      }
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};*/
 
 export default class Formulario7 extends Component {
 
+
+
+
+
+  /*async createPDF() {
+    try {
+        let options = {
+          html: '<h1>PDF TEST</h1>',
+          fileName: 'test',
+          directory: 'Documents',
+        };
+
+        let file = await RNHTMLtoPDF.convert(options)
+        // console.log(file.filePath);
+        alert(file.filePath);
+    } catch (err){
+      console.log(err)
+    }*/
+
+
+  //}
 
     state = {
       selectedOption: null
@@ -52,7 +114,7 @@ export default class Formulario7 extends Component {
 
       super(props);
       this.state = {
-
+        mostrarAlert:false,
         agua_inyectable_500ml:'',
         agua_oxigenada:'',
         agujas_20x32:'',
@@ -308,24 +370,45 @@ export default class Formulario7 extends Component {
         trinitrato_glicerilo_perlas_qty:'',
         hidralazaina_qty:'',
         fitomenadiona_qty:'',
+        busqueda:'',
       }
       
     }
 
-
+    muestraAlert = () => {
+      this.setState({
+        mostrarAlert: true
+      });
+    };
+  
+    hideAlert = () => {
+      this.setState({
+        mostrarAlert: false
+      });
+    };
     onSelectedItemsChange = selectOptionEvaluation => {
       this.setState({ selectOptionEvaluation });
     };
+    filterSearch(text){
+      const newData = data.filter()
+    }
     render() {
-      
-      console.log(this.props.navigation)
+      const {mostrarAlert} = this.state;
+      //console.log(this.props.navigation)
       //const navigation = useNavigation();
 
+      //console.log(this.state.busqueda)
       const MyComponent = () => {
         const [searchQuery, setSearchQuery] = React.useState('');
       
         const onChangeSearch = query => setSearchQuery(query);
       }
+      const generateHTML = value =>
+        `<div>
+        <span>Hi ${value}, how are you?
+        </span>
+        </div>`;
+        const html = generateHTML(this.state.value);
 
       const state = this.state;
       const { selectOptionEvaluation } = this.state;
@@ -333,23 +416,33 @@ export default class Formulario7 extends Component {
         <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
         <Provider>
+            {/*<View>
+              <TouchableHighlight onPress={this.createAndSavePDF}>
+                <Text>Create PDF</Text>
+              </TouchableHighlight>
+            </View>*/}
             <View>
             <Text style={styles.sectionTitle}> Expediente Médico </Text>
             </View>
             <View style={styles.imagen}>
               <Image style={styles.imagen} source={require('../app/android/app/src/Imagenes/udg.jpeg')}/>
             </View>
-            <View style={styles.mainbox}>
+            {/*<View style={styles.mainbox}>
               <Card>
                 <Searchbar
-                    placeholder="Search"
-                    onChangeText={this.onChangeSearch}
-                    updateSearch={updateSearch}
-                    value={this.searchQuery}
+                    placeholder="Buscar"
+                    onChangeText={busqueda => this.setState({busqueda})}
+                    onIconPress={this.showAlert}
+                    iconColor='#900C3F'
+                    placeholderTextColor='#009392'
+                    theme={'dark'}
                   />
               </Card>
+
             
-            </View>
+             </View>*/}
+
+             
             <View style={styles.columns}>
               <Text style={{width:'45%', fontSize: 25, color:'#900C3F', alignItems:'center',alignContent:'center',justifyContent:'center', marginLeft:'10%'}}>Producto</Text>
               <Text style={{width:'45%', fontSize: 25, color:'#009392'}}>Cantidad del Producto</Text>
@@ -1782,13 +1875,35 @@ export default class Formulario7 extends Component {
                     }}
                 
                     title="Guardar"
-                    onPress={()=> this.showAlert()}
+                    onPress={()=> this.showAlert}
                   >
                     <Text style={{textAlign:'center',fontSize:17,color:'white', justifyContent:'center',alignSelf:'center',fontWeight:'bold'}}>Guardar</Text> 
                   </TouchableOpacity>
                 </View>
               </LinearGradient>
             </View>
+              <AwesomeAlert
+                show={false}
+                showProgress={false}
+                title="Guardar"
+                message="Guardado con exito"
+                closeOnTouchOutside={true}
+                closeOnHardwareBackPress={false}
+                showCancelButton={false}
+                showConfirmButton={true}
+                cancelText="No, cancel"
+                confirmText="Aceptar"
+                //confirmButtonColor="#900C3F"
+                confirmButtonColor='#009392'
+                onCancelPressed={() => {
+                  this.hideAlert();
+                }}
+                onConfirmPressed={() => {
+                  this.hideAlert();
+                }}
+              />
+
+
             </Provider>
           </ScrollView>
         </SafeAreaView>
@@ -1878,5 +1993,12 @@ const styles = StyleSheet.create({
       margin: 15,
       flex: 1,
       justifyContent: 'space-between',
-    }
+    },
+    textInput:{
+      height: 30,
+      borderWidth:1,
+      borderColor: '900C3F',
+      marginBottom: 10,
+      marginHorizontal: 10
+    },
 })    
