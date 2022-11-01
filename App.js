@@ -39,7 +39,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import Pdf from './Pdf';
+//import Pdf from './Pdf';
 
 
 const Section = ({children, title}): Node => {

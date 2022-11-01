@@ -18,16 +18,8 @@ const AppNavigation = () => {
           component = {SplashScreen}
         />
         <Stack.Screen
-          name = 'Signature'
-          component = {Signature}
-        />
-        <Stack.Screen
           name = 'MyRoutes'
           component = {MyRoutes}
-        />
-        <Stack.Screen
-          name = 'Formulario1'
-          component = {Formulario1}
         />
       </Stack.Navigator>
     </NavigationContainer>

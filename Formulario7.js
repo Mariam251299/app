@@ -10,11 +10,12 @@ import Select from "react-select";
 import { Table, Row, Rows } from 'react-native-table-component';
 import { DataTable } from 'react-native-paper';
 import SignatureCapture from 'react-native-signature-capture';
-import LinearGradient from 'react-native-linear-gradient';
 import NumericInput from 'react-native-numeric-input';
 import { Provider ,Appbar,Card,Searchbar} from 'react-native-paper';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
+import LinearGradient from 'react-native-linear-gradient';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 //import * as Print from "expo-print";
 //import * as MediaLibrary from "expo-media-library";
 //import * as Sharing from "expo-sharing";
@@ -370,7 +371,6 @@ export default class Formulario7 extends Component {
         trinitrato_glicerilo_perlas_qty:'',
         hidralazaina_qty:'',
         fitomenadiona_qty:'',
-        busqueda:'',
       }
       
     }
@@ -412,6 +412,108 @@ export default class Formulario7 extends Component {
 
       const state = this.state;
       const { selectOptionEvaluation } = this.state;
+
+
+      const escribe= async ()=>{
+        var tempescribe = this.state.agua_inyectable_500ml+","+this.state.agua_oxigenada+","+this.state.agujas_20x32+","+this.state.algodon_paquete
+        +","+this.state.bata_desechable+","+this.state.bolsa_negra+","+this.state.bolsa_roja+","+this.state.bolsa_amarilla+","+this.state.burn_free_gel
+        +","+this.state.campos_esteriles+","+this.state.canula_blanda_aspiracion+","+this.state.canulas_nasofaringeas+","+this.state.canulas_orofaringeas
+        +","+this.state.canula_yankawer+","+this.state.cateter_12+","+this.state.cateter_14+","+this.state.cateter_16+","+this.state.cateter_18
+        +","+this.state.cateter_20+","+this.state.cateter_22+","+this.state.cateter_24+","+this.state.cinta_transpore_3m1+","+this.state.cinta_transpore_3m2
+        +","+this.state.collarines_desechables+","+this.state.cubre_bocas+","+this.state.desinfectante_manos+","+this.state.desinfectante_superficies
+        +","+this.state.fijador_te_adulto+","+this.state.fijador_te_pediatrico+","+this.state.gasas_esteriles+","+this.state.gasas_no_esteriles
+        +","+this.state.guantes_crudos_pares+","+this.state.guantes_esteriles_pares+","+this.state.jeringa_1ml+","+this.state.jeringa_3ml
+        +","+this.state.jeringa_5ml+","+this.state.jeringa_10ml+","+this.state.jeringa_20ml+","+this.state.jeringa_asepto+","+this.state.lentes_proteccion
+        +","+this.state.lancetas_glucometro+","+this.state.ligadura_umbilical+","+this.state.manguera_aspirador+","+this.state.tegaderm
+        +","+this.state.mascarilla_laringea+","+this.state.mascarilla_hudson+","+this.state.mascarilla_n95+","+this.state.mascarilla_o2_adulto
+        +","+this.state.mascarilla_o2_ped+","+this.state.microgotero+","+this.state.normogotero+","+this.state.panales_adulto+","+this.state.perilla
+        +","+this.state.puntas_nasales_adulto+","+this.state.puntas_nasales_ped+","+this.state.rastrillos+","+this.state.sabanas_quemados
+        +","+this.state.sabanas_termicas+","+this.state.sabanas_desechables+","+this.state.sol_cs_1000ml+","+this.state.sol_cs_500ml+","+this.state.sol_cs_250ml
+        +","+this.state.sol_ht_1000ml+","+this.state.sol_ht_500ml+","+this.state.sol_ht_250ml+","+this.state.sol_dx_1000ml+","+this.state.sol_dx_500ml
+        +","+this.state.sol_dx_250ml+","+this.state.sol_gelafundin_500ml+","+this.state.sol_isodine_500ml+","+this.state.sol_jabon_quir_500ml
+        +","+this.state.tiras_reactivas+","+this.state.torundeo_alcohol+","+this.state.torundeo_seco+","+this.state.tubos_endotraqueales+","+this.state.venda_5
+        +","+this.state.venda_10+","+this.state.venda_15+","+this.state.venda_20+","+this.state.venda_30+","+this.state.canula_blanda_aspir
+        +","+this.state.canula_yankawer+","+this.state.manguera_aspirador+","+this.state.electrodos_adulto+","+this.state.electrodos_pediatrico
+        +","+this.state.gel_conductivo+","+this.state.quick_clot+","+this.state.adrenalina_1mg_amp+","+this.state.agua_inyectable_amp
+        +","+this.state.aspirina_100mg_tab_caja+","+this.state.aspirina_500mg_tab_caja+","+this.state.atropina_1mg_amp+","+this.state.avapena_20mg_amp
+        +","+this.state.butilhioscina_20mg_amp+","+this.state.captopril_25mg_tab_amp+","+this.state.carbon_activado_50gr+","+this.state.cloranfenicol_gotas
+        +","+this.state.clorfenamina_10mg_amp+","+this.state.clonixinato_lisina+","+this.state.combivent_05_25_sol+","+this.state.diazepam_10mg_amp
+        +","+this.state.diclofenaco_75mg_amp+","+this.state.dx_l_50ml+","+this.state.electrolitos_orales+","+this.state.fenitoina_sodica
+        +","+this.state.flixotide_sol+","+this.state.furosemida_20mg_amp+","+this.state.hidrocortisona_100mg_amp+","+this.state.hidrocortisona_500mg_amp
+        +","+this.state.isosorbide_5mg+","+this.state.isosorbida_dinirato_spray+","+this.state.ketorolaco_30mg_amp+","+this.state.meclixina_piridoxina_lido_amp
+        +","+this.state.metamizol_sodico_1gr_amp+","+this.state.metoclopramida_10mg_amp+","+this.state.midazolam_15mg_amp+","+this.state.omeprazol_40mg_amp
+        +","+this.state.oxitocina_5ui_amp+","+this.state.panclasa_40mg_amp+","+this.state.paracetamol_500mg_amp+","+this.state.paracetamol_gotas
+        +","+this.state.salbutamol_5mg_sol+","+this.state.salbutamol_aerosol+","+this.state.sulfato_magnesio_1gr+","+this.state.trinitrato_glicerilo_perlas
+        +","+this.state.hidralazaina+","+this.state.fitomenadiona+","+this.state.agua_inyectable_500ml_qty+","+this.state.agua_oxigenada_qty
+        +","+this.state.agujas_20x32_qty+","+this.state.algodon_paquete_qty+","+this.state.bata_desechable_qty+","+this.state.bolsa_negra_qty
+        +","+this.state.bolsa_roja_qty+","+this.state.bolsa_amarilla_qty+","+this.state.burn_free_gel_qty+","+this.state.campos_esteriles_qty
+        +","+this.state.canula_blanda_aspiracion_qty+","+this.state.canulas_nasofaringeas_qty+","+this.state.canulas_orofaringeas_qty
+        +","+this.state.canula_yankawer_qty+","+this.state.cateter_12_qty+","+this.state.cateter_14_qty+","+this.state.cateter_16_qty
+        +","+this.state.cateter_18_qty+","+this.state.cateter_20_qty+","+this.state.cateter_22_qty+","+this.state.cateter_24_qty
+        +","+this.state.cinta_transpore_3m1_qty+","+this.state.cinta_transpore_3m2_qty+","+this.state.collarines_desechables_qty+","+this.state.cubre_bocas_qty
+        +","+this.state.desinfectante_manos_qty+","+this.state.desinfectante_superficies_qty+","+this.state.fijador_te_adulto_qty
+        +","+this.state.fijador_te_pediatrico_qty+","+this.state.gasas_esteriles_qty+","+this.state.gasas_no_esteriles_qty+","+this.state.guantes_crudos_pares_qty
+        +","+this.state.guantes_esteriles_pares_qty+","+this.state.jeringa_1ml_qty+","+this.state.jeringa_3ml_qty+","+this.state.jeringa_5ml_qty
+        +","+this.state.jeringa_10ml_qty+","+this.state.jeringa_20ml_qty+","+this.state.jeringa_asepto_qty+","+this.state.lentes_proteccion_qty
+        +","+this.state.lancetas_glucometro_qty+","+this.state.ligadura_umbilical_qty+","+this.state.manguera_aspirador_qty+","+this.state.tegaderm_qty
+        +","+this.state.mascarilla_laringea_qty+","+this.state.mascarilla_hudson_qty+","+this.state.mascarilla_n95_qty+","+this.state.mascarilla_o2_adulto_qty
+        +","+this.state.mascarilla_o2_ped_qty+","+this.state.microgotero_qty+","+this.state.normogotero_qty+","+this.state.panales_adulto_qty
+        +","+this.state.perilla_qty+","+this.state.puntas_nasales_adulto_qty+","+this.state.puntas_nasales_ped_qty+","+this.state.rastrillos_qty
+        +","+this.state.sabanas_quemados_qty+","+this.state.sabanas_termicas_qty+","+this.state.sabanas_desechables_qty+","+this.state.sol_cs_1000ml_qty
+        +","+this.state.sol_cs_500ml_qty+","+this.state.sol_cs_250ml_qty+","+this.state.sol_ht_1000ml_qty+","+this.state.sol_ht_500ml_qty
+        +","+this.state.sol_ht_250ml_qty+","+this.state.sol_dx_1000ml_qty+","+this.state.sol_dx_500ml_qty+","+this.state.sol_dx_250ml_qty
+        +","+this.state.sol_gelafundin_500ml_qty+","+this.state.sol_isodine_500ml_qty+","+this.state.sol_jabon_quir_500ml_qty+","+this.state.tiras_reactivas_qty
+        +","+this.state.torundeo_alcohol_qty+","+this.state.torundeo_seco_qty+","+this.state.tubos_endotraqueales_qty+","+this.state.venda_5_qty
+        +","+this.state.venda_10_qty+","+this.state.venda_15_qty+","+this.state.venda_20_qty+","+this.state.venda_30_qty+","+this.state.canula_blanda_aspir_qty
+        +","+this.state.canula_yankawer_qty+","+this.state.manguera_aspirador_qty+","+this.state.electrodos_adulto_qty+","+this.state.electrodos_pediatrico_qty
+        +","+this.state.gel_conductivo_qty+","+this.state.quick_clot_qty+","+this.state.adrenalina_1mg_amp_qty+","+this.state.agua_inyectable_amp_qty
+        +","+this.state.aspirina_100mg_tab_caja_qty+","+this.state.aspirina_500mg_tab_caja_qty+","+this.state.atropina_1mg_amp_qty
+        +","+this.state.avapena_20mg_amp_qty+","+this.state.butilhioscina_20mg_amp_qty+","+this.state.captopril_25mg_tab_amp_qty
+        +","+this.state.carbon_activado_50gr_qty+","+this.state.cloranfenicol_gotas_qty+","+this.state.clorfenamina_10mg_amp_qty
+        +","+this.state.clonixinato_lisina_qty+","+this.state.combivent_05_25_sol_qty+","+this.state.diazepam_10mg_amp_qty+","+this.state.diclofenaco_75mg_amp_qty
+        +","+this.state.dx_l_50ml_qty+","+this.state.electrolitos_orales_qty+","+this.state.fenitoina_sodica_qty+","+this.state.flixotide_sol_qty
+        +","+this.state.furosemida_20mg_amp_qty+","+this.state.hidrocortisona_100mg_amp_qty+","+this.state.hidrocortisona_500mg_amp_qty
+        +","+this.state.isosorbide_5mg_qty+","+this.state.isosorbida_dinirato_spray_qty+","+this.state.ketorolaco_30mg_amp_qty
+        +","+this.state.meclixina_piridoxina_lido_amp_qty+","+this.state.metamizol_sodico_1gr_amp_qty+","+this.state.metoclopramida_10mg_amp_qty
+        +","+this.state.midazolam_15mg_amp_qty+","+this.state.omeprazol_40mg_amp_qty+","+this.state.oxitocina_5ui_amp_qty+","+this.state.panclasa_40mg_amp_qty
+        +","+this.state.paracetamol_500mg_amp_qty+","+this.state.paracetamol_gotas_qty+","+this.state.salbutamol_5mg_sol_qty
+        +","+this.state.salbutamol_aerosol_qty+","+this.state.sulfato_magnesio_1gr_qty+","+this.state.trinitrato_glicerilo_perlas_qty
+        +","+this.state.hidralazaina_qty+","+this.state.fitomenadiona_qty;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        try {
+          await AsyncStorage.setItem('@formulario7', tempescribe)
+        } catch (e) {
+          // saving error
+        }
+
+      }
+      const lee = async() => {
+        try {
+          const value = await AsyncStorage.getItem('@formulario7')
+          if(value !== null) {
+            // value previously stored
+            console.log(value);
+          }
+        } catch(e) {
+          // error reading value
+        }
+      }
+      const printA = async() => {
+        console.log('yess');
+      }
       return (
         <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
@@ -451,10 +553,19 @@ export default class Formulario7 extends Component {
               <Text style={{marginLeft:'10%'}}>Agua inyectable 500ml</Text>
             </View>
             <View style = {styles.columns}>
-              <Picker selectedValue = {this.state.agua_inyectable_500ml} onValueChange = {agua_inyectable_500ml => this.setState({agua_inyectable_500ml})} style={{width:'45%'}}>
+              <Picker selectedValue = {this.state.agua_inyectable_500ml} onValueChange = {(itemValue, itemIndex) => {
+                if(itemValue){
+                  console.log(itemValue);
+                  agua_inyectable_500ml => this.setState({agua_inyectable_500ml})
+                  return;
+                }else{
+                  agua_inyectable_500ml => this.setState("No");
+                }
+              }} style={{width:'45%'}}>
                 <Picker.Item label = "No" value = "No" />
-                <Picker.Item label = "Si" value = "Si" />
+                <Picker.Item label = "Si" value = "Si" onPress={printA}/>
               </Picker>
+
               <NumericInput onChange={agua_inyectable_500ml_qty => this.setState({agua_inyectable_500ml_qty})} textColor='#900C3F' rightButtonBackgroundColor='#009392' 
               leftButtonBackgroundColor='#009392' minValue={0} valueType='integer' style={{width:'45%'}}/>
             </View>
@@ -1860,7 +1971,46 @@ export default class Formulario7 extends Component {
               <NumericInput onChange={fitomenadiona_qty => this.setState({fitomenadiona_qty})} textColor='#900C3F' rightButtonBackgroundColor='#009392' 
               leftButtonBackgroundColor='#009392' minValue={0} valueType='integer' style={{width:'45%'}}/>
             </View>
-            
+            <View style={{marginTop:16}}>
+                <LinearGradient style={{ width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'#900C3F',borderRadius:20}} start={{x:0, y:0}} end={{x:1, y:1}} colors={['#900C3F', 'darkred']}>
+                  <View style={{ marginTop:16, width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'transparent',borderRadius:20}}>
+                    
+                    <TouchableOpacity
+                      icon={{
+                        type:'font-awesome',
+                        name:"check-square",
+                        size:15,
+                        color:"white",
+                      }}
+                  
+                      title="Guardar"
+                      onPress={escribe}
+                    >
+                      <Text style={{textAlign:'center',fontSize:17,color:'white', justifyContent:'center',alignSelf:'center',fontWeight:'bold'}}>Guardar</Text> 
+                    </TouchableOpacity>
+                  </View>
+                </LinearGradient>
+              </View>
+              <View style={{marginTop:16}}>
+                    <LinearGradient style={{ width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'#900C3F',borderRadius:20}} start={{x:0, y:0}} end={{x:1, y:1}} colors={['#900C3F', 'darkred']}>
+                      <View style={{ marginTop:16, width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'transparent',borderRadius:20}}>
+                        
+                        <TouchableOpacity
+                          icon={{
+                            type:'font-awesome',
+                            name:"check-square",
+                            size:15,
+                            color:"white",
+                          }}
+                      
+                          title="Obtener"
+                          onPress={lee}
+                        >
+                          <Text style={{textAlign:'center',fontSize:17,color:'white', justifyContent:'center',alignSelf:'center',fontWeight:'bold'}}>Obtener</Text> 
+                        </TouchableOpacity>
+                      </View>
+                    </LinearGradient>
+              </View>
 
             <View style={{marginTop:16}}>
               <LinearGradient style={{ width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'#900C3F',borderRadius:20}} start={{x:0, y:0}} end={{x:1, y:1}} colors={['#900C3F', 'darkred']}>
@@ -1877,7 +2027,7 @@ export default class Formulario7 extends Component {
                     title="Guardar"
                     onPress={()=> this.showAlert}
                   >
-                    <Text style={{textAlign:'center',fontSize:17,color:'white', justifyContent:'center',alignSelf:'center',fontWeight:'bold'}}>Guardar</Text> 
+                    <Text style={{textAlign:'center',fontSize:17,color:'white', justifyContent:'center',alignSelf:'center',fontWeight:'bold'}}>Enviar todo</Text> 
                   </TouchableOpacity>
                 </View>
               </LinearGradient>

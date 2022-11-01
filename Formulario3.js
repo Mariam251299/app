@@ -8,6 +8,8 @@ import {Picker} from '@react-native-picker/picker';
 import MultiSelect from 'react-native-element-dropdown';
 import Select from "react-select";
 import DropDownPicker from 'react-native-dropdown-picker';
+import LinearGradient from 'react-native-linear-gradient';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const options = [
   { value: "rojo", label: "rojo" },
@@ -57,9 +59,7 @@ export default class Formulario3 extends Component {
         reflejo_deglucion:'',
         piel:'',
         caracteristicas:'',
-        selectOptionEvaluation:[],
-        selectedOption:[],
-        text:'',
+
       }
       
     }
@@ -68,6 +68,28 @@ export default class Formulario3 extends Component {
     };
     render() {
       const { selectOptionEvaluation } = this.state;
+
+      const escribe= async ()=>{
+        var tempescribe = this.state.evaluacion_inicial+","+this.state.ventilacion+","+this.state.circulacion+","+this.state.via_aerea+","+this.state.ruidos
+        +","+this.state.lado+","+this.state.parte+","+this.state.calidad+","+this.state.reflejo_deglucion+","+this.state.piel+","+this.state.caracteristicas;
+      try {
+        await AsyncStorage.setItem('@formulario3', tempescribe)
+      } catch (e) {
+        // saving error
+      }
+
+      }
+      const lee = async() => {
+        try {
+          const value = await AsyncStorage.getItem('@formulario3')
+          if(value !== null) {
+            // value previously stored
+            console.log(value);
+          }
+        } catch(e) {
+          // error reading value
+        }
+      }
       return (
       <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
@@ -151,14 +173,6 @@ export default class Formulario3 extends Component {
                   </Picker>
               </View>
               <View style = {styles.inputs}>
-                <Text>Parte del pulmón</Text>
-                  <Picker selectedValue = {this.state.parte} onValueChange = {parte => this.setState({parte})} styles= {{color: 'black'}}>
-                    <Picker.Item label = "No aplica" value = "No aplica" />
-                    <Picker.Item label = "Apical" value = "Apical" />
-                    <Picker.Item label = "Base" value = "Base" />
-                  </Picker>
-              </View>
-              <View style = {styles.inputs}>
                 <Text>Calidad</Text>
                   <Picker selectedValue = {this.state.calidad} onValueChange = {calidad => this.setState({calidad})} styles= {{color: 'black'}}>
                     <Picker.Item label = "No aplica" value = "No aplica" />
@@ -193,6 +207,46 @@ export default class Formulario3 extends Component {
                     <Picker.Item label = "Fría" value = "Fría" />
                     <Picker.Item label = "Diaforesis" value = "Diaforesis" />
                   </Picker>
+              </View>
+              <View style={{marginTop:16}}>
+                <LinearGradient style={{ width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'#900C3F',borderRadius:20}} start={{x:0, y:0}} end={{x:1, y:1}} colors={['#900C3F', 'darkred']}>
+                  <View style={{ marginTop:16, width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'transparent',borderRadius:20}}>
+                    
+                    <TouchableOpacity
+                      icon={{
+                        type:'font-awesome',
+                        name:"check-square",
+                        size:15,
+                        color:"white",
+                      }}
+                  
+                      title="Guardar"
+                      onPress={escribe}
+                    >
+                      <Text style={{textAlign:'center',fontSize:17,color:'white', justifyContent:'center',alignSelf:'center',fontWeight:'bold'}}>Guardar</Text> 
+                    </TouchableOpacity>
+                  </View>
+                </LinearGradient>
+              </View>
+              <View style={{marginTop:16}}>
+                    <LinearGradient style={{ width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'#900C3F',borderRadius:20}} start={{x:0, y:0}} end={{x:1, y:1}} colors={['#900C3F', 'darkred']}>
+                      <View style={{ marginTop:16, width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'transparent',borderRadius:20}}>
+                        
+                        <TouchableOpacity
+                          icon={{
+                            type:'font-awesome',
+                            name:"check-square",
+                            size:15,
+                            color:"white",
+                          }}
+                      
+                          title="Obtener"
+                          onPress={lee}
+                        >
+                          <Text style={{textAlign:'center',fontSize:17,color:'white', justifyContent:'center',alignSelf:'center',fontWeight:'bold'}}>Obtener</Text> 
+                        </TouchableOpacity>
+                      </View>
+                    </LinearGradient>
               </View>
           </View>
         </ScrollView>

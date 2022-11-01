@@ -5,7 +5,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import RNPickerSelect from "react-native-picker-select";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {Picker} from '@react-native-picker/picker';
-import DatePicker from 'react-native-date-picker'
+import DatePicker from 'react-native-date-picker';
+import LinearGradient from 'react-native-linear-gradient';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default class Formulario2 extends Component {
     constructor(props) {
@@ -39,7 +41,30 @@ export default class Formulario2 extends Component {
       
     }
     render() {
+      const escribe= async ()=>{
+        var tempescribe = this.state.causa_traumatica+","+this.state.mecanismo_lesion+","+this.state.causa_clinica+","+this.state.causa_especifica
+        +","+this.state.producto+","+this.state.sexo+","+this.state.apgar_un_min+","+this.state.apgar_cinco_min+","+this.state.apgar_diez_min
+        +","+this.state.gesta+","+this.state.para+","+this.state.cesarea+","+this.state.aborto+","+this.state.fecha_ultima_menstuacion
+        +","+this.state.fecha_probable_parto+","+this.state.evaluacion_inicial+","+this.state.ventilacion+","+this.state.circulacion+","+this.state.via_aerea
+        +","+this.state.ruidos+","+this.state.calidad+","+this.state.reflejo_deglucion+","+this.state.piel+","+this.state.caracteristicas;
+      try {
+        await AsyncStorage.setItem('@formulario2', tempescribe)
+      } catch (e) {
+        // saving error
+      }
 
+      }
+      const lee = async() => {
+        try {
+          const value = await AsyncStorage.getItem('@formulario2')
+          if(value !== null) {
+            // value previously stored
+            console.log(value);
+          }
+        } catch(e) {
+          // error reading value
+        }
+      }
       return (
         <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
@@ -303,7 +328,46 @@ export default class Formulario2 extends Component {
                 />
             </View>
           </View>
-
+          <View style={{marginTop:16}}>
+              <LinearGradient style={{ width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'#900C3F',borderRadius:20}} start={{x:0, y:0}} end={{x:1, y:1}} colors={['#900C3F', 'darkred']}>
+                <View style={{ marginTop:16, width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'transparent',borderRadius:20}}>
+                  
+                  <TouchableOpacity
+                    icon={{
+                      type:'font-awesome',
+                      name:"check-square",
+                      size:15,
+                      color:"white",
+                    }}
+                
+                    title="Guardar"
+                    onPress={escribe}
+                  >
+                    <Text style={{textAlign:'center',fontSize:17,color:'white', justifyContent:'center',alignSelf:'center',fontWeight:'bold'}}>Guardar</Text> 
+                  </TouchableOpacity>
+                </View>
+              </LinearGradient>
+        </View>
+        <View style={{marginTop:16}}>
+              <LinearGradient style={{ width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'#900C3F',borderRadius:20}} start={{x:0, y:0}} end={{x:1, y:1}} colors={['#900C3F', 'darkred']}>
+                <View style={{ marginTop:16, width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'transparent',borderRadius:20}}>
+                  
+                  <TouchableOpacity
+                    icon={{
+                      type:'font-awesome',
+                      name:"check-square",
+                      size:15,
+                      color:"white",
+                    }}
+                
+                    title="Obtener"
+                    onPress={lee}
+                  >
+                    <Text style={{textAlign:'center',fontSize:17,color:'white', justifyContent:'center',alignSelf:'center',fontWeight:'bold'}}>Obtener</Text> 
+                  </TouchableOpacity>
+                </View>
+              </LinearGradient>
+        </View>
         </View>
         </ScrollView>
     </SafeAreaView>

@@ -9,8 +9,11 @@ import MultiSelect from 'react-native-element-dropdown';
 import Select from "react-select";
 import { Table, Row, Rows } from 'react-native-table-component';
 import { DataTable } from 'react-native-paper';
-import LinearGradient from 'react-native-linear-gradient';
 import { transparent } from 'react-native-paper/lib/typescript/styles/colors';
+import ResponsiveImageView from 'react-native-responsive-image-view';
+import Formulario1 from './Formulario1';
+import LinearGradient from 'react-native-linear-gradient';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default class Formulario4 extends Component {
@@ -61,7 +64,7 @@ export default class Formulario4 extends Component {
         medicamentos:'',
         patologias:'',
         eventos_previos_relacionados:'',
-        alregias:'',
+        alergias:'',
         hora_ultima_ingesta:'',
         tableHead: ['Hora', 'FR', 'FC', 'TAS', 'TAD', 'Sa02', 'Temp', 'Gluc', 'EKG', 'Neurologico'],
         tableData: [
@@ -77,8 +80,36 @@ export default class Formulario4 extends Component {
       this.setState({ selectOptionEvaluation });
     };
     render() {
+      
       const state = this.state;
       const { selectOptionEvaluation } = this.state;
+
+      const escribe= async ()=>{
+        var tempescribe = this.state.pierna_derecha_exploracion+","+this.state.pierna_izquierda_exploracion+","+this.state.brazo_derecho_exploracion
+        +","+this.state.brazo_izquierdo_exploracion+","+this.state.abdomen_exploracion+","+this.state.torax_exploracion+","+this.state.cabeza_exploracion
+        +","+this.state.espalda_exploracion+","+this.state.cabeza_detras_exploracion+","+this.state.zona_lesion+","+this.state.pupilas+","+this.state.hora
+        +","+this.state.fr+","+this.state.fc+","+this.state.tas+","+this.state.tad+","+this.state.sa02+","+this.state.temp+","+this.state.gluc+","+this.state.ekg
+        +","+this.state.neurologico+","+this.state.signos_sintomas+","+this.state.medicamentos+","+this.state.patologias+
+        ","+this.state.eventos_previos_relacionados+","+this.state.alergias+","+this.state.hora_ultima_ingesta;
+      try {
+        await AsyncStorage.setItem('@formulario4', tempescribe)
+      } catch (e) {
+        // saving error
+      }
+
+      }
+      const lee = async() => {
+        try {
+          const value = await AsyncStorage.getItem('@formulario4')
+          if(value !== null) {
+            // value previously stored
+            console.log(value);
+          }
+        } catch(e) {
+          // error reading value
+        }
+      }
+
       return (
       <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
@@ -98,8 +129,15 @@ export default class Formulario4 extends Component {
 
               <View >
                 <Text style={{fontSize:17}}>Lesion del cuerpo</Text>
+
+                {/*<ResponsiveImageView source={require('../app/android/app/src/Imagenes/cuerpohumano.jpeg')}>
+                    <View style={styles.inputsimage}>
+                      <Image style={styles.imagen3} resizeMode = 'cover' source={require('../app/android/app/src/Imagenes/cuerpohumano.jpeg')} />
+                    </View>
+            </ResponsiveImageView>*/}
+
                 <View style={styles.inputsimage}>
-                <Image style={styles.imagen2} source={require('../app/android/app/src/Imagenes/cuerpohumano.jpeg')}/>
+                  <Image style={styles.imagen2} source={require('../app/android/app/src/Imagenes/cuerpohumano.jpeg')}/>
                 </View>
                   
                   <View style={{width:'15%',marginTop: '28%', marginLeft: '10%',zIndex:2,position:'absolute', elevation: (Platform.OS === 'android') ? 80 : 0}}>
@@ -275,8 +313,11 @@ export default class Formulario4 extends Component {
                       <Picker.Item label = "DO" value = "Dolor (DO)" />
                     </Picker>
                   </View>
-
-                <Input
+      
+            </View>
+            <View></View>
+            <View>
+            <Input
                 placeholder='Zona de lesión'
                 leftIcon={
                     <Icon
@@ -289,7 +330,6 @@ export default class Formulario4 extends Component {
                 onChangeText={zona_lesion => this.setState({zona_lesion})}
                 />
             </View>
-
 
             <View style = {styles.inputs}>
               <Text style={{fontSize:17}}>Pupilas</Text>
@@ -320,9 +360,12 @@ export default class Formulario4 extends Component {
                     type='font-awesome'
                     />
                 }
+                
                 onChangeText={hora => this.setState({hora})}
                 />
+                
               </View>
+              
               <View style = {styles.inputs}>
               <Input
               placeholder='FR'
@@ -550,7 +593,46 @@ export default class Formulario4 extends Component {
                 />
               </View>              
             </View>
-          
+            <View style={{marginTop:16}}>
+                <LinearGradient style={{ width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'#900C3F',borderRadius:20}} start={{x:0, y:0}} end={{x:1, y:1}} colors={['#900C3F', 'darkred']}>
+                  <View style={{ marginTop:16, width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'transparent',borderRadius:20}}>
+                    
+                    <TouchableOpacity
+                      icon={{
+                        type:'font-awesome',
+                        name:"check-square",
+                        size:15,
+                        color:"white",
+                      }}
+                  
+                      title="Guardar"
+                      onPress={escribe}
+                    >
+                      <Text style={{textAlign:'center',fontSize:17,color:'white', justifyContent:'center',alignSelf:'center',fontWeight:'bold'}}>Guardar</Text> 
+                    </TouchableOpacity>
+                  </View>
+                </LinearGradient>
+              </View>
+              <View style={{marginTop:16}}>
+                    <LinearGradient style={{ width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'#900C3F',borderRadius:20}} start={{x:0, y:0}} end={{x:1, y:1}} colors={['#900C3F', 'darkred']}>
+                      <View style={{ marginTop:16, width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'transparent',borderRadius:20}}>
+                        
+                        <TouchableOpacity
+                          icon={{
+                            type:'font-awesome',
+                            name:"check-square",
+                            size:15,
+                            color:"white",
+                          }}
+                      
+                          title="Obtener"
+                          onPress={lee}
+                        >
+                          <Text style={{textAlign:'center',fontSize:17,color:'white', justifyContent:'center',alignSelf:'center',fontWeight:'bold'}}>Obtener</Text> 
+                        </TouchableOpacity>
+                      </View>
+                    </LinearGradient>
+              </View>
           </View>
 
         </ScrollView>
@@ -559,6 +641,7 @@ export default class Formulario4 extends Component {
     );
     }
 }
+
 const styles = StyleSheet.create({
     container1: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
     head: { height: 40, backgroundColor: '#009392' },
@@ -602,6 +685,16 @@ const styles = StyleSheet.create({
       zIndex:0,
       marginTop: 40,
       marginBottom: 40,
+    },
+    imagen3:{
+      //width:width*0.5,
+      //height:600,
+      /*justifyContent:'center',
+      alignItems:'flex-start',
+      alignSelf: 'center',
+      zIndex:0,
+      marginTop: 40,
+      marginBottom: 40,*/
     },
     sectionTitle: {
       fontSize: 24,

@@ -10,8 +10,9 @@ import Select from "react-select";
 import { Table, Row, Rows } from 'react-native-table-component';
 import { DataTable } from 'react-native-paper';
 import SignatureCapture from 'react-native-signature-capture';
+import RNFetchBlob from "react-native-fetch-blob";
 import LinearGradient from 'react-native-linear-gradient';
-import RNFetchBlob from "react-native-fetch-blob"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 //import firebase from 'react-native-firebase';
 //import Signature from './Signature';
 //const SigantureScreen = ({ navigation }) => (<Signature navigation={navigation}/>)
@@ -56,6 +57,31 @@ export default class Formulario6 extends Component {
       }
       const state = this.state;
       const { selectOptionEvaluation } = this.state;
+
+
+      const escribe= async ()=>{
+        var tempescribe = this.state.institucion+","+this.state.nombre_firma_paciente+","+this.state.nombre_firma_testigo+","+this.state.observaciones
+        +","+this.state.dependencia+","+this.state.num_unidades+","+this.state.encargado_y_oficiales+","+this.state.pertenencias
+        +","+this.state.receptor_pertenencias+","+this.state.nombre_completo_paciente+","+this.state.nombre_completo_medico;
+      try {
+        await AsyncStorage.setItem('@formulario6', tempescribe)
+      } catch (e) {
+        // saving error
+      }
+
+      }
+      const lee = async() => {
+        try {
+          const value = await AsyncStorage.getItem('@formulario6')
+          if(value !== null) {
+            // value previously stored
+            console.log(value);
+          }
+        } catch(e) {
+          // error reading value
+        }
+      }
+
       return (
       <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
@@ -146,7 +172,7 @@ export default class Formulario6 extends Component {
             <Text style={{alignItems:"center",justifyContent:"center"}}>Firme aqui </Text>
             <SignatureCapture 
               style={[{flex:1},styles.signature]}
-              ref="sign"
+              ref="sign1"
               onSaveEvent={this._onSaveEvent}
               onDragEvent={this._onDragEvent}
               saveImageFileInExtStorage={true}
@@ -262,7 +288,7 @@ export default class Formulario6 extends Component {
               <Text style={{alignItems:"center",justifyContent:"center"}}>Firme aqui </Text>
               <SignatureCapture 
                 style={[{flex:1},styles.signature]}
-                ref="sign"
+                ref="sign2"
                 onSaveEvent={this._onSaveEvent}
                 onDragEvent={this._onDragEvent}
                 saveImageFileInExtStorage={true}
@@ -307,7 +333,7 @@ export default class Formulario6 extends Component {
               <Text style={{alignItems:"center",justifyContent:"center"}}>Firme aqui </Text>
               <SignatureCapture 
                 style={[{flex:1},styles.signature]}
-                ref="sign"
+                ref="sign3"
                 onSaveEvent={this._onSaveEvent}
                 onDragEvent={this._onDragEvent}
                 saveImageFileInExtStorage={true}
@@ -352,7 +378,7 @@ export default class Formulario6 extends Component {
               <Text style={{alignItems:"center",justifyContent:"center"}}>Firme aqui </Text>
               <SignatureCapture 
                 style={[{flex:1},styles.signature]}
-                ref="sign"
+                ref="sign4"
                 onSaveEvent={this._onSaveEvent}
                 onDragEvent={this._onDragEvent}
                 saveImageFileInExtStorage={true}
@@ -381,6 +407,46 @@ export default class Formulario6 extends Component {
                 </TouchableHighlight>
               </View>
             </View>
+            <View style={{marginTop:16}}>
+                <LinearGradient style={{ width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'#900C3F',borderRadius:20}} start={{x:0, y:0}} end={{x:1, y:1}} colors={['#900C3F', 'darkred']}>
+                  <View style={{ marginTop:16, width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'transparent',borderRadius:20}}>
+                    
+                    <TouchableOpacity
+                      icon={{
+                        type:'font-awesome',
+                        name:"check-square",
+                        size:15,
+                        color:"white",
+                      }}
+                  
+                      title="Guardar"
+                      onPress={escribe}
+                    >
+                      <Text style={{textAlign:'center',fontSize:17,color:'white', justifyContent:'center',alignSelf:'center',fontWeight:'bold'}}>Guardar</Text> 
+                    </TouchableOpacity>
+                  </View>
+                </LinearGradient>
+              </View>
+              <View style={{marginTop:16}}>
+                    <LinearGradient style={{ width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'#900C3F',borderRadius:20}} start={{x:0, y:0}} end={{x:1, y:1}} colors={['#900C3F', 'darkred']}>
+                      <View style={{ marginTop:16, width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'transparent',borderRadius:20}}>
+                        
+                        <TouchableOpacity
+                          icon={{
+                            type:'font-awesome',
+                            name:"check-square",
+                            size:15,
+                            color:"white",
+                          }}
+                      
+                          title="Obtener"
+                          onPress={lee}
+                        >
+                          <Text style={{textAlign:'center',fontSize:17,color:'white', justifyContent:'center',alignSelf:'center',fontWeight:'bold'}}>Obtener</Text> 
+                        </TouchableOpacity>
+                      </View>
+                    </LinearGradient>
+              </View>
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -401,8 +467,62 @@ export default class Formulario6 extends Component {
         ]
        ); 
       }
-
-      
+      saveSign1() {
+        this.saveImageFileInExtStorage=true;
+        this.refs["sign1"].saveImage();
+        Alert.alert(
+          "Guardar",
+          "Guardado con Exito",
+          [
+            {
+              text: "Aceptar",
+              style: 'cancel',
+            }
+          ]
+         ); 
+        }
+      saveSign2() {
+        this.saveImageFileInExtStorage=true;
+        this.refs["sign2"].saveImage();
+        Alert.alert(
+          "Guardar",
+          "Guardado con Exito",
+          [
+            {
+              text: "Aceptar",
+              style: 'cancel',
+            }
+          ]
+          ); 
+        }
+      saveSign3() {
+        this.saveImageFileInExtStorage=true;
+        this.refs["sign3"].saveImage();
+        Alert.alert(
+          "Guardar",
+          "Guardado con Exito",
+          [
+            {
+              text: "Aceptar",
+              style: 'cancel',
+            }
+          ]
+          ); 
+        }
+        saveSign4() {
+          this.saveImageFileInExtStorage=true;
+          this.refs["sign4"].saveImage();
+          Alert.alert(
+            "Guardar",
+            "Guardado con Exito",
+            [
+              {
+                text: "Aceptar",
+                style: 'cancel',
+              }
+            ]
+            ); 
+          }
     /*saveSign() {
      // this.sign.saveImage();
      this.refs["sign"].saveImage();
@@ -424,20 +544,28 @@ export default class Formulario6 extends Component {
       );
       }*/
       resetSign() {
+          console.log('resetted');
           this.refs["sign"].resetImage();
       }
-      resetSign4() {
-        this.refs["sign"].resetImage();
-      }
-      resetSign3() {
-        this.refs["sign"].resetImage();
+      resetSign1() {
+        console.log('resetted1');
+        this.refs["sign1"].resetImage();
       }
       resetSign2() {
-        this.refs["sign"].resetImage();
+        console.log('resetted2');
+        this.refs["sign2"].resetImage();
       }
-      resetSign1() {
-        this.refs["sign"].resetImage();
+      resetSign3() {
+        console.log('resetted3');
+        this.refs["sign3"].resetImage();
       }
+      resetSign4() {
+        console.log('resetted4');
+        this.refs["sign4"].resetImage();
+      }
+
+
+
 
       _onSaveEvent(result) {
           //result.encoded - for the base64 encoded png

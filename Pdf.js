@@ -1,7 +1,10 @@
 import React from 'react';
 import { StatusBar, StyleSheet, View, Button } from 'react-native';
-import { printToFileAsync } from 'expo-print';
-import { shareAsync } from 'expo-sharing';
+//import printToFileAsync from 'expo-print';
+//import shareAsync from 'expo-sharing';
+//import * as Print from 'expo-print';
+//import * as Sharing from 'expo-sharing';
+
 
 const data = {
     name: 'Divyesh Barad',

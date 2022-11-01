@@ -1,53 +1,28 @@
+//Formulario 4 no me permite escribir en el campo debajo de la imagen
+//Formulario 6 ver donde se guardan las firmas
+//ver si puedo poner valores por default del picker
+//Formulario 7 picker Agua inyectable 500ml
 import React, { Component,useState } from 'react';
 import { View, Text, StyleSheet, ScrollView,TouchableOpacity,Alert, StatusBar, BackHandler, Dimensions, SafeAreaView, Platform} from 'react-native';
-//import Icon from 'react-native-vector-icons/FontAwesome';
-//import { library } from '@fortawesome/fontawesome-svg-core'
-//import { fab } from '@fortawesome/free-brands-svg-icons'
-//library.add(fab)
-//import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-//import { faMugSaucer } from '@fortawesome/free-solid-svg-icons/faMugSaucer'
 import {Input, Image, Button, Icon} from 'react-native-elements';
 import { NavigationContainer } from '@react-navigation/native';
 import RNPickerSelect from "react-native-picker-select";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {Picker} from '@react-native-picker/picker';
-//import Icon from 'react-native-vector-icons/FontAwesome';
-//import DatePicker from 'react-native-date-picker';
 import DatePicker from 'react-native-modern-datepicker';
 import LinearGradient from 'react-native-linear-gradient';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 //import DateTimePicker from ''
 
 
 
-
-
-/*function HomeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
-    </View>
-  );
-}
-
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
-
-
-
-const Tab = createBottomTabNavigator();
-*/
-//global.time = {{new Date().getHours() + ':' + new Date().getMinutes()}}
 export default class Formulario1 extends Component {
   goToScreen(routeName,props){
     this.props.navigation.navigate(routeName)
   }
   constructor(props) {
     super(props);
+    //this._isMounted = false;
     this.state = {
       hora:new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds(),
       fecha:'',
@@ -58,7 +33,7 @@ export default class Formulario1 extends Component {
       num_vehiculo:'',
       operador:'',
       prestadores_servicio:'',
-   
+      otros_prestadores_servicio:'',
       
       nombre:'',
       sexo:'',
@@ -71,21 +46,14 @@ export default class Formulario1 extends Component {
       universitario:'',
       adscripcion:'',
       codigo:'',
-      open: '',
-      fecha1:'',
       folio:1,
     }
 
-    /*updatesexo = (sexo) => {
-      this.setState({sexo: sexo})
-    };*/
+
   }
-  //const ([date, setDate])  {useState(new Date())}
-  //const ([open, setOpen])  {useState(false)}
-  updateuniversitario = (universitario) => {
-    this.setState({ universitario: universitario })
-  };
+
   componentDidMount() {
+    
     setInterval(() => {
       this.setState({
        // hora : new Date().toLocaleString()
@@ -97,25 +65,30 @@ export default class Formulario1 extends Component {
   }
   render()
   {
-    /*const screenOptions = (route, color) => {
-      let iconName
-      switch (route.name){
-        case "calendar":
-          iconName="bookmark-add"
-          break;
-        case "nombre":
-          iconName="bookmark-add"
-          break;
+
+    const escribe= async ()=>{
+        var tempescribe = this.state.fecha+","+this.state.hora+","+this.state.dia_semana+","+this.state.motivo_atencion+","+this.state.ubicacion_servicio+","+this.state.vehiculo
+        +","+this.state.num_vehiculo+","+this.state.operador+","+this.state.prestadores_servicio+","+this.state.otros_prestadores_servicio+","+this.state.nombre+","+this.state.sexo
+        +","+this.state.edad+","+this.state.domicilio+","+this.state.colonia+","+this.state.municipio+","+this.state.telefono+","+this.state.derechohabiente+","+this.state.universitario
+        +","+this.state.adscripcion+","+this.state.codigo+","+this.state.folio;
+      try {
+        await AsyncStorage.setItem('@formulario1', tempescribe)
+      } catch (e) {
+        // saving error
       }
-      return(
-        <Icon
-          type="material-community"
-          name={iconName}
-          size={22}
-          color={color}
-        />
-      )
-    }*/
+
+    }
+    const lee = async() => {
+      try {
+        const value = await AsyncStorage.getItem('@formulario1')
+        if(value !== null) {
+          // value previously stored
+          console.log(value);
+        }
+      } catch(e) {
+        // error reading value
+      }
+    }
     return (
       <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
@@ -131,52 +104,13 @@ export default class Formulario1 extends Component {
           <Image style={styles.imagen} source={require('../app/android/app/src/Imagenes/udg.jpeg')}/>
         </View>
 
-        {/*<View style = {styles.inputs}>
-          
-            <Input
-              placeholder={this.state.fecha}
-              //placeholder={new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + '-' + (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate())}
-              placeholderTextColor={'#900C3F'}
-              //placeholder={new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + '-' + (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate())}
-              leftIcon={
-              <Icon
-                name='calendar'
-                size={24}
-                color='#009392'
-                type='font-awesome'
-              />
-              }
-              editable={false}
-              //{placeholder => this.setState({fecha})}
-              //onChangeText={fecha => this.setState({fecha})}
-            />
-        </View>*/}
         <View style = {{alignItems:'flex-end', marginRight:'5%'}}>
           <Text style = {{fontSize:17, color:'#900C3F'}}>Folio: {this.state.folio}</Text>
         </View>
         <View style = {styles.inputstext}>
           <Text style = {{fontSize:17,color:'#900C3F'}}>Fecha: {this.state.fecha ? this.state.fecha : null}</Text>
         </View>
-        {/*<View style = {styles.inputs}>
-          
-          <Input
-            placeholder={this.state.hora}
-            //placeholder={new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + '-' + (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate()) + ' ' + (new Date().getHours()) + ':' + new Date().getMinutes()}
-            placeholderTextColor={'#900C3F'}
-            //placeholder={new Date().getFullYear() + '-' + (new Date().getMonth() + 1 < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + '-' + (new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate())}
-            leftIcon={
-            <Icon
-              name='clockcircle'
-              size={24}
-              color='#009392'
-              type='ant-design'
-            />
-            }
-            editable={false}
-            //{placeholder => this.setState({fecha})}
-            //onChangeText={fecha => this.setState({fecha})}
-          />
-      </View>*/}
+
 
         <View style = {styles.inputstext}>
           <Text style = {{fontSize:17,color:'#900C3F'}}>Hora: {this.state.hora ? this.state.hora : null} </Text>
@@ -273,36 +207,46 @@ export default class Formulario1 extends Component {
             onChangeText={num_vehiculo => this.setState({num_vehiculo})}
             />
         </View>
+
         <View style = {styles.inputs}>
-          
-            <Input
-            placeholder='Operador'
-            leftIcon={
-                <Icon
-                name='user'
-                size={24}
-                color='#009392'
-                type='font-awesome'
-                />
-            }
-            onChangeText={operador => this.setState({operador})}
-            />
+          <Text>Operador</Text>
+            <Picker selectedValue = {this.state.operador} onValueChange = {operador => this.setState({operador})} styles= {{color: 'black'}}>
+              <Picker.Item label = "Javier Iñiguez" value = "Javier Iñiguez" />
+              <Picker.Item label = "Rodrigo Gutiérrez" value = "Rodrigo Gutiérrez" />
+              <Picker.Item label = "Yair Villagrana" value = "Yair Villagrana" />
+              <Picker.Item label = "Jesús Hernández" value = "Jesús Hernández" />
+              <Picker.Item label = "Jaime Juárez" value = "Jaime Juárez"/>
+              <Picker.Item label = "Aída García" value = "Aída García"/>
+            </Picker>
         </View>
+
         <View style = {styles.inputs}>
+          <Text>Prestador(es) de servicio</Text>
+            <Picker selectedValue = {this.state.prestadores_servicio} onValueChange = {prestadores_servicio => this.setState({prestadores_servicio})} styles= {{color: 'black'}}>
+              <Picker.Item label = "Javier Iñiguez" value = "Javier Iñiguez" />
+              <Picker.Item label = "Rodrigo Gutiérrez" value = "Rodrigo Gutiérrez" />
+              <Picker.Item label = "Yair Villagrana" value = "Yair Villagrana" />
+              <Picker.Item label = "Jesús Hernández" value = "Jesús Hernández" />
+              <Picker.Item label = "Jaime Juárez" value = "Jaime Juárez"/>
+              <Picker.Item label = "Aída García" value = "Aída García"/>
+            </Picker>
+
           
-            <Input
-            placeholder='Prestador(es) del servicio'
-            leftIcon={
-                <Icon
-                name='users'
-                size={24}
-                color='#009392'
-                type='font-awesome'
-                />
-            }
-            onChangeText={prestadores_servicio => this.setState({prestadores_servicio})}
-            />
+              <Input
+              placeholder='Otros prestadores'
+              leftIcon={
+                  <Icon
+                  name='users'
+                  size={24}
+                  color='#009392'
+                  type='font-awesome'
+                  />
+              }
+              onChangeText={otros_prestadores_servicio => this.setState({otros_prestadores_servicio})}
+              />
+
         </View>
+
 
         <View style = {styles.inputs}>
             
@@ -459,21 +403,48 @@ export default class Formulario1 extends Component {
             }
             onChangeText={codigo => this.setState({codigo})}
             />
+
         </View>
-      
-       {/* <View style={{ marginTop:10, width:100, alignSelf:'center', justifyContent:'center',marginBottom:20}}>
-            <Button style={{color:"red"}}
-            icon={{
-                  type:'font-awesome',
-                  name:"check-square",
-                  size:15,
-                  color:"white",
-                }
-              }
-            
-            title=" Guardar"
-            />
-        </View>*/}
+        <View style={{marginTop:16}}>
+              <LinearGradient style={{ width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'#900C3F',borderRadius:20}} start={{x:0, y:0}} end={{x:1, y:1}} colors={['#900C3F', 'darkred']}>
+                <View style={{ marginTop:16, width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'transparent',borderRadius:20}}>
+                  
+                  <TouchableOpacity
+                    icon={{
+                      type:'font-awesome',
+                      name:"check-square",
+                      size:15,
+                      color:"white",
+                    }}
+                
+                    title="Guardar"
+                    onPress={escribe}
+                  >
+                    <Text style={{textAlign:'center',fontSize:17,color:'white', justifyContent:'center',alignSelf:'center',fontWeight:'bold'}}>Guardar</Text> 
+                  </TouchableOpacity>
+                </View>
+              </LinearGradient>
+        </View>
+        <View style={{marginTop:16}}>
+              <LinearGradient style={{ width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'#900C3F',borderRadius:20}} start={{x:0, y:0}} end={{x:1, y:1}} colors={['#900C3F', 'darkred']}>
+                <View style={{ marginTop:16, width:150, height:50,alignSelf:'center', justifyContent:'center',marginBottom:20, backgroundColor:'transparent',borderRadius:20}}>
+                  
+                  <TouchableOpacity
+                    icon={{
+                      type:'font-awesome',
+                      name:"check-square",
+                      size:15,
+                      color:"white",
+                    }}
+                
+                    title="Obtener"
+                    onPress={lee}
+                  >
+                    <Text style={{textAlign:'center',fontSize:17,color:'white', justifyContent:'center',alignSelf:'center',fontWeight:'bold'}}>Obtener</Text> 
+                  </TouchableOpacity>
+                </View>
+              </LinearGradient>
+        </View>
 
       </View>
       </ScrollView>
@@ -546,130 +517,3 @@ const styles = StyleSheet.create({
       alignItems: "center"
     }
 })
-/*import React from 'react';
- import type {Node} from 'react';
- import {
-   SafeAreaView,
-   ScrollView,
-   StatusBar,
-   StyleSheet,
-   Text,
-   useColorScheme,
-   View,
-   TextInput,
-   Image,
-   TouchableOpacity,
- } from 'react-native';
- import {Input } from 'react-native-elements'
- import Icon from 'react-native-vector-icons/FontAwesome';
- import {
-   Colors,
-   DebugInstructions,
-   Header,
-   LearnMoreLinks,
-   ReloadInstructions,
- } from 'react-native/Libraries/NewAppScreen';
-import { color } from 'react-native-elements/dist/helpers';
- /*import AppNavigation from './android/app/navigation/AppNavigation';
- import MENU from './menu';
- import AppNavigationCopy from './AppNavigation copy';
- import LoginScreen from './android/app/screens/LoginScreen';
- import LoginScreen2 from './android/app/screens/LoginScreen2';
- import {UsuarioProvider} from './android/app/context/UsuarioContext'; 
- 
- const Section = ({children, title}): Node => {
-    const isDarkMode = useColorScheme() === 'dark';
-    return (
-      <View style={styles.sectionContainer}>
-        <Text
-          style={[
-            styles.sectionTitle,
-            {
-              color: isDarkMode ? Colors.white : Colors.black,
-            },
-          ]}>
-          {title}
-        </Text>
-        <Text
-          style={[
-            styles.sectionDescription,
-            {
-              color: isDarkMode ? Colors.light : Colors.dark,
-            },
-          ]}>
-          {children}
-        </Text>
-      </View>
-    );
-  };
-  
-  const App: () => Node = () => {
-    const isDarkMode = useColorScheme() === 'dark';
-  
-    const backgroundStyle = {
-      backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    };
-  
-    return (
-     <View>
-       <View>
-         <Text style={styles.sectionTitle}> Expediente Médico </Text>
-         <Image style={styles.imagen} source={require('../doctores/android/app/src/Imagenes/udg.jpeg')}/>
-       </View>
-       <View>
-       <Input
-             placeholder='Fecha'
-             leftIcon={
-                 <Icon
-                 name='date'
-                 size={24}
-                 color='black'
-                 />
-             }
-             onChangeText={fecha=> this.setState({fecha})}
-             />
-       </View>
-     </View>
-    );
-  };
-  <Input
-            placeholder='Sexo'
-            leftIcon={
-                <Icon
-                name='calendar'
-                size={24}
-                color='black'
-                type='font-awesome'
-                />
-            }
-            onChangeText={sexo => this.setState({sexo})}
-            />
-  const styles = StyleSheet.create({
-    sectionContainer: {
-      marginTop: 32,
-      paddingHorizontal: 24,
-    },
-    sectionTitle: {
-      fontSize: 24,
-      fontWeight: '600',
-      color: 'gray',
-      textAlign: 'center',
-    },
-    sectionDescription: {
-      marginTop: 8,
-      fontSize: 18,
-      fontWeight: '400',
-    },
-    highlight: {
-      fontWeight: '700',
-    },
-    imagen: {
-     width: 100,
-     height: 100,
-     justifyContent: 'center',
-     alignItems: 'center',
-     alignSelf: 'center',
-   },
-  });
-  
-  export default App; */
