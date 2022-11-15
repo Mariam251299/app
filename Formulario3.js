@@ -48,17 +48,17 @@ export default class Formulario3 extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        evaluacion_inicial:'',
-        ventilacion:'',
-        circulacion:'',
-        via_aerea:'',
-        ruidos:'',
-        lado:'',
-        parte:'',
-        calidad:'',
-        reflejo_deglucion:'',
-        piel:'',
-        caracteristicas:'',
+        evaluacion_inicial:'No aplica',
+        ventilacion:'No aplica',
+        circulacion:'No aplica',
+        via_aerea:'No aplica',
+        ruidos:'No aplica',
+        lado:'No aplica',
+        parte:'No aplica',
+        calidad:'No aplica',
+        reflejo_deglucion:'No aplica',
+        piel:'Normal',
+        caracteristicas:'No aplica',
 
       }
       

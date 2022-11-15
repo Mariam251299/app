@@ -1,6 +1,6 @@
+//http://localhost:8888/pdf1.php?formulario1=2022-11-09,13:20:48,Martes,Traumatismo,Polit%C3%A9cnico,Ambulancia%20el%C3%A9ctrica,324566,Rodrigo%20Guti%C3%A9rrez,A%C3%ADda%20Garc%C3%ADa,Ninguno,Nombre%20o%20media%20de%20filiacion,F,24,sabe,olimpica,guadalajara,22222222,CUCEI,No,cucei,56698822,1&formulario2=Causa%20traumatica,Cuchillo,Digestiva,Causa%20especifica,No%20aplica,No%20aplica,43,5,10,Gesta,Para,Cesarea,Aborto,25/10/22,25/12/22&formulario3=No%20aplica,No%20aplica,No%20aplica,No%20aplica,No%20aplica,No%20aplica,No%20aplica,No%20aplica,No%20aplica,Normal,No%20aplica&formulario4=Deformidades (D),Deformidades (D),Deformidades (D),Deformidades (D),Deformidades (D),Deformidades (D),Deformidades (D),Deformidades (D),Deformidades (D),Miosis,Hora,FR,FC,TAS,TAD,Sa02,Temp,Gluc,EKG,No aplica,Signos y sintomas,Medicamentos medicamentos medicamentos,Patologias Patologias patologias,Eventos previos relacionados,Alergias,Hora Ultima ingesta
 //Formulario 4 no me permite escribir en el campo debajo de la imagen
 //Formulario 6 ver donde se guardan las firmas
-//ver si puedo poner valores por default del picker
 //Formulario 7 picker Agua inyectable 500ml
 import React, { Component,useState } from 'react';
 import { View, Text, StyleSheet, ScrollView,TouchableOpacity,Alert, StatusBar, BackHandler, Dimensions, SafeAreaView, Platform} from 'react-native';
@@ -12,9 +12,13 @@ import {Picker} from '@react-native-picker/picker';
 import DatePicker from 'react-native-modern-datepicker';
 import LinearGradient from 'react-native-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 //import DateTimePicker from ''
 
-
+function addZero(i) {
+  if (i < 10) {i = "0" + i}
+  return i;
+}
 
 export default class Formulario1 extends Component {
   goToScreen(routeName,props){
@@ -23,31 +27,35 @@ export default class Formulario1 extends Component {
   constructor(props) {
     super(props);
     //this._isMounted = false;
+    //new Date().getHours(). + ':' + new Date().getMinutes() + ':' + new Date().getSeconds(),
+    const d = new Date();
     this.state = {
-      hora:new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds(),
+      hora:addZero(d.getHours()) + ":" + addZero(d.getMinutes()) + ":" + addZero(d.getSeconds()),
       fecha:'',
-      dia_semana:'',
-      motivo_atencion:'',
-      ubicacion_servicio:'',
-      vehiculo:'',
+      dia_semana:'Lunes',
+      motivo_atencion:'Enfermedad',
+      ubicacion_servicio:'CUCEI',
+      vehiculo:'Otro',
       num_vehiculo:'',
-      operador:'',
-      prestadores_servicio:'',
+      operador:'Javier Iñiguez',
+      prestadores_servicio:'Javier Iñiguez',
       otros_prestadores_servicio:'',
       
       nombre:'',
-      sexo:'',
+      sexo:'M',
       edad:'',
       domicilio:'',
       colonia:'',
       municipio:'',
       telefono:'',
       derechohabiente:'',
-      universitario:'',
+      universitario:'Si',
       adscripcion:'',
       codigo:'',
       folio:1,
+      formulario1:'',
     }
+    
 
 
   }
@@ -79,16 +87,34 @@ export default class Formulario1 extends Component {
 
     }
     const lee = async() => {
+      let _this = this;
       try {
         const value = await AsyncStorage.getItem('@formulario1')
         if(value !== null) {
           // value previously stored
           console.log(value);
+          _this.setState({formulario1:value});
         }
       } catch(e) {
         // error reading value
       }
     }
+    const EnviarServer = ()=>{
+      console.log("entro enviar")
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+             // Typical action to be performed when the document is ready:
+             console.log(xhttp.responseText);
+          }
+      };
+      xhttp.open("GET", "http://localhost:8888/pdf1.php?formulario1="+this.state.valores, true);
+      console.log("http://localhost:8888/pdf1.php?formulario1="+this.state.valores);
+      xhttp.send();
+
+    }
+
+
     return (
       <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
@@ -135,7 +161,7 @@ export default class Formulario1 extends Component {
             minuteInterval={1}
             style={{ borderRadius: 20, borderWidth:2, borderColor:'#009392' }}/>
         </View>
-
+  
         <View style = {styles.inputs}>
             <Text>Día de la semana</Text>
             <Picker selectedValue = {this.state.dia_semana} onValueChange = {dia_semana => this.setState({dia_semana})}>
@@ -170,11 +196,11 @@ export default class Formulario1 extends Component {
         <View style = {styles.inputs}>
           <Text>Vehículo</Text>
             <Picker selectedValue = {this.state.vehiculo} onValueChange = {vehiculo => this.setState({vehiculo})} styles= {{color: 'black'}}>
+              <Picker.Item label = "Otro" value = "Otro"/>
               <Picker.Item label = "Vehículo oficial" value = "Vehículo oficial" />
               <Picker.Item label = "Cuatrimoto" value = "Cuatrimoto" />
               <Picker.Item label = "Ambulancia" value = "Ambulancia" />
               <Picker.Item label = "Ambulancia eléctrica" value = "Ambulancia eléctrica" />
-              <Picker.Item label = "Otro" value = "Otro"/>
             </Picker>
           <Text>En caso de otro vehículo, indicar cual:</Text>
           <Input
@@ -445,7 +471,9 @@ export default class Formulario1 extends Component {
                 </View>
               </LinearGradient>
         </View>
-
+       <View>
+      
+       </View>
       </View>
       </ScrollView>
     </SafeAreaView>

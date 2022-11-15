@@ -44,7 +44,7 @@ export default class SplashScreen extends Component {
         />*/}
         <View>
           <Animatable.Text animation="zoomInUp" easing="ease-out" style={{ textAlign: 'center' }}>MedicApp</Animatable.Text>
-          <Animatable.Text animation="zoomInUp" style={{ textAlign: 'center' }}>From C&M</Animatable.Text>
+          <Animatable.Text animation="zoomInUp" style={{ textAlign: 'center' }}>By C&M</Animatable.Text>
         </View>
       </View>
     ) 

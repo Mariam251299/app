@@ -13,12 +13,12 @@ export default class Formulario2 extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        causa_traumatica:'',
+        causa_traumatica:'Otro',
         mecanismo_lesion:'',
-        causa_clinica:'',
+        causa_clinica:'Otro',
         causa_especifica:'',
-        producto:'',
-        sexo:'',
+        producto:'No aplica',
+        sexo:'No aplica',
         apgar_un_min:'',
         apgar_cinco_min:'',
         apgar_diez_min:'',
@@ -38,6 +38,7 @@ export default class Formulario2 extends Component {
         piel:'',
         caracteristicas:'',
       }
+
       
     }
     render() {
@@ -45,8 +46,7 @@ export default class Formulario2 extends Component {
         var tempescribe = this.state.causa_traumatica+","+this.state.mecanismo_lesion+","+this.state.causa_clinica+","+this.state.causa_especifica
         +","+this.state.producto+","+this.state.sexo+","+this.state.apgar_un_min+","+this.state.apgar_cinco_min+","+this.state.apgar_diez_min
         +","+this.state.gesta+","+this.state.para+","+this.state.cesarea+","+this.state.aborto+","+this.state.fecha_ultima_menstuacion
-        +","+this.state.fecha_probable_parto+","+this.state.evaluacion_inicial+","+this.state.ventilacion+","+this.state.circulacion+","+this.state.via_aerea
-        +","+this.state.ruidos+","+this.state.calidad+","+this.state.reflejo_deglucion+","+this.state.piel+","+this.state.caracteristicas;
+        +","+this.state.fecha_probable_parto;
       try {
         await AsyncStorage.setItem('@formulario2', tempescribe)
       } catch (e) {
@@ -65,6 +65,7 @@ export default class Formulario2 extends Component {
           // error reading value
         }
       }
+
       return (
         <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
@@ -78,6 +79,7 @@ export default class Formulario2 extends Component {
           <View style = {styles.inputs}>
             <Text>Causa traumática (agente causal)</Text>
             <Picker selectedValue = {this.state.causa_traumatica} onValueChange = {causa_traumatica => this.setState({causa_traumatica})}>
+              <Picker.Item label = "Otro" value = "Otro" />
               <Picker.Item label = "Arma" value = "Arma" />
               <Picker.Item label = "Automotor" value = "Automotor" />
               <Picker.Item label = "Maquinaria" value = "Maquinaria" />
@@ -92,11 +94,10 @@ export default class Formulario2 extends Component {
               <Picker.Item label = "Explosión" value = "Explosión" />
               <Picker.Item label = "Ser humano" value = "Ser humano" />
               <Picker.Item label = "Animal" value = "Animal" />
-              <Picker.Item label = "Otro" value = "Otro" />
             </Picker>
             <Text>En caso de otra causa traumática, indicar cual:</Text>
             <Input
-              placeholder='Otro'
+              placeholder='otro'
               leftIcon={
                   <Icon
                   name='user-injured'
@@ -126,6 +127,7 @@ export default class Formulario2 extends Component {
           <View style = {styles.inputs}>
             <Text>Causa clínica (origen probable)</Text>
             <Picker selectedValue = {this.state.causa_clinica} onValueChange = {causa_clinica => this.setState({causa_clinica})}>
+              <Picker.Item label = "Otro" value = "Otro" />
               <Picker.Item label = "Neurológica" value = "Neurológica" />
               <Picker.Item label = "Cardiovascular" value = "Cardiovascular" />
               <Picker.Item label = "Respiratorio" value = "Respiratorio" />
@@ -137,7 +139,7 @@ export default class Formulario2 extends Component {
               <Picker.Item label = "Músculo esquelético" value = "Músculo esquelético" />
               <Picker.Item label = "Infecciosa" value = "nfecciosa" />
               <Picker.Item label = "Oncológico" value = "Oncológico" />
-              <Picker.Item label = "Otro" value = "Otro" />
+
             </Picker>
             <Text>En caso de otra causa clínica, indicar cual:</Text>
             <Input
@@ -282,6 +284,7 @@ export default class Formulario2 extends Component {
                 onChangeText={cesarea => this.setState({cesarea})}
                 />
             </View>
+
             <View style = {styles.inputs}>
                 
                 <Input

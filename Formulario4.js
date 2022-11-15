@@ -39,17 +39,16 @@ export default class Formulario4 extends Component {
       super(props);
       this.state = {
         
-        pierna_derecha_exploracion:'',
-        pierna_izquierda_exploracion:'',
-        brazo_derecho_exploracion:'',
-        brazo_izquierdo_exploracion:'',
-        abdomen_exploracion:'',
-        torax_exploracion:'',
-        cabeza_exploracion:'',
-        espalda_exploracion:'',
-        cabeza_detras_exploracion:'',
-        zona_lesion:'',
-        pupilas:'',
+        pierna_derecha_exploracion:'Deformidades (D)',
+        pierna_izquierda_exploracion:'Deformidades (D)',
+        brazo_derecho_exploracion:'Deformidades (D)',
+        brazo_izquierdo_exploracion:'Deformidades (D)',
+        abdomen_exploracion:'Deformidades (D)',
+        torax_exploracion:'Deformidades (D)',
+        cabeza_exploracion:'Deformidades (D)',
+        espalda_exploracion:'Deformidades (D)',
+        cabeza_detras_exploracion:'Deformidades (D)',
+        pupilas:'No aplica',
         hora:'',
         fr:'',
         fc:'',
@@ -59,7 +58,7 @@ export default class Formulario4 extends Component {
         temp:'',
         gluc:'',
         ekg:'',
-        neurologico:'',
+        neurologico:'No aplica',
         signos_sintomas:'',
         medicamentos:'',
         patologias:'',
@@ -87,7 +86,7 @@ export default class Formulario4 extends Component {
       const escribe= async ()=>{
         var tempescribe = this.state.pierna_derecha_exploracion+","+this.state.pierna_izquierda_exploracion+","+this.state.brazo_derecho_exploracion
         +","+this.state.brazo_izquierdo_exploracion+","+this.state.abdomen_exploracion+","+this.state.torax_exploracion+","+this.state.cabeza_exploracion
-        +","+this.state.espalda_exploracion+","+this.state.cabeza_detras_exploracion+","+this.state.zona_lesion+","+this.state.pupilas+","+this.state.hora
+        +","+this.state.espalda_exploracion+","+this.state.cabeza_detras_exploracion+","+this.state.pupilas+","+this.state.hora
         +","+this.state.fr+","+this.state.fc+","+this.state.tas+","+this.state.tad+","+this.state.sa02+","+this.state.temp+","+this.state.gluc+","+this.state.ekg
         +","+this.state.neurologico+","+this.state.signos_sintomas+","+this.state.medicamentos+","+this.state.patologias+
         ","+this.state.eventos_previos_relacionados+","+this.state.alergias+","+this.state.hora_ultima_ingesta;
@@ -315,24 +314,14 @@ export default class Formulario4 extends Component {
                   </View>
       
             </View>
-            <View></View>
-            <View>
-            <Input
-                placeholder='Zona de lesión'
-                leftIcon={
-                    <Icon
-                    name='body'
-                    size={24}
-                    color='#009392'
-                    type='ionicon'
-                    />
-                }
-                onChangeText={zona_lesion => this.setState({zona_lesion})}
-                />
-            </View>
+
+ 
 
             <View style = {styles.inputs}>
+              
               <Text style={{fontSize:17}}>Pupilas</Text>
+                         <View style = {styles.inputs}>
+            </View>
                 <View style={styles.inputsimage}>
                   <Image style={styles.imagen1} source={require('../app/android/app/src/Imagenes/Pupilas1.png')}/>
                 </View>

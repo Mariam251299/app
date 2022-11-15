@@ -13,6 +13,11 @@ import LinearGradient from 'react-native-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
+function addZero(i) {
+  if (i < 10) {i = "0" + i}
+  return i;
+}
+
 export default class Formulario5 extends Component {
   state = {
     selectedOption: null
@@ -26,34 +31,35 @@ export default class Formulario5 extends Component {
 
     constructor(props) {
       super(props);
+      const d = new Date();
       this.state = {
-        critico:'',
-        estable:'',
-        color:'',
+        critico:'No',
+        estable:'No',
+        color:'No aplica',
         glasgow:'',
-        via_aerea:'',
-        control_cervical:'',
-        asistencia_ventilatoria:'',
-        descompresion_pleural:'',
-        lado_descompresion_pleural:'',
-        asistencia_ventilatoria:'',
+        via_aerea:'No aplica',
+        control_cervical:'No aplica',
+        asistencia_ventilatoria:'No aplica',
+        descompresion_pleural:'No',
+        lado_descompresion_pleural:'No aplica',
+        asistencia_ventilatoria:'No aplica',
         frec:'',
         vol:'',
-        oxigenoterapia:'',
+        oxigenoterapia:'No aplica',
         ltsxmin_oxigenoterapia:'',
-        control_hemorragias:'',
-        vias_venosas:'',
+        control_hemorragias:'No aplica',
+        vias_venosas:'No aplica',
         vias_venosas_numero:'',
-        tipo_soluciones:'',
+        tipo_soluciones:'No aplica',
         cantidad:'',
         infusiones:'',
-        hora:'',
+        hora:addZero(d.getHours()) + ":" + addZero(d.getMinutes()) + ":" + addZero(d.getSeconds()),
         medicamento:'',
         dosis:'',
         via_admin:'',
         terapia_electrica:'',
-        rcp:'',
-        procedimiento:'',
+        rcp:'No aplica',
+        procedimiento:'No aplica',
       }
       
     }
@@ -84,6 +90,7 @@ export default class Formulario5 extends Component {
           if(value !== null) {
             // value previously stored
             console.log(value);
+      
           }
         } catch(e) {
           // error reading value
@@ -188,7 +195,7 @@ export default class Formulario5 extends Component {
                 </View>
                 <View style = {styles.inputs}>
                   <Input
-                  placeholder='Fec'
+                  placeholder='Frec'
                   leftIcon={
                       <Icon
                       name='stopwatch'
@@ -336,7 +343,7 @@ export default class Formulario5 extends Component {
                 <Text>Manejo farmacológico y terapia eléctrica</Text>
                 <View style = {styles.inputs}>
                   <Input
-                  placeholder={new Date().getHours() + ':' + new Date().getMinutes()}
+                  placeholder={'Hora'}
                   leftIcon={
                       <Icon
                       name='clockcircle'
@@ -345,9 +352,11 @@ export default class Formulario5 extends Component {
                       type='ant-design'
                       />
                   }
+                  value={this.state.hora}
                   onChangeText={hora => this.setState({hora})}
                   />
                 </View>
+                
                 <View style = {styles.inputs}>
                   <Input
                   placeholder='Medicamento'

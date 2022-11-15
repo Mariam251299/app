@@ -16,53 +16,13 @@ import AwesomeAlert from 'react-native-awesome-alerts';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 import LinearGradient from 'react-native-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-//import * as Print from "expo-print";
-//import * as MediaLibrary from "expo-media-library";
-//import * as Sharing from "expo-sharing";
+
 
 function updateSearch(value) {
-  //do your search logic or anything
   console.log(value)
 }
 
-/*const htmlContent = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pdf Content</title>
-    <style>
-        body {
-            font-size: 16px;
-            color: rgb(255, 196, 0);
-        }
-        h1 {
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
-    <h1>Hello, UppLabs!</h1>
-</body>
-</html>
-`;
 
-const createAndSavePDF = async (html) => {
-  try {
-    const { uri } = await Print.printToFileAsync({ html });
-    if (Platform.OS === "ios") {
-      await Sharing.shareAsync(uri);
-    } else {
-      const permission = await MediaLibrary.requestPermissionsAsync();
-      if (permission.granted) {
-        await MediaLibrary.createAssetAsync(uri);
-      }
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};*/
 
 export default class Formulario7 extends Component {
 
@@ -70,23 +30,6 @@ export default class Formulario7 extends Component {
 
 
 
-  /*async createPDF() {
-    try {
-        let options = {
-          html: '<h1>PDF TEST</h1>',
-          fileName: 'test',
-          directory: 'Documents',
-        };
-
-        let file = await RNHTMLtoPDF.convert(options)
-        // console.log(file.filePath);
-        alert(file.filePath);
-    } catch (err){
-      console.log(err)
-    }*/
-
-
-  //}
 
     state = {
       selectedOption: null
@@ -116,261 +59,268 @@ export default class Formulario7 extends Component {
       super(props);
       this.state = {
         mostrarAlert:false,
-        agua_inyectable_500ml:'',
-        agua_oxigenada:'',
-        agujas_20x32:'',
-        algodon_paquete:'',
-        bata_desechable:'',
-        bolsa_negra:'',
-        bolsa_roja:'',
-        bolsa_amarilla:'',
-        burn_free_gel:'',
-        campos_esteriles:'',
-        canula_blanda_aspiracion:'',
-        canulas_nasofaringeas:'',
-        canulas_orofaringeas:'',
-        canula_yankawer:'',
-        cateter_12:'',
-        cateter_14:'',
-        cateter_16:'',
-        cateter_18:'',
-        cateter_20:'',
-        cateter_22:'',
-        cateter_24:'',
-        cinta_transpore_3m1:'',
-        cinta_transpore_3m2:'',
-        collarines_desechables:'',
-        cubre_bocas:'',
-        desinfectante_manos:'',
-        desinfectante_superficies:'',
-        fijador_te_adulto:'',
-        fijador_te_pediatrico:'',
-        gasas_esteriles:'',
-        gasas_no_esteriles:'',
-        guantes_crudos_pares:'',
-        guantes_esteriles_pares:'',
-        jeringa_1ml:'',
-        jeringa_3ml:'',
-        jeringa_5ml:'',
-        jeringa_10ml:'',
-        jeringa_20ml:'',
-        jeringa_asepto:'',
-        lentes_proteccion:'',
-        lancetas_glucometro:'',
-        ligadura_umbilical:'',
-        manguera_aspirador:'',
-        tegaderm:'',
-        mascarilla_laringea:'',
-        mascarilla_hudson:'',
-        mascarilla_n95:'',
-        mascarilla_o2_adulto:'',
-        mascarilla_o2_ped:'',
-        microgotero:'',
-        normogotero:'',
-        panales_adulto:'',
-        perilla:'',
-        puntas_nasales_adulto:'',
-        puntas_nasales_ped:'',
-        rastrillos:'',
-        sabanas_quemados:'',
-        sabanas_termicas:'',
-        sabanas_desechables:'',
-        sol_cs_1000ml:'',
-        sol_cs_500ml:'',
-        sol_cs_250ml:'',
-        sol_ht_1000ml:'',
-        sol_ht_500ml:'',
-        sol_ht_250ml:'',
-        sol_dx_1000ml:'',
-        sol_dx_500ml:'',
-        sol_dx_250ml:'',
-        sol_gelafundin_500ml:'',
-        sol_isodine_500ml:'',
-        sol_jabon_quir_500ml:'',
-        tiras_reactivas:'',
-        torundeo_alcohol:'',
-        torundeo_seco:'',
-        tubos_endotraqueales:'',
-        venda_5:'',
-        venda_10:'',
-        venda_15:'',
-        venda_20:'',
-        venda_30:'',
-        canula_blanda_aspir:'',
-        canula_yankawer:'',
-        manguera_aspirador:'',
-        electrodos_adulto:'',
-        electrodos_pediatrico:'',
-        gel_conductivo:'',
-        quick_clot:'',
-        adrenalina_1mg_amp:'',
-        agua_inyectable_amp:'',
-        aspirina_100mg_tab_caja:'',
-        aspirina_500mg_tab_caja:'',
-        atropina_1mg_amp:'',
-        avapena_20mg_amp:'',
-        butilhioscina_20mg_amp:'',
-        captopril_25mg_tab_amp:'',
-        carbon_activado_50gr:'',
-        cloranfenicol_gotas:'',
-        clorfenamina_10mg_amp:'',
-        clonixinato_lisina:'',
-        combivent_05_25_sol:'',
-        diazepam_10mg_amp:'',
-        diclofenaco_75mg_amp:'',
-        dx_l_50ml:'',
-        electrolitos_orales:'',
-        fenitoina_sodica:'',
-        flixotide_sol:'',
-        furosemida_20mg_amp:'',
-        hidrocortisona_100mg_amp:'',
-        hidrocortisona_500mg_amp:'',
-        isosorbide_5mg:'',
-        isosorbida_dinirato_spray:'',
-        ketorolaco_30mg_amp:'',
-        meclixina_piridoxina_lido_amp:'',
-        metamizol_sodico_1gr_amp:'',
-        metoclopramida_10mg_amp:'',
-        midazolam_15mg_amp:'',
-        omeprazol_40mg_amp:'',
-        oxitocina_5ui_amp:'',
-        panclasa_40mg_amp:'',
-        paracetamol_500mg_amp:'',
-        paracetamol_gotas:'',
-        salbutamol_5mg_sol:'',
-        salbutamol_aerosol:'',
-        sulfato_magnesio_1gr:'',
-        trinitrato_glicerilo_perlas:'',
-        hidralazaina:'',
-        fitomenadiona:'',
+        agua_inyectable_500ml:'No',
+        agua_oxigenada:'No',
+        agujas_20x32:'No',
+        algodon_paquete:'No',
+        bata_desechable:'No',
+        bolsa_negra:'No',
+        bolsa_roja:'No',
+        bolsa_amarilla:'No',
+        burn_free_gel:'No',
+        campos_esteriles:'No',
+        canula_blanda_aspiracion:'No',
+        canulas_nasofaringeas:'No',
+        canulas_orofaringeas:'No',
+        canula_yankawer:'No',
+        cateter_12:'No',
+        cateter_14:'No',
+        cateter_16:'No',
+        cateter_18:'No',
+        cateter_20:'No',
+        cateter_22:'No',
+        cateter_24:'No',
+        cinta_transpore_3m1:'No',
+        cinta_transpore_3m2:'No',
+        collarines_desechables:'No',
+        cubre_bocas:'No',
+        desinfectante_manos:'No',
+        desinfectante_superficies:'No',
+        fijador_te_adulto:'No',
+        fijador_te_pediatrico:'No',
+        gasas_esteriles:'No',
+        gasas_no_esteriles:'No',
+        guantes_crudos_pares:'No',
+        guantes_esteriles_pares:'No',
+        jeringa_1ml:'No',
+        jeringa_3ml:'No',
+        jeringa_5ml:'No',
+        jeringa_10ml:'No',
+        jeringa_20ml:'No',
+        jeringa_asepto:'No',
+        lentes_proteccion:'No',
+        lancetas_glucometro:'No',
+        ligadura_umbilical:'No',
+        manguera_aspirador:'No',
+        tegaderm:'No',
+        mascarilla_laringea:'No',
+        mascarilla_hudson:'No',
+        mascarilla_n95:'No',
+        mascarilla_o2_adulto:'No',
+        mascarilla_o2_ped:'No',
+        microgotero:'No',
+        normogotero:'No',
+        panales_adulto:'No',
+        perilla:'No',
+        puntas_nasales_adulto:'No',
+        puntas_nasales_ped:'No',
+        rastrillos:'No',
+        sabanas_quemados:'No',
+        sabanas_termicas:'No',
+        sabanas_desechables:'No',
+        sol_cs_1000ml:'No',
+        sol_cs_500ml:'No',
+        sol_cs_250ml:'No',
+        sol_ht_1000ml:'No',
+        sol_ht_500ml:'No',
+        sol_ht_250ml:'No',
+        sol_dx_1000ml:'No',
+        sol_dx_500ml:'No',
+        sol_dx_250ml:'No',
+        sol_gelafundin_500ml:'No',
+        sol_isodine_500ml:'No',
+        sol_jabon_quir_500ml:'No',
+        tiras_reactivas:'No',
+        torundeo_alcohol:'No',
+        torundeo_seco:'No',
+        tubos_endotraqueales:'No',
+        venda_5:'No',
+        venda_10:'No',
+        venda_15:'No',
+        venda_20:'No',
+        venda_30:'No',
+        canula_blanda_aspir:'No',
+        canula_yankawer:'No',
+        manguera_aspirador:'No',
+        electrodos_adulto:'No',
+        electrodos_pediatrico:'No',
+        gel_conductivo:'No',
+        quick_clot:'No',
+        adrenalina_1mg_amp:'No',
+        agua_inyectable_amp:'No',
+        aspirina_100mg_tab_caja:'No',
+        aspirina_500mg_tab_caja:'No',
+        atropina_1mg_amp:'No',
+        avapena_20mg_amp:'No',
+        butilhioscina_20mg_amp:'No',
+        captopril_25mg_tab_amp:'No',
+        carbon_activado_50gr:'No',
+        cloranfenicol_gotas:'No',
+        clorfenamina_10mg_amp:'No',
+        clonixinato_lisina:'No',
+        combivent_05_25_sol:'No',
+        diazepam_10mg_amp:'No',
+        diclofenaco_75mg_amp:'No',
+        dx_l_50ml:'No',
+        electrolitos_orales:'No',
+        fenitoina_sodica:'No',
+        flixotide_sol:'No',
+        furosemida_20mg_amp:'No',
+        hidrocortisona_100mg_amp:'No',
+        hidrocortisona_500mg_amp:'No',
+        isosorbide_5mg:'No',
+        isosorbida_dinirato_spray:'No',
+        ketorolaco_30mg_amp:'No',
+        meclixina_piridoxina_lido_amp:'No',
+        metamizol_sodico_1gr_amp:'No',
+        metoclopramida_10mg_amp:'No',
+        midazolam_15mg_amp:'No',
+        omeprazol_40mg_amp:'No',
+        oxitocina_5ui_amp:'No',
+        panclasa_40mg_amp:'No',
+        paracetamol_500mg_amp:'No',
+        paracetamol_gotas:'No',
+        salbutamol_5mg_sol:'No',
+        salbutamol_aerosol:'No',
+        sulfato_magnesio_1gr:'No',
+        trinitrato_glicerilo_perlas:'No',
+        hidralazaina:'No',
+        fitomenadiona:'No',
 
-        agua_inyectable_500ml_qty:'',
-        agua_oxigenada_qty:'',
-        agujas_20x32_qty:'',
-        algodon_paquete_qty:'',
-        bata_desechable_qty:'',
-        bolsa_negra_qty:'',
-        bolsa_roja_qty:'',
-        bolsa_amarilla_qty:'',
-        burn_free_gel_qty:'',
-        campos_esteriles_qty:'',
-        canula_blanda_aspiracion_qty:'',
-        canulas_nasofaringeas_qty:'',
-        canulas_orofaringeas_qty:'',
-        canula_yankawer_qty:'',
-        cateter_12_qty:'',
-        cateter_14_qty:'',
-        cateter_16_qty:'',
-        cateter_18_qty:'',
-        cateter_20_qty:'',
-        cateter_22_qty:'',
-        cateter_24_qty:'',
-        cinta_transpore_3m1_qty:'',
-        cinta_transpore_3m2_qty:'',
-        collarines_desechables_qty:'',
-        cubre_bocas_qty:'',
-        desinfectante_manos_qty:'',
-        desinfectante_superficies_qty:'',
-        fijador_te_adulto_qty:'',
-        fijador_te_pediatrico_qty:'',
-        gasas_esteriles_qty:'',
-        gasas_no_esteriles_qty:'',
-        guantes_crudos_pares_qty:'',
-        guantes_esteriles_pares_qty:'',
-        jeringa_1ml_qty:'',
-        jeringa_3ml_qty:'',
-        jeringa_5ml_qty:'',
-        jeringa_10ml_qty:'',
-        jeringa_20ml_qty:'',
-        jeringa_asepto_qty:'',
-        lentes_proteccion_qty:'',
-        lancetas_glucometro_qty:'',
-        ligadura_umbilical_qty:'',
-        manguera_aspirador_qty:'',
-        tegaderm_qty:'',
-        mascarilla_laringea_qty:'',
-        mascarilla_hudson_qty:'',
-        mascarilla_n95_qty:'',
-        mascarilla_o2_adulto_qty:'',
-        mascarilla_o2_ped_qty:'',
-        microgotero_qty:'',
-        normogotero_qty:'',
-        panales_adulto_qty:'',
-        perilla_qty:'',
-        puntas_nasales_adulto_qty:'',
-        puntas_nasales_ped_qty:'',
-        rastrillos_qty:'',
-        sabanas_quemados_qty:'',
-        sabanas_termicas_qty:'',
-        sabanas_desechables_qty:'',
-        sol_cs_1000ml_qty:'',
-        sol_cs_500ml_qty:'',
-        sol_cs_250ml_qty:'',
-        sol_ht_1000ml_qty:'',
-        sol_ht_500ml_qty:'',
-        sol_ht_250ml_qty:'',
-        sol_dx_1000ml_qty:'',
-        sol_dx_500ml_qty:'',
-        sol_dx_250ml_qty:'',
-        sol_gelafundin_500ml_qty:'',
-        sol_isodine_500ml_qty:'',
-        sol_jabon_quir_500ml_qty:'',
-        tiras_reactivas_qty:'',
-        torundeo_alcohol_qty:'',
-        torundeo_seco_qty:'',
-        tubos_endotraqueales_qty:'',
-        venda_5_qty:'',
-        venda_10_qty:'',
-        venda_15_qty:'',
-        venda_20_qty:'',
-        venda_30_qty:'',
-        canula_blanda_aspir_qty:'',
-        canula_yankawer_qty:'',
-        manguera_aspirador_qty:'',
-        electrodos_adulto_qty:'',
-        electrodos_pediatrico_qty:'',
-        gel_conductivo_qty:'',
-        quick_clot_qty:'',
-        adrenalina_1mg_amp_qty:'',
-        agua_inyectable_amp_qty:'',
-        aspirina_100mg_tab_caja_qty:'',
-        aspirina_500mg_tab_caja_qty:'',
-        atropina_1mg_amp_qty:'',
-        avapena_20mg_amp_qty:'',
-        butilhioscina_20mg_amp_qty:'',
-        captopril_25mg_tab_amp_qty:'',
-        carbon_activado_50gr_qty:'',
-        cloranfenicol_gotas_qty:'',
-        clorfenamina_10mg_amp_qty:'',
-        clonixinato_lisina_qty:'',
-        combivent_05_25_sol_qty:'',
-        diazepam_10mg_amp_qty:'',
-        diclofenaco_75mg_amp_qty:'',
-        dx_l_50ml_qty:'',
-        electrolitos_orales_qty:'',
-        fenitoina_sodica_qty:'',
-        flixotide_sol_qty:'',
-        furosemida_20mg_amp_qty:'',
-        hidrocortisona_100mg_amp_qty:'',
-        hidrocortisona_500mg_amp_qty:'',
-        isosorbide_5mg_qty:'',
-        isosorbida_dinirato_spray_qty:'',
-        ketorolaco_30mg_amp_qty:'',
-        meclixina_piridoxina_lido_amp_qty:'',
-        metamizol_sodico_1gr_amp_qty:'',
-        metoclopramida_10mg_amp_qty:'',
-        midazolam_15mg_amp_qty:'',
-        omeprazol_40mg_amp_qty:'',
-        oxitocina_5ui_amp_qty:'',
-        panclasa_40mg_amp_qty:'',
-        paracetamol_500mg_amp_qty:'',
-        paracetamol_gotas_qty:'',
-        salbutamol_5mg_sol_qty:'',
-        salbutamol_aerosol_qty:'',
-        sulfato_magnesio_1gr_qty:'',
-        trinitrato_glicerilo_perlas_qty:'',
-        hidralazaina_qty:'',
-        fitomenadiona_qty:'',
+        agua_inyectable_500ml_qty:'No',
+        agua_oxigenada_qty:'No',
+        agujas_20x32_qty:'No',
+        algodon_paquete_qty:'No',
+        bata_desechable_qty:'No',
+        bolsa_negra_qty:'No',
+        bolsa_roja_qty:'No',
+        bolsa_amarilla_qty:'No',
+        burn_free_gel_qty:'No',
+        campos_esteriles_qty:'No',
+        canula_blanda_aspiracion_qty:'No',
+        canulas_nasofaringeas_qty:'No',
+        canulas_orofaringeas_qty:'No',
+        canula_yankawer_qty:'No',
+        cateter_12_qty:'No',
+        cateter_14_qty:'No',
+        cateter_16_qty:'No',
+        cateter_18_qty:'No',
+        cateter_20_qty:'No',
+        cateter_22_qty:'No',
+        cateter_24_qty:'No',
+        cinta_transpore_3m1_qty:'No',
+        cinta_transpore_3m2_qty:'No',
+        collarines_desechables_qty:'No',
+        cubre_bocas_qty:'No',
+        desinfectante_manos_qty:'No',
+        desinfectante_superficies_qty:'No',
+        fijador_te_adulto_qty:'No',
+        fijador_te_pediatrico_qty:'No',
+        gasas_esteriles_qty:'No',
+        gasas_no_esteriles_qty:'No',
+        guantes_crudos_pares_qty:'No',
+        guantes_esteriles_pares_qty:'No',
+        jeringa_1ml_qty:'No',
+        jeringa_3ml_qty:'No',
+        jeringa_5ml_qty:'No',
+        jeringa_10ml_qty:'No',
+        jeringa_20ml_qty:'No',
+        jeringa_asepto_qty:'No',
+        lentes_proteccion_qty:'No',
+        lancetas_glucometro_qty:'No',
+        ligadura_umbilical_qty:'No',
+        manguera_aspirador_qty:'No',
+        tegaderm_qty:'No',
+        mascarilla_laringea_qty:'No',
+        mascarilla_hudson_qty:'No',
+        mascarilla_n95_qty:'No',
+        mascarilla_o2_adulto_qty:'No',
+        mascarilla_o2_ped_qty:'No',
+        microgotero_qty:'No',
+        normogotero_qty:'No',
+        panales_adulto_qty:'No',
+        perilla_qty:'No',
+        puntas_nasales_adulto_qty:'No',
+        puntas_nasales_ped_qty:'No',
+        rastrillos_qty:'No',
+        sabanas_quemados_qty:'No',
+        sabanas_termicas_qty:'No',
+        sabanas_desechables_qty:'No',
+        sol_cs_1000ml_qty:'No',
+        sol_cs_500ml_qty:'No',
+        sol_cs_250ml_qty:'No',
+        sol_ht_1000ml_qty:'No',
+        sol_ht_500ml_qty:'No',
+        sol_ht_250ml_qty:'No',
+        sol_dx_1000ml_qty:'No',
+        sol_dx_500ml_qty:'No',
+        sol_dx_250ml_qty:'No',
+        sol_gelafundin_500ml_qty:'No',
+        sol_isodine_500ml_qty:'No',
+        sol_jabon_quir_500ml_qty:'No',
+        tiras_reactivas_qty:'No',
+        torundeo_alcohol_qty:'No',
+        torundeo_seco_qty:'No',
+        tubos_endotraqueales_qty:'No',
+        venda_5_qty:'No',
+        venda_10_qty:'No',
+        venda_15_qty:'No',
+        venda_20_qty:'No',
+        venda_30_qty:'No',
+        canula_blanda_aspir_qty:'No',
+        canula_yankawer_qty:'No',
+        manguera_aspirador_qty:'No',
+        electrodos_adulto_qty:'No',
+        electrodos_pediatrico_qty:'No',
+        gel_conductivo_qty:'No',
+        quick_clot_qty:'No',
+        adrenalina_1mg_amp_qty:'No',
+        agua_inyectable_amp_qty:'No',
+        aspirina_100mg_tab_caja_qty:'No',
+        aspirina_500mg_tab_caja_qty:'No',
+        atropina_1mg_amp_qty:'No',
+        avapena_20mg_amp_qty:'No',
+        butilhioscina_20mg_amp_qty:'No',
+        captopril_25mg_tab_amp_qty:'No',
+        carbon_activado_50gr_qty:'No',
+        cloranfenicol_gotas_qty:'No',
+        clorfenamina_10mg_amp_qty:'No',
+        clonixinato_lisina_qty:'No',
+        combivent_05_25_sol_qty:'No',
+        diazepam_10mg_amp_qty:'No',
+        diclofenaco_75mg_amp_qty:'No',
+        dx_l_50ml_qty:'No',
+        electrolitos_orales_qty:'No',
+        fenitoina_sodica_qty:'No',
+        flixotide_sol_qty:'No',
+        furosemida_20mg_amp_qty:'No',
+        hidrocortisona_100mg_amp_qty:'No',
+        hidrocortisona_500mg_amp_qty:'No',
+        isosorbide_5mg_qty:'No',
+        isosorbida_dinirato_spray_qty:'No',
+        ketorolaco_30mg_amp_qty:'No',
+        meclixina_piridoxina_lido_amp_qty:'No',
+        metamizol_sodico_1gr_amp_qty:'No',
+        metoclopramida_10mg_amp_qty:'No',
+        midazolam_15mg_amp_qty:'No',
+        omeprazol_40mg_amp_qty:'No',
+        oxitocina_5ui_amp_qty:'No',
+        panclasa_40mg_amp_qty:'No',
+        paracetamol_500mg_amp_qty:'No',
+        paracetamol_gotas_qty:'No',
+        salbutamol_5mg_sol_qty:'No',
+        salbutamol_aerosol_qty:'No',
+        sulfato_magnesio_1gr_qty:'No',
+        trinitrato_glicerilo_perlas_qty:'No',
+        hidralazaina_qty:'No',
+        fitomenadiona_qty:'No',
+        formulario1:'No',
+        formulario2:'No',
+        formulario3:'No',
+        formulario4:'No',
+        formulario5:'No',
+        formulario6:'No',
+        formulario7:'No',
       }
       
     }
@@ -514,6 +464,100 @@ export default class Formulario7 extends Component {
       const printA = async() => {
         console.log('yess');
       }
+
+      const EnviaraServer = async() => {
+        let _this = this;
+        try {
+          const value1 = await AsyncStorage.getItem('@formulario1')
+          if(value1 !== null) {
+            // value previously stored
+            console.log(value1);
+            _this.setState({formulario1:value1});
+
+          }
+        } catch(e) {
+          // error reading value
+        }
+        //f2
+        try {
+          const value2 = await AsyncStorage.getItem('@formulario2')
+          if(value2!== null) {
+            // value previously stored
+            console.log(value2);
+            _this.setState({formulario2:value2});
+          }
+        } catch(e) {
+          // error reading value
+        }
+        //f3
+        try {
+          const value3 = await AsyncStorage.getItem('@formulario3')
+          if(value3!== null) {
+            // value previously stored
+            console.log(value3);
+            _this.setState({formulario3:value3});
+          }
+        } catch(e) {
+          // error reading value
+        }
+        //f4
+        try {
+          const value4  = await AsyncStorage.getItem('@formulario4')
+          if(value4 !== null) {
+            // value previously stored
+            console.log(value4 );
+            _this.setState({formulario4:value4 });
+          }
+        } catch(e) {
+          // error reading value
+        }
+        //f5
+        try {
+          const value5  = await AsyncStorage.getItem('@formulario5')
+          if(value5 !== null) {
+            // value previously stored
+            console.log(value5 );
+            _this.setState({formulario5:value5 });
+          }
+        } catch(e) {
+          // error reading value
+        }
+        //f6
+        try {
+          const value6  = await AsyncStorage.getItem('@formulario6')
+          if(value6 !== null) {
+            // value previously stored
+            console.log(value6 );
+            _this.setState({formulario6:value6 });
+          }
+        } catch(e) {
+          // error reading value
+        }
+        //f7
+        try {
+          const value7  = await AsyncStorage.getItem('@formulario7')
+          if(value7 !== null) {
+            // value previously stored
+            console.log(value7 );
+            _this.setState({formulario7:value7 });
+          }
+        } catch(e) {
+          // error reading value
+        }
+        
+        //enviar a server
+
+        var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+             // Typical action to be performed when the document is ready:
+             console.log(xhttp.responseText);
+          }
+      };
+      xhttp.open("GET", "http://localhost:8888/pdf1.php?formulario1="+this.state.formulario1+"&formulario2="+this.state.formulario2+"&formulario3="+this.state.formulario3+"&formulario4="+this.state.formulario4+"&formulario5="+this.state.formulario5+"&formulario6="+this.state.formulario6+"&formulario7="+this.state.formulario7, true);
+     
+      xhttp.send();
+      }
       return (
         <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
@@ -553,17 +597,9 @@ export default class Formulario7 extends Component {
               <Text style={{marginLeft:'10%'}}>Agua inyectable 500ml</Text>
             </View>
             <View style = {styles.columns}>
-              <Picker selectedValue = {this.state.agua_inyectable_500ml} onValueChange = {(itemValue, itemIndex) => {
-                if(itemValue){
-                  console.log(itemValue);
-                  agua_inyectable_500ml => this.setState({agua_inyectable_500ml})
-                  return;
-                }else{
-                  agua_inyectable_500ml => this.setState("No");
-                }
-              }} style={{width:'45%'}}>
+              <Picker selectedValue = {this.state.agua_inyectable_500ml} onValueChange = {agua_inyectable_500ml => this.setState({agua_inyectable_500ml})} style={{width:'45%'}}>
                 <Picker.Item label = "No" value = "No" />
-                <Picker.Item label = "Si" value = "Si" onPress={printA}/>
+                <Picker.Item label = "Si" value = "Si" />
               </Picker>
 
               <NumericInput onChange={agua_inyectable_500ml_qty => this.setState({agua_inyectable_500ml_qty})} textColor='#900C3F' rightButtonBackgroundColor='#009392' 
@@ -2025,7 +2061,7 @@ export default class Formulario7 extends Component {
                     }}
                 
                     title="Guardar"
-                    onPress={()=> this.showAlert}
+                    onPress={EnviaraServer}
                   >
                     <Text style={{textAlign:'center',fontSize:17,color:'white', justifyContent:'center',alignSelf:'center',fontWeight:'bold'}}>Enviar todo</Text> 
                   </TouchableOpacity>

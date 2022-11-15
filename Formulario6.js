@@ -63,11 +63,11 @@ export default class Formulario6 extends Component {
         var tempescribe = this.state.institucion+","+this.state.nombre_firma_paciente+","+this.state.nombre_firma_testigo+","+this.state.observaciones
         +","+this.state.dependencia+","+this.state.num_unidades+","+this.state.encargado_y_oficiales+","+this.state.pertenencias
         +","+this.state.receptor_pertenencias+","+this.state.nombre_completo_paciente+","+this.state.nombre_completo_medico;
-      try {
-        await AsyncStorage.setItem('@formulario6', tempescribe)
-      } catch (e) {
-        // saving error
-      }
+        try {
+          await AsyncStorage.setItem('@formulario6', tempescribe)
+        } catch (e) {
+          // saving error
+        }
 
       }
       const lee = async() => {
